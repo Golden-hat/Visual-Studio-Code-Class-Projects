@@ -10,8 +10,10 @@ public class SwitchExample{
         System.out.println("6.Blanco");
         System.out.println("7.Naranja\n");
 
+        do{
+        
         Scanner sc = new Scanner(System.in);
-        int color = sc.nextInt();
+        System.out.println("\nElige tu color: "); int color = sc.nextInt();
         
         switch(color){
             case 1:
@@ -37,8 +39,9 @@ public class SwitchExample{
             break;
             default:
             System.out.print("\nElige un color válido sisplau.\n");
-
+        
         }
-        sc.close();
+        
+        }while(1==1);
     }
 }

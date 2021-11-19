@@ -1,3 +1,4 @@
+package MeasureExam;
 public class Measure {
     public static final double MAX_DAY_TIME = 65.0;
     public static final double MAX_NIGHT_TIME = 30.0;
@@ -29,15 +30,12 @@ public class Measure {
     public double getNoise (double noise){
         return noise;
     }
-    public void (double noise){
-        this.noise = noise;
-    }
 
     @Override // sirve para evitar errores lógicos al compilar
 
     public boolean equals (Object o){
         if (o instanceof Measure){
-            Measure other = (Measure)o; //necesario, porque oinstant no sepuede hacer ya que o no pertenece a instant sino a Objetcs,por lo que se tiene que asignar other a o)
+            Measure other = (Measure)o; //necesario, porque oinstant no se puede hacer ya que o no pertenece a instant sino a Objetcs, por lo que se tiene que asignar other a o)
             return this.instant.equals (other.instant)&&
             //this.noise == other.noise; está MAL
             Math.abs(this.noise - other.noise) <= 10e-6;
@@ -48,9 +46,8 @@ public class Measure {
     }
     public boolean exceedMax(){
         switch(this.period){
-            case TimeInstant.DAY_TIME:
+            case 1:
             return this.noise > Measure.MAX_DAY_TIME;
-            break;
             default:
             return this.noise > Measure.MAX_NIGHT_TIME;
         }
@@ -58,11 +55,10 @@ public class Measure {
 
     @Override
     public String toString(){
-        return instant.toString()+" "+station+String.format(" %.2f", noise)
+        return instant.toString()+" "+station+String.format(" %.2f", noise);
     }
 
-    public int compareTo(Measure other){
-        return this.instant.compareTo8other.instant);
+    public void compareTo(Measure other){
 
         // int a = instant.getHours()*100+instant.getMinutes();
         // int b = other.instnat.getHours()*100+other.instant.getMinutes();

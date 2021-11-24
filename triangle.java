@@ -59,7 +59,7 @@ public class triangle{
         }
     }
 
-    //Offset se toma desde la primera linea
+    //Offset se toma desde la primera línea
     public static void InverseCenterTriangle(int offset, int height){
         for (int i = 0; i <= height; i++){
             lines(offset+i, ' ');

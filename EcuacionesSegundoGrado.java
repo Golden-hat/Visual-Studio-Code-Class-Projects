@@ -20,7 +20,7 @@ public class EcuacionesSegundoGrado{
         double c = sc.nextDouble();
 
         if(a==0){
-            if(b==01){
+            if(b==0){
                 if (c==0){
                     System.out.println("\nHay infinitas soluciones");
                 }

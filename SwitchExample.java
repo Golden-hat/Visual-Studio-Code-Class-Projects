@@ -1,5 +1,7 @@
 import java.util.Scanner;
 public class SwitchExample{
+
+    static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
         System.out.println("¿Cuál es tu color preferido?");
         System.out.println("\n1.Amarillo");
@@ -12,7 +14,6 @@ public class SwitchExample{
 
         do{
         
-        Scanner sc = new Scanner(System.in);
         System.out.println("\nElige tu color: "); int color = sc.nextInt();
         
         switch(color){
@@ -41,7 +42,8 @@ public class SwitchExample{
             System.out.print("\nElige un color válido sisplau.\n");
         
         }
+
+        }while(true);
         
-        }while(1==1);
     }
 }

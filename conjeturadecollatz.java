@@ -1,7 +1,8 @@
 public class conjeturadecollatz{
     public static void main(String[] args) {
-        collatz(217);
+        collatz(27);
     }
+
     public static void collatz(long n){
         long currResult = n;
         int iteraciones = 0;
@@ -27,6 +28,5 @@ public class conjeturadecollatz{
                 }
             }
         }while(currResult != 1);
-
     }
 }

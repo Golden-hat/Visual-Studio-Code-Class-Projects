@@ -1,6 +1,7 @@
 public class conjeturadecollatz{
     public static void main(String[] args) {
-        collatz(27);
+        int n = 7;
+            collatz(n);
     }
 
     public static void collatz(long n){

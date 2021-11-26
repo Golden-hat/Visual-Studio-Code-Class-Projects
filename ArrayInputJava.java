@@ -8,7 +8,7 @@ public class ArrayInputJava{
         int n = z.nextInt();
         System.out.println("\n");
       
-        float[] inputArray = new float[49];
+        float[] inputArray = new float[50];
         float sum = 0;
 
         Scanner i = new Scanner(System.in);

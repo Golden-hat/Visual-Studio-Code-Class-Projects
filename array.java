@@ -1,7 +1,8 @@
 public class array {
     public static void main(String[] args) {
-        int a[] = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
-
+        int a[] = new int[]{0, 0, 0, 3, 4, 0, 0, 7, 8, 56, 10, 0, 0, 13, 14};
+        System.out.println(maximum(a));
+        System.out.println(periodOfThree(a));
     }
 
     public static void swap(int [] a, int j, int k){
@@ -25,5 +26,21 @@ public class array {
             }
         }
         return pos;
+    }
+
+    public static int periodOfThree(int[] a){
+        int counter = 0;
+        
+        for (int i = 0; i < a.length; i++){
+
+            if(a[i] > 0){
+                if (++counter >= 3){
+                    return (i - counter +1);
+                }
+            }else{
+                counter = 0;
+            }
+        }   
+        return -1;
     }
 }

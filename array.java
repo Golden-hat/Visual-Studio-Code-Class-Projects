@@ -1,6 +1,6 @@
 public class array {
     public static void main(String[] args) {
-        int a[] = new int[]{0, 0, 0, 3, 4, 0, 0, 7, 8, 56, 10, 0, 0, 13, 14};
+        int a[] = new int[]{0, 0, 2, 3, 4, 6, 0, 7, 8, 56, 10, 0, 0, 13, 14};
         System.out.println(maximum(a));
         System.out.println(periodOfThree(a));
     }
@@ -34,13 +34,16 @@ public class array {
         for (int i = 0; i < a.length; i++){
 
             if(a[i] > 0){
-                if (++counter >= 3){
-                    return (i - counter +1);
-                }
+                ++counter;
             }else{
                 counter = 0;
             }
-        }   
+
+            if (counter >= 3){
+                return (i - counter +1);
+            }
+        }
+
         return -1;
     }
 }

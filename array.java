@@ -1,7 +1,9 @@
 public class array {
     public static void main(String[] args) {
-        int a[] = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
-
+        int a[] = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 54, 9, 10, 11, 12, 13, 14};
+        printArr(a);
+        System.out.println();
+        System.out.println(maximum(a));
     }
 
     public static void swap(int [] a, int j, int k){

@@ -5,12 +5,7 @@ public class array {
         System.out.println();
         System.out.println(maximum(a));
         System.out.println();
-
-        int[] b = longestHigherThan3Period(a);
-
-        for(int i = 0; i < b.length; i++){
-            System.out.println(b[i]);
-        }
+        System.out.println(sentinel_search(a, 54));
     }
 
     public static void swap(double [] a, int j, int k){
@@ -35,7 +30,7 @@ public class array {
         }
         return pos;
     }
-    public static int sentinel_search(int[] a, int x){
+    public static int sentinel_search(double[] a, int x){
         a[0] = x;
         int i = a.length - 1;
         while (a[i] != x){

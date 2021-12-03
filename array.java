@@ -6,7 +6,7 @@ public class array {
         System.out.println(maximum(a));
         System.out.println();
 
-        int[] b = longestRainingPeriod(a);
+        int[] b = longestHigherThan3Period(a);
 
         for(int i = 0; i < b.length; i++){
             System.out.println(b[i]);
@@ -35,8 +35,15 @@ public class array {
         }
         return pos;
     }
-
-    public static int[] longestRainingPeriod(double[] x){
+    public static int sentinel_search(int[] a, int x){
+        a[0] = x;
+        int i = a.length - 1;
+        while (a[i] != x){
+            i--;
+        }
+        return i==0 ? -1:i;
+    }
+    public static int[] longestHigherThan3Period(double[] x){
         int counter = 0, max_count = 0, pos = -1;
 
         for (int i = 0; i < x.length; i++){

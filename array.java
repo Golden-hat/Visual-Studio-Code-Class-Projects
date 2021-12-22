@@ -1,3 +1,5 @@
+import java.nio.channels.NetworkChannel;
+
 public class array {
 
     
@@ -99,5 +101,14 @@ public class array {
             a[i] = a[i-1];
         }
         a[0] = shift;
+    }
+
+    public static void addTerm(double a[], double added[]){
+        double[] newArray = new double [1+a.length];
+        newArray = a;
+        
+        for(int i = 0, i <)
+        newArray[newArray.length - 1] = added
+
     }
 }

@@ -1,11 +1,11 @@
 public class array {
+
+    
     public static void main(String[] args) {
         double a[] = new double[]{1, 1, 2, 3, 4, 5, 0, 7, 54, 9, 0, 11, 12, 13, 14};
+
+        moveAndShiftLeft(a, 4);
         printArr(a);
-        System.out.println();
-        System.out.println(maximum(a));
-        System.out.println();
-        System.out.println(sentinel_search(a, 54));
     }
 
     public static void swap(double [] a, int j, int k){
@@ -15,9 +15,11 @@ public class array {
     }
 
     public static void printArr(double [] a){
+        System.out.print("{");
         for (int i = 0; i < a.length; i++){
-            System.out.println(a[i]);
+            System.out.print(a[i]+", ");
         }
+        System.out.println("}");
     }
 
     public static int maximum(double [] a){
@@ -30,6 +32,7 @@ public class array {
         }
         return pos;
     }
+
     public static int sentinel_search(double[] a, int x){
         a[0] = x;
         int i = a.length - 1;
@@ -38,6 +41,7 @@ public class array {
         }
         return i==0 ? -1:i;
     }
+    
     public static int[] longestHigherThan3Period(double[] x){
         int counter = 0, max_count = 0, pos = -1;
 
@@ -62,5 +66,14 @@ public class array {
             r[1] = max_count;
             return r;
         } 
+    }
+
+    public static void moveAndShiftLeft(double a[], int shiftVal){
+        double shift = a[shiftVal];
+
+        for(int i = shiftVal; i < a.length-1; i++){
+            a[i] = a[i+1];
+        }
+        a[a.length-1] = shift;
     }
 }

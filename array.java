@@ -2,9 +2,9 @@ public class array {
 
     
     public static void main(String[] args) {
-        double a[] = new double[]{1, 1, 2, 3, 4, 5, 0, 7, 54, 9, 0, 11, 12, 13, 14};
+        double a[] = new double[]{1, 1, 2, 3, 4, 5, 0, 7, 54, 9, 0, 11, 12, 13, 14, 15, 16, 16, 723, 634};
 
-        moveAndShiftLeft(a, 4);
+        moveAndShiftRight(a, 4);
         printArr(a);
     }
 
@@ -16,9 +16,10 @@ public class array {
 
     public static void printArr(double [] a){
         System.out.print("{");
-        for (int i = 0; i < a.length; i++){
+        for (int i = 0; i < a.length-1; i++){
             System.out.print(a[i]+", ");
         }
+        System.out.print(a[a.length-1]);
         System.out.println("}");
     }
 
@@ -41,7 +42,7 @@ public class array {
         }
         return i==0 ? -1:i;
     }
-    
+
     public static int[] longestHigherThan3Period(double[] x){
         int counter = 0, max_count = 0, pos = -1;
 
@@ -68,6 +69,13 @@ public class array {
         } 
     }
 
+    /*
+    El método identifica la posición shiftVal del array a[]
+    y la pone en frente del array. Es decir, si el array es
+    a = {pera, plátano, manzana, higo, uva}, y seleccionamos
+    el valor posicion 2, el método retornará:
+    a = {pera, plátano, higo, uva, manzana}
+    */
     public static void moveAndShiftLeft(double a[], int shiftVal){
         double shift = a[shiftVal];
 
@@ -75,5 +83,21 @@ public class array {
             a[i] = a[i+1];
         }
         a[a.length-1] = shift;
+    }
+
+    /*
+    El método identifica la posición shiftVal del array a[]
+    y la pone al final del array. Es decir, si el array es
+    a = {pera, plátano, manzana, higo, uva}, y seleccionamos
+    el valor posicion 2, el método retornará:
+    a = {manzana, pera, plátano, higo, uva}
+    */
+    public static void moveAndShiftRight(double a[], int shiftVal){
+        double shift = a[shiftVal];
+
+        for(int i = shiftVal; i > 0; i--){
+            a[i] = a[i-1];
+        }
+        a[0] = shift;
     }
 }

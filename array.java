@@ -1,33 +1,21 @@
 public class array {
 
     public static final int maxsize = 10000;
-    public static int size = 0;
+    public static int size = 50;
+    public static int Offset = 50;
     public static double[] a = new double[maxsize];
 
     public static void main(String[] args) {
-        addSingleTerm(a, 5);
-        addSingleTerm(a, 15);
-        addSingleTerm(a, 542);
-        addSingleTerm(a, 125);
-        addSingleTerm(a, 2655);
-
-        double[] b = new double[]{2,3,3,4,5,6,7,8,900000};
-        addMultipleTerm(a, b);
-
-        moveFrontAndShiftLeft(a, 6);
-        printArr(a);
-        System.out.println();
-
-        System.out.println(sentinel_search(a, 542));
-        System.out.println(a[sentinel_search(a, 542)]);
+        addSingleTerm(a, 1);
+        addSingleTerm(a, 342);
+        addSingleTerm(a, 5642);
+        addSingleTerm(a, 2231);
+        addSingleTerm(a, 12);
+        addSingleTerm(a, 21312);
+        addSingleTerm(a, 223);
         printArr(a);
 
-        System.out.println();
-        RemoveAndShiftLeft(a, 7);
-        printArr(a);
-
-        System.out.println();
-        LowerToHigher(a);
+        desplazarDcha(a, 4, 8);
         printArr(a);
     }
 
@@ -154,11 +142,19 @@ public class array {
         size++;
 
         while (size != temporal){
-            a[size-1] = b;
+            a[size-1-Offset] = b;
             temporal++;
         }
     }
     
+    public static void desplazarDcha(double[] a, int pos, double add){
+        for(int i = size-1; i >= pos; i--){
+            a[i] = a[i-1];
+        }
+        a[pos] = add;
+        
+    }
+
     public static void RemoveAndShiftLeft(double[] a, int pos){
         a[pos] = 0;
 
@@ -179,7 +175,6 @@ public class array {
                     a[i] = a[j];
                     a[j] = tmp;
                 }
-                
             }
         }
     }

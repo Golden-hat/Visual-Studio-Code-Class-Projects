@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class TestAstro {
     public static void main(String[] args) {
         Astro AlfaCentauri = new Astro("Alfa Centauri", 0, 4.6, 4.3);

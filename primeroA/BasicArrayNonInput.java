@@ -1,3 +1,4 @@
+package primeroA;
 public class BasicArrayNonInput{
     public static void main(String Args[]){
         

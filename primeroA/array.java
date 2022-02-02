@@ -1,3 +1,4 @@
+package primeroA;
 public class array {
 
     public static final int maxsize = 10000;

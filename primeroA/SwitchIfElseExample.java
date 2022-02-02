@@ -1,3 +1,5 @@
+package primeroA;
+
 import java.util.Scanner;
 class SwitchIfElseExample {
     public static void main (String[] args){

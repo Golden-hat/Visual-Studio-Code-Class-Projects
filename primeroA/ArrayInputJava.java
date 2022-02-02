@@ -1,3 +1,4 @@
+package primeroA;
 import java.util.Scanner;
 public class ArrayInputJava{   
     public static void main (String Args[]){

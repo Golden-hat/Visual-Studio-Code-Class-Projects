@@ -1,3 +1,5 @@
+package primeroA;
+
 public class forExample{
 
     public static int product (int a, int b) {

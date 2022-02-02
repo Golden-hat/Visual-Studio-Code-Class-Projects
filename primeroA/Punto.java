@@ -1,3 +1,5 @@
+package primeroA;
+
 /**
 * Clase Punto: define puntos en un espacio bidimensional entero
 * con la funcionalidad que se indica a continuacion.

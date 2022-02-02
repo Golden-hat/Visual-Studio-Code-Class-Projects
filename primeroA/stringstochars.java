@@ -1,3 +1,5 @@
+package primeroA;
+
 public class stringstochars {
     public static void main(String[] args) {
         number9("Hola Mundo");

@@ -1,3 +1,5 @@
+package primeroA;
+
 import java.util.Scanner;
 public class maximoComunDivisor {
     public static void main(String[] args) {

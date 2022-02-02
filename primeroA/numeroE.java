@@ -1,3 +1,5 @@
+package primeroA;
+
 public class numeroE {
     public static void main(String[] args) {
         System.out.println(exp(1, 500));

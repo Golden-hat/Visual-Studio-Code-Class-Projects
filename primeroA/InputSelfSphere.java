@@ -1,3 +1,5 @@
+package primeroA;
+
 import java.util.Scanner;
 public class InputSelfSphere{
     public static void main(String[] Args){

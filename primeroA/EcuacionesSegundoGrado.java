@@ -1,3 +1,5 @@
+package primeroA;
+
 import java.util.Scanner;
 public class EcuacionesSegundoGrado{
     public static void main(String[] args){

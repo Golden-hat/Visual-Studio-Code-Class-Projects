@@ -1,3 +1,4 @@
+package primeroA;
 import java.util.Scanner;
 public class ComparadorNumeroX {
     

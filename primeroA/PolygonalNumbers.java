@@ -1,3 +1,5 @@
+package primeroA;
+
 public class PolygonalNumbers{
     public static void main(String[] args) {
         check(15, 3);

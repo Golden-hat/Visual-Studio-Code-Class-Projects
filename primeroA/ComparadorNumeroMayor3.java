@@ -1,3 +1,4 @@
+package primeroA;
 import java.util.Scanner;
 public class ComparadorNumeroMayor3 {
     public static void main (String[] args){

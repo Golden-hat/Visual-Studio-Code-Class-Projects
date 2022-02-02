@@ -1,3 +1,5 @@
+package primeroA;
+
 public class conjeturadecollatz{
     public static void main(String[] args) {
         int n = 7;

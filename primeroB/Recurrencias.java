@@ -2,7 +2,8 @@ package primeroB;
 public class Recurrencias{
 
     public static void main(String[] args) {
-       System.out.println(DivSubstraction(50, 5)); 
+       System.out.println(DivSubstraction(50, 5));
+       System.out.println(sumOfDigits(1435));
     }
 
     public static int fibonacci(int n){
@@ -54,6 +55,15 @@ public class Recurrencias{
         }
         else{
             return MultAddition(a, (b-1)) + a;
+        }
+    }
+
+    public static int sumOfDigits(int n){
+        if (n == 0){
+            return 0;
+        }
+        else{
+            return n % 10 + sumOfDigits(n/10);
         }
     }
 }

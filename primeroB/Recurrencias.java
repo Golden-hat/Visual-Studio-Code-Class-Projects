@@ -4,6 +4,7 @@ public class Recurrencias{
     public static void main(String[] args) {
        System.out.println(DivSubstraction(50, 5));
        System.out.println(sumOfDigits(1435));
+       //THE ARITHMETIC OPERATION IS ONLY EXECUTED WHEN THE RECURSIVE METHOD IS OVER
     }
 
     public static int fibonacci(int n){

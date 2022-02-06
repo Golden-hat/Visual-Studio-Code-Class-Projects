@@ -33,13 +33,12 @@ public class Recurrencias{
     public static void printNum(int n){
         if(n == 1){
             System.out.println(n);
-
         }
         else{
-            PauseTest();
+            //PauseTest();
             printNum(n-1);
             System.out.println(n);
-            PauseTest();
+            //PauseTest();
         }
     }
 
@@ -70,10 +69,12 @@ public class Recurrencias{
         }
     }
 
+    /*
     public static void PauseTest(){
    
         System.out.println("Press Enter Key To Continue...");
         new java.util.Scanner(System.in).nextLine();
     }
+    */
     
 }

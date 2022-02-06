@@ -2,8 +2,7 @@ package primeroB;
 public class Recurrencias{
 
     public static void main(String[] args) {
-       System.out.println(DivSubstraction(50, 5));
-       System.out.println(sumOfDigits(1435));
+       printNum(1435);
        //THE ARITHMETIC OPERATION IS ONLY EXECUTED WHEN THE RECURSIVE METHOD IS OVER
     }
 
@@ -31,13 +30,14 @@ public class Recurrencias{
         } 
     }
     
-    public static int printNum(int n){
-        if(n == 0){
-            return 0;
+    public static void printNum(int n){
+        if(n == 1){
+            System.out.println(n);
+
         }
         else{
             System.out.println(n);
-            return printNum(n-1);
+            printNum(n-1);
         }
     }
 

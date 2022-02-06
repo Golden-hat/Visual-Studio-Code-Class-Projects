@@ -2,7 +2,7 @@ package primeroB;
 public class Recurrencias{
 
     public static void main(String[] args) {
-       printNum(1435);
+       printNum(10);
        //THE ARITHMETIC OPERATION IS ONLY EXECUTED WHEN THE RECURSIVE METHOD IS OVER
     }
 
@@ -36,8 +36,10 @@ public class Recurrencias{
 
         }
         else{
-            System.out.println(n);
+            PauseTest();
             printNum(n-1);
+            System.out.println(n);
+            PauseTest();
         }
     }
 
@@ -67,4 +69,11 @@ public class Recurrencias{
             return n % 10 + sumOfDigits(n/10);
         }
     }
+
+    public static void PauseTest(){
+   
+        System.out.println("Press Enter Key To Continue...");
+        new java.util.Scanner(System.in).nextLine();
+    }
+    
 }

@@ -2,8 +2,8 @@ package primeroB;
 public class Recurrencias{
 
     public static void main(String[] args) {
-       printNum(10);
-       System.out.println(evenOddDivision(70, 4));
+       ReverseDigs(0);
+       System.out.println();
        //THE ARITHMETIC OPERATION IS ONLY EXECUTED WHEN THE RECURSIVE METHOD IS OVER
     }
 
@@ -69,14 +69,43 @@ public class Recurrencias{
     }
 
     public static int evenOddDivision(int a, int b){
+        int sign = 1;
+        if (a < 0){
+            sign *= -1;
+            a = -a;
+        }
+        if (b < 0){
+            sign *= -1;
+            b = -b;
+        }
+
         if(b == 0){
             return 0;
         }
         else if (b%2 == 0){
-            return evenOddDivision(a*2, b/2);
+            return sign*evenOddDivision(a*2, b/2);
         }
         else{
-            return evenOddDivision(a*2, b/2) + a;
+            return sign*(evenOddDivision(a*2, b/2) + a);
         }
     }
+
+    public static int TotalAmountDig(int n){
+        if(n > 0){
+            return TotalAmountDig(n/10) + 1;
+        }
+        else{
+            return 0;
+        }
+    }
+
+    public static void ReverseDigs(int n){
+        if(n == 0){
+            System.out.print("0");
+        }
+        if(n > 0){
+            System.out.print(n%10);
+            ReverseDigs(n/10);
+        }
+    }   
 }

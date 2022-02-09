@@ -2,8 +2,8 @@ package primeroB;
 public class Recurrencias{
 
     public static void main(String[] args) {
-       ReverseDigs(0);
-       System.out.println();
+       
+       System.out.println(ReverseDigitsReturn(152312, 0));
        //THE ARITHMETIC OPERATION IS ONLY EXECUTED WHEN THE RECURSIVE METHOD IS OVER
     }
 
@@ -107,5 +107,14 @@ public class Recurrencias{
             System.out.print(n%10);
             ReverseDigs(n/10);
         }
-    }   
+    }
+
+    public static int ReverseDigitsReturn(int n, int r){
+        if(n == 0){
+            return r;
+        }
+        else{
+            return ReverseDigitsReturn(n/10, r*10 + n%10);
+        }
+    }
 }

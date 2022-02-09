@@ -2,8 +2,8 @@ package primeroB;
 public class Recurrencias{
 
     public static void main(String[] args) {
-       System.out.println(DivSubstraction(50, 5));
-       System.out.println(sumOfDigits(1435));
+       printNum(10);
+       System.out.println(evenOddDivision(70, 4));
        //THE ARITHMETIC OPERATION IS ONLY EXECUTED WHEN THE RECURSIVE METHOD IS OVER
     }
 
@@ -31,13 +31,13 @@ public class Recurrencias{
         } 
     }
     
-    public static int printNum(int n){
-        if(n == 0){
-            return 0;
+    public static void printNum(int n){
+        if(n == 1){
+            System.out.println(n);
         }
         else{
-            System.out.println(n);
-            return printNum(n-1);
+            printNum(n-1);
+            System.out.println(n + " ");
         }
     }
 
@@ -51,7 +51,7 @@ public class Recurrencias{
     }
 
     public static int MultAddition(int a, int b){
-        if (b == 0){
+        if(b == 0){
             return 0;
         }
         else{
@@ -60,11 +60,23 @@ public class Recurrencias{
     }
 
     public static int sumOfDigits(int n){
-        if (n == 0){
+        if(n == 0){
             return 0;
         }
         else{
             return n % 10 + sumOfDigits(n/10);
+        }
+    }
+
+    public static int evenOddDivision(int a, int b){
+        if(b == 0){
+            return 0;
+        }
+        else if (b%2 == 0){
+            return evenOddDivision(a*2, b/2);
+        }
+        else{
+            return evenOddDivision(a*2, b/2) + a;
         }
     }
 }

@@ -2,9 +2,9 @@ package primeroB;
 public class Recurrencias{
 
     public static void main(String[] args) {
-       
-       System.out.println(ReverseDigitsReturn(152312, 0));
-       //THE ARITHMETIC OPERATION IS ONLY EXECUTED WHEN THE RECURSIVE METHOD IS OVER
+        DecimaltoBinary(6);
+        System.out.println();
+        //THE ARITHMETIC OPERATION IS ONLY EXECUTED WHEN THE RECURSIVE METHOD IS OVER
     }
 
     public static int fibonacci(int n){
@@ -108,13 +108,37 @@ public class Recurrencias{
             ReverseDigs(n/10);
         }
     }
-
-    public static int ReverseDigitsReturn(int n, int r){
+    
+    public static int ReverseRet(int n, int r){
         if(n == 0){
             return r;
         }
         else{
-            return ReverseDigitsReturn(n/10, r*10 + n%10);
+           return ReverseRet(n/10, n%10 + r*10);
         }
+
+    }
+
+    public static void DecimaltoBinary(int n){
+        if(2 > n){
+            System.out.print(n);
+        }
+        else{
+            DecimaltoBinary(n/2);
+            System.out.print(n%2);
+        }
+    }
+
+    public static int DecimaltoBinaryRet(int n){
+        if(2 > n){
+            return n;
+        }
+        else{
+            return 10*DecimaltoBinaryRet(n/2)+(n%2);
+        }
+    }
+
+    public static boolean isPrefix(String s1, String s2, int i){
+        
     }
 }

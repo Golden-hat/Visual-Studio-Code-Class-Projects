@@ -3,8 +3,10 @@ public class Recurrencias{
 
     public static void main(String[] args) {
         DecimaltoBinary(6);
+        System.out.println(isPrefix("hola que tal", "hola"));
+        System.out.println(isSufix("hola que tal", "tal"));
+        System.out.println(contains("hola que tal", "que"));
         System.out.println();
-        //THE ARITHMETIC OPERATION IS ONLY EXECUTED WHEN THE RECURSIVE METHOD IS OVER
     }
 
     public static int fibonacci(int n){
@@ -37,6 +39,7 @@ public class Recurrencias{
         }
         else{
             printNum(n-1);
+             //THE OPERATION IS ONLY EXECUTED WHEN THE RECURSIVE METHOD IS OVER
             System.out.println(n + " ");
         }
     }
@@ -139,6 +142,41 @@ public class Recurrencias{
     }
 
     public static boolean isPrefix(String s1, String s2, int i){
-        
+        if(i < 0){
+            return true;
+        }
+        else{
+            return s1.charAt(i) == s2.charAt(i) && isPrefix(s1, s2, i-1);
+        }
+    }
+    public static boolean isPrefix(String s1, String s2){
+        return s2.length() <= s1.length() && isPrefix(s1, s2, s2.length()-1);
+    }
+
+    public static boolean isSufix(String s1, String s2, int i, int j){
+        if(j < 0){
+            return true;
+        }
+        else{
+            return s1.charAt(i) == s2.charAt(j) && isSufix(s1, s2, i-1, j-1);
+        }
+    }
+    public static boolean isSufix(String s1, String s2){
+        return s2.length() <= s1.length() && isSufix(s1, s2, s1.length()-1, s2.length()-1);
+    }
+
+    public static boolean contains(String s1, String s2, int i){
+        if(isSufix(s1, s2, i, s2.length()-1)){
+            return true;
+        }
+        else if(i < s2.length()-1){
+            return false;
+        }
+        else{
+            return contains(s1, s2, i-1);
+        }
+    }
+    public static boolean contains(String s1, String s2){
+        return s2.length() <= s1.length() && contains(s1, s2, s1.length()-1);
     }
 }

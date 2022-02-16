@@ -7,6 +7,7 @@ public class Recurrencias{
         System.out.println(isSufix("hola que tal", "tal"));
         System.out.println(contains("hola que tal", "que"));
         System.out.println();
+        //THE ARITHMETIC OPERATION IS ONLY EXECUTED WHEN THE RECURSIVE METHOD IS OVER
     }
 
     public static int fibonacci(int n){
@@ -39,7 +40,6 @@ public class Recurrencias{
         }
         else{
             printNum(n-1);
-             //THE OPERATION IS ONLY EXECUTED WHEN THE RECURSIVE METHOD IS OVER
             System.out.println(n + " ");
         }
     }

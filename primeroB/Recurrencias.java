@@ -6,6 +6,7 @@ public class Recurrencias{
         System.out.println(isPrefix("hola que tal", "hola"));
         System.out.println(isSufix("hola que tal", "tal"));
         System.out.println(contains("hola que tal", "que"));
+        System.out.println(pascalTriangle(9,3));
         System.out.println();
         //THE ARITHMETIC OPERATION IS ONLY EXECUTED WHEN THE RECURSIVE METHOD IS OVER
     }
@@ -178,6 +179,17 @@ public class Recurrencias{
     }
     public static boolean contains(String s1, String s2){
         return s2.length() <= s1.length() && contains(s1, s2, s1.length()-1);
-        //haha
+    }
+
+    public static int pascalTriangle(int r, int i){
+        if(i==0){
+            return 1;
+        }
+        else if(i==r){
+            return 1;
+        }
+        else{
+            return pascalTriangle(r-1, i-1) + pascalTriangle(r-1, i);
+        }
     }
 }

@@ -2,11 +2,9 @@ package primeroB;
 public class Recurrencias{
 
     public static void main(String[] args) {
-        DecimaltoBinary(6);
-        System.out.println(isPrefix("hola que tal", "hola"));
-        System.out.println(isSufix("hola que tal", "tal"));
-        System.out.println(contains("hola que tal", "que"));
-        System.out.println(pascalTriangle(9,3));
+
+        String a[] = {"a","b","c","d","e","f","g","h"};
+        printAlternate(a, a.length-1);
         System.out.println();
         //THE ARITHMETIC OPERATION IS ONLY EXECUTED WHEN THE RECURSIVE METHOD IS OVER
     }
@@ -209,6 +207,15 @@ public class Recurrencias{
                 return BinarySearch(v, left, k-1, x);
             }
         }
-        
+    }
+
+    public static void printAlternate(String a[], int i){
+        if(i < a.length/2){
+            return;
+        }
+        else{
+            System.out.print(a[a.length-1-i]+a[i]);
+            printAlternate(a, i-1);
+        }
     }
 }

@@ -192,4 +192,23 @@ public class Recurrencias{
             return pascalTriangle(r-1, i-1) + pascalTriangle(r-1, i);
         }
     }
+
+    public static int BinarySearch(int v[], int left, int right, int x){
+        if(left > right){
+            return -1;
+        }
+        else{
+            int k = (left+right)/2;
+            if(v[k] == x){
+                return k;
+            }
+            else if(v[k]<x){
+                return BinarySearch(v, k+1, right, x);
+            }
+            else{
+                return BinarySearch(v, left, k-1, x);
+            }
+        }
+        
+    }
 }

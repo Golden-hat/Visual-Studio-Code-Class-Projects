@@ -1,3 +1,5 @@
+package Examen2014;
+
 public class Astro{
 
     public static final int ESTRELLA = 0;

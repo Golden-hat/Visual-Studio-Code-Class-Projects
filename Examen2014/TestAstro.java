@@ -1,3 +1,4 @@
+package Examen2014;
 import java.util.Scanner;
 
 public class TestAstro {
@@ -15,5 +16,6 @@ public class TestAstro {
         
         System.out.println(NewAstro.masBrillante(AlfaCentauri));
 
+        sc.close();
     }
 }

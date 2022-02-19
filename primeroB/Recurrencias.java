@@ -7,8 +7,8 @@ public class Recurrencias{
         printAlternate(a, a.length-1);
         System.out.println();
         wordsMidToEnds(a, a.length/2);
-        int b[] = {20, 15, 14, 10, 7, 22};
-        System.out.println(capicuaDeClaveK(b, 10, 0));
+        int b[] = {1, 2, 3, 1423};
+        System.out.println(test(b, 0, b.length-1, 10));
         DecimaltoBinary(18);
         System.out.println();
 
@@ -246,4 +246,23 @@ public class Recurrencias{
             return capicuaDeClaveK(a, k-1, i+1);
         }
     }
+
+    /** Precondicion: k >= a.length, 0 <= ini, fin < a.length */
+    public static boolean palindromeKey(int[] a, int ini, int fin, int k) {
+        if (ini < fin) {
+            int diff = Math.abs(a[ini] - a[fin]);
+            return diff < k && palindromeKey(a, ini + 1, fin - 1, k - 1);
+        }
+        else { return true; }
+    }
+
+    public static boolean test(int a[], int ini, int fin, int k){
+        if(capicuaDeClaveK(a, k, 0) == (palindromeKey(a, ini, fin, k))){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
 }

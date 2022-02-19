@@ -3,10 +3,15 @@ public class Recurrencias{
 
     public static void main(String[] args) {
 
-        String a[] = {"a","b","c","d","e","f","g","h"};
+        String a[] = {"come","limpia","cocos"};
         printAlternate(a, a.length-1);
         System.out.println();
-        //THE ARITHMETIC OPERATION IS ONLY EXECUTED WHEN THE RECURSIVE METHOD IS OVER
+        wordsMidToEnds(a, a.length/2);
+        int b[] = {20, 15, 14, 10, 7, 22};
+        System.out.println(capicuaDeClaveK(b, 10, 0));
+        DecimaltoBinary(18);
+        System.out.println();
+
     }
 
     public static int fibonacci(int n){
@@ -216,6 +221,29 @@ public class Recurrencias{
         else{
             System.out.print(a[a.length-1-i]+a[i]);
             printAlternate(a, i-1);
+        }
+    }
+
+    public static void wordsMidToEnds(String a[], int i){
+        if(i < 0){
+            return;
+        }
+        else{
+            System.out.print(a[i]+a[a.length-1-i]);
+            System.out.println();
+            wordsMidToEnds(a, i-1);
+        }
+    }
+
+    public static boolean capicuaDeClaveK(int a[], int k, int i){
+        if(Math.abs(a[i] - a[a.length-1-i]) >= k){
+            return false;
+        }
+        else if(i > (a.length)/2 - 1){
+            return true;
+        }
+        else{
+            return capicuaDeClaveK(a, k-1, i+1);
         }
     }
 }

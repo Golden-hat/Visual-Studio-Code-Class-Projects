@@ -5,9 +5,9 @@ public class sortingAlgorithms {
     }
 
     private static int[] extract(int[] a, int ini, int fin){
-        int[] temp = new int [ini - fin];
+        int[] temp = new int [fin - ini];
         for(int i = 0; i < temp.length; i++){
-            
+
         }
     }
 

@@ -16,9 +16,4 @@ public class claseEstudiante extends clasePersonas{
     public String toString(){
         return "This is "+super.getName()+", he/she's "+super.getAge()+" years old"+" and he/she's failed a total of " +getNumerodeSuspensos()+" subject(s).";
     }
-
-    public String scndToString(){
-        return super.toString() + " and he/she's failed a total of " +getNumerodeSuspensos()+" subject(s).";
-    }
-
 }

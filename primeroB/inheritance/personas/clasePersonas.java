@@ -12,6 +12,14 @@ public class clasePersonas{
         numberOfPeople++;
     }
 
+    public void setAge(int age){
+        this.age = age;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
     public int getAge(){
         return age;
     }

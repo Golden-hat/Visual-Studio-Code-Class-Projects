@@ -17,7 +17,8 @@ public class lanzadera{
                 age = sc.nextInt();
                 isOk = true;
             }catch (Exception e){
-                System.out.println("Please, introduce NUMERIC characters only");
+                
+                System.out.println("The exception «"+e+"» has occurred. "+"Please, introduce NUMERIC characters only.");
             }
 
         }while(!isOk);

@@ -2,7 +2,12 @@ package primeroB.inheritance.personas;
 import java.util.Scanner;
 
 public class lanzadera{
-    
+
+    public static Scanner sc = new Scanner(System.in);
+    public static Scanner nameScan = new Scanner(System.in);
+    public static Scanner fail = new Scanner(System.in);
+
+
     public static void main(String[] args){
         
         int age = 0;
@@ -13,17 +18,19 @@ public class lanzadera{
         boolean isOk = false;
         do{
             try{
-                Scanner sc = new Scanner(System.in);
                 age = sc.nextInt();
+                if (age < 0){
+                    Exception e = new Exception("InputMismatchException: values can't be less than zero");
+                    throw e;
+                }
                 isOk = true;
             }catch (Exception e){
-                
-                System.out.println("The exception «"+e+"» has occurred. "+"Please, introduce NUMERIC characters only.");
+                System.out.println("The exception «"+e+"» has occurred. "+"Please, introduce VALID entries only.");
+                sc.nextLine();
             }
 
         }while(!isOk);
 
-        Scanner nameScan = new Scanner(System.in);
         System.out.println("Now, introduce your name please:");
         String name = nameScan.nextLine();
 
@@ -32,11 +39,11 @@ public class lanzadera{
         isOk = false;
         do{
             try{
-                Scanner sc = new Scanner(System.in);
                 student = sc.nextInt();
                 isOk = true;
             }catch (Exception e){
                 System.out.println("Please, introduce NUMERIC characters only");
+                sc.nextLine();
             }
 
         }while(!isOk);
@@ -46,17 +53,18 @@ public class lanzadera{
             do{
                 isOk = false;
                 try{
-                    Scanner fail = new Scanner(System.in);
                     failed = fail.nextInt();
                     isOk = true;
                 }catch (Exception e){
                     System.out.println("Please, introduce NUMERIC characters only");
+                    fail.nextLine();
                 }
     
             }while(!isOk);
 
             claseEstudiante p = new claseEstudiante(age, name, failed);
             System.out.println(p);
+
         }
         else{
             clasePersonas n = new clasePersonas(age, name);

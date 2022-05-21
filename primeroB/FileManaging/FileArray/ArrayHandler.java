@@ -11,7 +11,7 @@ public class ArrayHandler {
         PrintArrayIntoFile(a);
     }
 
-    public static void PrintArrayIntoFile(int[] a){
+    public static File PrintArrayIntoFile(int[] a){
         File f = new File(FileName);
 
         try{
@@ -20,9 +20,14 @@ public class ArrayHandler {
                 int n = a[i];
                 pw.println(n);
             }
-            pw.close();
         }catch(FileNotFoundException e){
             System.err.println("File does not exist!");
         }
+        finally{
+            if(pw != null){
+                pw.close();
+            }
+        }
+        return f;
     }
 }

@@ -72,4 +72,24 @@ public class LinkedIntSequence {
         }
         return "The elements of the linked sequence (from most recently added to last) are the following: \n"+elem+"}";
     }
+
+    public boolean RemoveElem(int n){
+        NodeInt aux = this.first;
+        while(aux != null){
+            if(aux.getData() == n){
+                if(aux.equals(this.first)){
+                    aux.next.setPrevious(aux);
+                    size--;
+                }
+                aux.previous.setNext(aux.next);
+                aux.next.setPrevious(aux.previous);
+                aux = null;
+                System.out.print("The element has been erased successfully\n");
+                size--;
+                return true;
+            }
+            aux = aux.next;
+        }
+        return false;
+    }
 }

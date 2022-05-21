@@ -21,7 +21,7 @@ public class ArrayHandler {
                 pw.println(n);
             }
         }catch(FileNotFoundException e){
-            System.err.println("File does not exist!");
+            System.err.println("Error: "+e+"File does not exist!");
         }
         finally{
             if(pw != null){

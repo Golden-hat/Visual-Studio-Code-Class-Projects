@@ -39,6 +39,7 @@ public class OpenWriteFileExample {
         }catch(Exception e){
             System.err.println("File doesn't exist!");
         }
+        pw.close();
     }
 
     public static void LoadFromFile(){
@@ -53,6 +54,7 @@ public class OpenWriteFileExample {
         }catch(Exception e){
             System.err.println("File doesn't exist!");
         }
+        sc.close();
 
     }
 

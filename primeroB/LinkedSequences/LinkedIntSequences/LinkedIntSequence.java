@@ -60,8 +60,8 @@ public class LinkedIntSequence {
     public String toString(){
         NodeInt aux = this.first;
         String elem = "{";
-        for(int i = 0; i < this.getSize(); i++){
-            if(i == 0){
+        while(aux != null){
+            if(aux == this.first){
                 elem += aux.getData();
                 aux = aux.next;
             }
@@ -76,20 +76,34 @@ public class LinkedIntSequence {
     public boolean RemoveElem(int n){
         NodeInt aux = this.first;
         while(aux != null){
-            if(aux.getData() == n){
-                if(aux.equals(this.first)){
-                    aux.next.setPrevious(aux);
-                    size--;
-                }
+            if(aux.getData() == n && aux.previous != null && aux.next != null){
                 aux.previous.setNext(aux.next);
                 aux.next.setPrevious(aux.previous);
                 aux = null;
-                System.out.print("The element has been erased successfully\n");
+                System.out.print("The element has been erased successfully. Status is: ");
                 size--;
                 return true;
             }
+            else{
+                if(aux.getData() == n && aux.previous == null){
+                    System.out.print("The element has been erased successfully. Status is: ");
+                    this.first = aux.next;
+                    aux = null;
+                    size--;
+                    return true;
+                }
+                else if(aux.getData() == n && aux.next == null){
+                    System.out.print("The element has been erased successfully. Status is: ");
+                    this.last = aux.previous;
+                    
+                    aux = null;
+                    size--;
+                    return true;
+                }
+            }
             aux = aux.next;
         }
+        System.out.print("The element has not been found. Status of deletion is: ");
         return false;
     }
 }

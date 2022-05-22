@@ -86,16 +86,16 @@ public class LinkedIntSequence {
             }
             else{
                 if(aux.getData() == n && aux.previous == null){
-                    System.out.print("The element has been erased successfully. Status is: ");
                     this.first = aux.next;
                     aux = null;
+                    System.out.print("The element has been erased successfully. Status is: ");
                     size--;
                     return true;
                 }
                 else if(aux.getData() == n && aux.next == null){
-                    System.out.print("The element has been erased successfully. Status is: ");
                     this.last = aux.previous;
                     aux = null;
+                    System.out.print("The element has been erased successfully. Status is: ");
                     size--;
                     return true;
                 }

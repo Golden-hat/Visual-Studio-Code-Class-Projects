@@ -45,6 +45,24 @@ public class LinkedIntSequence {
         return true;
     }
 
+    public NodeInt appendArrayNumbers(int[] a){
+        if(a.length == 0){
+            return null;
+        }
+        else{
+            for(int i = 0; i < a.length; i++){
+                NodeInt value = new NodeInt(a[i]);
+                last.setNext(value);
+                value.setPrevious(last);
+                last = value;
+                size++;
+            }
+            NodeInt FirstValue = new NodeInt(a[0]);
+            System.out.print("The first element has been added. It's reference is: ");
+            return FirstValue;
+        }
+    }
+
     public boolean searchIsThereElemenInteger(int k){
         NodeInt aux = this.first;
         while(aux != null){
@@ -53,6 +71,47 @@ public class LinkedIntSequence {
             }
             aux = aux.next;
         }
+        return false;
+    }
+
+    public NodeInt returnFoundElement(int k){
+        NodeInt aux = this.first;
+        while(aux != null){
+            if(aux.getData() == k){
+                return aux;
+            }
+            aux = aux.next;
+        }
+        return null;
+    }
+
+    public boolean deleteFoundElementV2(int k){
+        NodeInt aux = returnFoundElement(k);
+        if(aux.previous != null && aux.next != null){
+            aux.previous.setNext(aux.next);
+            aux.next.setPrevious(aux.previous);
+            aux = null;
+            System.out.print("The element has been erased successfully. Status is: ");
+            size--;
+            return true;
+        }
+        else{
+            if(aux.previous == null){
+                this.first = aux.next;
+                aux = null;
+                System.out.print("The element has been erased successfully. Status is: ");
+                size--;
+                return true;
+            }
+            else if(aux.next == null){
+                this.last = aux.previous;
+                aux = null;
+                System.out.print("The element has been erased successfully. Status is: ");
+                size--;
+                return true;
+            }
+        }
+        System.out.print("The element has not been found. Status of deletion is: ");
         return false;
     }
 

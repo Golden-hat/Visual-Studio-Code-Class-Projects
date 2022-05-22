@@ -63,7 +63,7 @@ public class LinkedIntSequence {
         }
     }
 
-    public boolean searchIsThereElemenInteger(int k){
+    public boolean searchIsThereElementInteger(int k){
         NodeInt aux = this.first;
         while(aux != null){
             if(aux.getData() == k){
@@ -75,43 +75,47 @@ public class LinkedIntSequence {
     }
 
     public NodeInt returnFoundElement(int k){
-        NodeInt aux = this.first;
-        while(aux != null){
-            if(aux.getData() == k){
-                return aux;
+        cursor = this.first;
+        while(cursor != null){
+            if(cursor.getData() == k){
+                return cursor;
             }
-            aux = aux.next;
+            cursor = cursor.next;
         }
         return null;
     }
 
     public boolean deleteFoundElementV2(int k){
-        NodeInt aux = returnFoundElement(k);
-        if(aux.previous != null && aux.next != null){
-            aux.previous.setNext(aux.next);
-            aux.next.setPrevious(aux.previous);
-            aux = null;
-            System.out.print("The element has been erased successfully. Status is: ");
-            size--;
-            return true;
-        }
-        else{
-            if(aux.previous == null){
-                this.first = aux.next;
+        try{
+            NodeInt aux = returnFoundElement(k);
+            if(aux.previous != null && aux.next != null){
+                aux.previous.setNext(aux.next);
+                aux.next.setPrevious(aux.previous);
                 aux = null;
                 System.out.print("The element has been erased successfully. Status is: ");
                 size--;
                 return true;
             }
-            else if(aux.next == null){
-                this.last = aux.previous;
-                aux = null;
-                System.out.print("The element has been erased successfully. Status is: ");
-                size--;
-                return true;
+            else{
+                if(aux.previous == null){
+                    this.first = aux.next;
+                    aux = null;
+                    System.out.print("The element has been erased successfully. Status is: ");
+                    size--;
+                    return true;
+                }
+                else if(aux.next == null){
+                    this.last = aux.previous;
+                    aux = null;
+                    System.out.print("The element has been erased successfully. Status is: ");
+                    size--;
+                    return true;
+                }
             }
         }
-        System.out.print("The element has not been found. Status of deletion is: ");
+        catch(Exception e){
+            System.err.print("Element does not exist. Status of deletion is: ");
+        }
         return false;
     }
 

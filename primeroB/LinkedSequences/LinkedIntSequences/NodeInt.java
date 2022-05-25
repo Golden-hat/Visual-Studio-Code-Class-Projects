@@ -7,18 +7,13 @@ public class NodeInt {
     public NodeInt previous;
 
     //CONSTRUCTORS
-    public NodeInt(int value, NodeInt next, NodeInt previous){
+    public NodeInt(int value, NodeInt next){
         this.data = value;
         this.next = next;
-        this.previous = previous;
-    }
-
-    public NodeInt(int value, NodeInt next){
-        this(value, null, next);
     }
 
     public NodeInt(int value){
-        this(value, null , null);
+        this.data = value;
     }
 
     //GETTERS AND SETTERS
@@ -30,10 +25,6 @@ public class NodeInt {
         return next;
     }
 
-    public NodeInt getPrevious(){
-        return previous;
-    }
-
     public void setData(int data){
        this.data = data;
     }
@@ -42,9 +33,6 @@ public class NodeInt {
         this.next = next;
     }
 
-    public void setPrevious(NodeInt previous){
-        this.previous = previous;
-    }
 
     //OVERRIDE METHODS
     @Override

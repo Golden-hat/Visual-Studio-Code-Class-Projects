@@ -38,11 +38,30 @@ public class LinkedIntSequence {
             first = last = cursor = node; // trivial
         } else {
             last.setNext(node); // (1) connects the last node with the new one such that the new node is the next of the last one.
-            node.setPrevious(last); // (2) connects the new node with the last one such that the last node is the previous of the new one.
             last = node; // (3) updates 'last' attribute to reference the last node in the list.
         }
         ++size;
         return true;
+    }
+
+    public void addElement(int x, int k){
+        NodeInt foundElem = returnFoundElement(k);
+    
+        if(foundElem != null){
+            NodeInt aux = foundElem.next;
+            NodeInt InsertObject = new NodeInt(x, aux);
+            foundElem.setNext(InsertObject);
+            System.out.println("The element has been added to its corresponding position.");
+            size++;
+        }
+        else{
+            NodeInt node = new NodeInt(x);
+            last.setNext(node);
+            last = node;
+            System.out.println("The element has been added to the last position.");
+            size++;
+        }
+
     }
 
     public NodeInt appendArrayNumbers(int[] a){
@@ -53,7 +72,6 @@ public class LinkedIntSequence {
             for(int i = 0; i < a.length; i++){
                 NodeInt value = new NodeInt(a[i]);
                 last.setNext(value);
-                value.setPrevious(last);
                 last = value;
                 size++;
             }
@@ -90,7 +108,6 @@ public class LinkedIntSequence {
             NodeInt aux = returnFoundElement(k);
             if(aux.previous != null && aux.next != null){
                 aux.previous.setNext(aux.next);
-                aux.next.setPrevious(aux.previous);
                 aux = null;
                 System.out.print("The element has been erased successfully. Status is: ");
                 size--;
@@ -141,7 +158,6 @@ public class LinkedIntSequence {
         while(aux != null){
             if(aux.getData() == n && aux.previous != null && aux.next != null){
                 aux.previous.setNext(aux.next);
-                aux.next.setPrevious(aux.previous);
                 aux = null;
                 System.out.print("The element has been erased successfully. Status is: ");
                 size--;

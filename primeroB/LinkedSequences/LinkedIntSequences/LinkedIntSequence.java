@@ -55,9 +55,7 @@ public class LinkedIntSequence {
             size++;
         }
         else{
-            NodeInt node = new NodeInt(x);
-            last.setNext(node);
-            last = node;
+            append(x);
             System.out.println("The element has been added to the last position.");
             size++;
         }

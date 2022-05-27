@@ -7,7 +7,7 @@ public class SumInput {
     public static final String fileOutName = "D:/Proyectos código/Visual-Studio-Code-Class-Projects/primeroB/FileManaging/FileCalculation/FileOut.txt";
     public static Scanner sc = null;
     public static PrintWriter pw = null;
-    
+
     public static void main(String[] args) throws FileNotFoundException{
         ReadFileAndReturnResult(fileInName, fileOutName);
     }

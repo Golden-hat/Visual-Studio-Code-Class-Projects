@@ -1,4 +1,4 @@
-package primeroB.LinkedSequences.LinkedIntSequences;
+package primeroB.LinkedSequences;
 
 public class NodeInt {
 

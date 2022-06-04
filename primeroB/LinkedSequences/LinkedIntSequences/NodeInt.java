@@ -1,4 +1,4 @@
-package primeroB.LinkedSequences;
+package primeroB.LinkedSequences.LinkedIntSequences;
 
 public class NodeInt {
 
@@ -33,6 +33,13 @@ public class NodeInt {
         this.next = next;
     }
 
+    public void setPrevious(NodeInt previous) {
+        this.previous = previous;
+    }
+
+    public NodeInt getPrevious() {
+        return previous;
+    }
 
     //OVERRIDE METHODS
     @Override

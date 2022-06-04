@@ -1,7 +1,5 @@
 package primeroB.LinkedSequences.LinkedIntSequences;
 
-import primeroB.LinkedSequences.NodeInt;
-
 public class LinkedIntSequence {
     NodeInt first;
     NodeInt last;

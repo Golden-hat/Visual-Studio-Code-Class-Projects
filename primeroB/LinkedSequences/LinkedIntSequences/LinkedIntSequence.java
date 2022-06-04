@@ -117,7 +117,7 @@ public class LinkedIntSequence {
                 }
                 else if(aux.next == null){
                     this.last = aux.previous;
-                    System.out.print("The element has been erased successfully. Status is: ");
+                    System.out.print("The element has been erased successfully. Status is: "); 
                     size--;
                     return true;
                 }

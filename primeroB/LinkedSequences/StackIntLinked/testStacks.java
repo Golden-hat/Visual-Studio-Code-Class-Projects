@@ -7,9 +7,6 @@ public class testStacks {
         k.push(2);
         k.push(3);
         k.push(4);
-        k.push(5);
-        k.pop();
-        k.peek();
-        k.printToScreen();
+        k.toString();
     }
 }

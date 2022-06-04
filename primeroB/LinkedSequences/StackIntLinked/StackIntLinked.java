@@ -23,6 +23,17 @@ public class StackIntLinked {
         }
     }
 
+    @Override
+    public String toString(){
+        NodeInt4Stacks aux = top;
+        String elem = "";
+        while(aux != null){
+                System.out.println(elem+aux.getData());
+                aux = aux.previous;
+        }
+        return elem;
+    }
+
     public int getSize(){
         return size;
     }
@@ -41,6 +52,7 @@ public class StackIntLinked {
 
     public NodeInt4Stacks peek(){
         try{
+            System.out.println(top.getData());
             return top;
         }
         catch (Exception e){

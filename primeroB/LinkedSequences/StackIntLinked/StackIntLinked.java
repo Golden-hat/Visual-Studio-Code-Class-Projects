@@ -2,7 +2,7 @@ package primeroB.LinkedSequences.StackIntLinked;
 import java.util.NoSuchElementException;
 
 public class StackIntLinked {
-    public static NodeInt4Stacks top = null;
+    public NodeInt4Stacks top = null;
     public int size = 0;
 
     public StackIntLinked(){
@@ -18,8 +18,8 @@ public class StackIntLinked {
     public void printToScreen(){
         NodeInt4Stacks aux = top;
         while(aux != null){
-                System.out.println(aux.getData());
-                aux = aux.previous;
+            System.out.println(aux.getData());
+            aux = aux.previous;
         }
     }
 
@@ -38,22 +38,22 @@ public class StackIntLinked {
         return size;
     }
 
-    public NodeInt4Stacks pop(){
+    public int pop(){
         try{           
             NodeInt4Stacks aux = top;
             top = top.previous;
             size--;
-            return aux;
+            return aux.getData();
         }
         catch (Exception e){
             throw new NoSuchElementException("The pile is empty.");
         }
     }
 
-    public NodeInt4Stacks peek(){
+    public int peek(){
         try{
             System.out.println(top.getData());
-            return top;
+            return top.getData();
         }
         catch (Exception e){
             throw new NoSuchElementException("The pile is empty.");

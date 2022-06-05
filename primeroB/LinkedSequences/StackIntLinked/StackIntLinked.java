@@ -31,7 +31,7 @@ public class StackIntLinked {
                 System.out.println(elem+aux.getData());
                 aux = aux.previous;
         }
-        return elem;
+        return elem+"\n";
     }
 
     public int getSize(){

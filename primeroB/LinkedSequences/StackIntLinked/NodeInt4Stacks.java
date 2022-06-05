@@ -3,13 +3,13 @@ package primeroB.LinkedSequences.StackIntLinked;
 public class NodeInt4Stacks {
 
     public int data;
-    public NodeInt4Stacks previous;
+    public NodeInt4Stacks next;
 
     //CONSTRUCTORS
 
-    public NodeInt4Stacks(int value, NodeInt4Stacks previous){
+    public NodeInt4Stacks(int value, NodeInt4Stacks next){
         this.data = value;
-        this.previous = previous;
+        this.next = next;
     }
 
     public NodeInt4Stacks(int value){
@@ -25,12 +25,12 @@ public class NodeInt4Stacks {
        this.data = data;
     }
     
-    public void setPrevious(NodeInt4Stacks previous) {
-        this.previous = previous;
+    public void setNext(NodeInt4Stacks next) {
+        this.next = next;
     }
 
-    public NodeInt4Stacks getPrevious() {
-        return previous;
+    public NodeInt4Stacks getNext() {
+        return next;
     }
 
     //OVERRIDE METHODS

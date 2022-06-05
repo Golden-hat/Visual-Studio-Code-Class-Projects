@@ -22,6 +22,9 @@ public class removeGreaterThan {
         removeGreaterThanX(k, 4).toString();
         System.out.println("\n");
         k.toString();
+
+        StackIntLinked kak = new StackIntLinked(k);
+        kak.toString();
     }
 
     public static StackIntLinked removeGreaterThanX(StackIntLinked k, int x){

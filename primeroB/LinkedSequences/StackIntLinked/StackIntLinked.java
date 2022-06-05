@@ -10,6 +10,22 @@ public class StackIntLinked {
         size = 0;
     }
 
+    //copy of an existing stack. Exam 2017.
+    public StackIntLinked(StackIntLinked s){
+        this();
+        if (!s.empty()){
+            NodeInt4Stacks p = this.top = new NodeInt4Stacks(s.top.getData());
+            NodeInt4Stacks n = s.top.getNext();
+
+            while(null != n){
+                p.setNext(new NodeInt4Stacks(n.getData()));
+                p = p.getNext();
+                n = n.getNext();
+            }
+        }
+        this.size = s.size;
+    }
+
     public void push(int x){
         top = new NodeInt4Stacks(x, top);
         size++;
@@ -19,7 +35,7 @@ public class StackIntLinked {
         NodeInt4Stacks aux = top;
         while(aux != null){
             System.out.println(aux.getData());
-            aux = aux.previous;
+            aux = aux.next;
         }
     }
 
@@ -29,7 +45,7 @@ public class StackIntLinked {
         String elem = "";
         while(aux != null){
                 System.out.println(elem+aux.getData());
-                aux = aux.previous;
+                aux = aux.next;
         }
         return elem+"\n";
     }
@@ -41,7 +57,7 @@ public class StackIntLinked {
     public int pop(){
         try{           
             NodeInt4Stacks aux = top;
-            top = top.previous;
+            top = top.next;
             size--;
             return aux.getData();
         }

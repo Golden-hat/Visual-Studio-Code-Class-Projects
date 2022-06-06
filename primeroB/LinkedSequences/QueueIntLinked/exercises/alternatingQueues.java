@@ -10,7 +10,9 @@ public class alternatingQueues {
         int t[] = {10, 9, 8};
         n.ArrayAddToQueue(s);
         k.ArrayAddToQueue(t);
-        n.toString();
-        k.toString();
+        n.addToQueue(5);
+        k.addToQueue(6);
+        System.out.println(n);
+        System.out.println(k);    
     }
 }

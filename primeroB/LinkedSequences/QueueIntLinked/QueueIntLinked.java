@@ -22,7 +22,16 @@ public class QueueIntLinked {
     }
 
     public void ArrayAddToQueue(int x[]){
-        
+        NodeInt4Queues p = null;
+        for(int i = 0; i < x.length; i++){
+            p = new NodeInt4Queues(x[i]);
+            if(i == 0 && size == 0){
+                this.first = this.last = p;
+            }
+            this.last.next = p;
+            this.last = p;
+            size++;
+        }
     }
 
     public int removeFromQueue(){
@@ -54,6 +63,23 @@ public class QueueIntLinked {
         else{
             return false;
         }
+    }
+
+    @Override
+    public String toString(){
+        NodeInt4Queues aux = this.first;
+        String elem = "{";
+        while(aux != null){
+            if(aux == this.first){
+                elem += aux.getData();
+                aux = aux.next;
+            }
+            else{
+                elem += ", "+aux.getData();
+                aux = aux.next;
+            }
+        }
+        return "The elements of the linked sequence (from most recently added to last) are the following: \n"+elem+"}";
     }
 
     public int size(){

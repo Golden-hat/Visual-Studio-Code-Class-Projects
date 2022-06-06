@@ -1,4 +1,4 @@
-package primeroB.FileManaging.FileCalculation;
+package primeroB.FileManaging.exercises.FileCalculation;
 import java.io.*;
 import java.util.*;
 

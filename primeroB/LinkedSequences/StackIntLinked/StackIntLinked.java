@@ -31,6 +31,13 @@ public class StackIntLinked {
         size++;
     }
 
+    public void ArrayPush(int[] a){
+        for(int i = 0; i < a.length; i++){
+            top = new NodeInt4Stacks(a[i], top);
+            size++;
+        }
+    }
+
     public void printToScreen(){
         NodeInt4Stacks aux = top;
         while(aux != null){

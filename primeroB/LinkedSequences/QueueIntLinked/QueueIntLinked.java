@@ -21,6 +21,10 @@ public class QueueIntLinked {
         size++;
     }
 
+    public void ArrayAddToQueue(int x[]){
+        
+    }
+
     public int removeFromQueue(){
         if(this.size > 0){
             int x = this.first.getData();

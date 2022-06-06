@@ -1,22 +1,16 @@
 package primeroB.LinkedSequences.LinkedCharSequences.exercises;
 import primeroB.LinkedSequences.LinkedCharSequences.LinkedCharSequence;
-import primeroB.LinkedSequences.LinkedCharSequences.NodeChar;
 
 public class stringToLinkedSeq {
-    public LinkedCharSequence k = new LinkedCharSequence();
-    public static void main(String[] args) {
-        
-        String a = "Examen";
-        convertToLinkedSeq(a);
-        k.toString();
-    }
 
-    public static NodeChar convertToLinkedSeq(String s){
-        if(s.length() != 0){
-            NodeChar n = new NodeChar(s.charAt(0));
-            return n;
-        }else{
-            return null;
-        }
+     
+    public static void main(String[] args) {
+        LinkedCharSequence k = new LinkedCharSequence();
+        String a = "Examen";
+        k.convertToLinkedSeq(a);
+        System.out.println(k);
+        k.append('t');
+        k.append('j');
+        System.out.println(k);
     }
 }

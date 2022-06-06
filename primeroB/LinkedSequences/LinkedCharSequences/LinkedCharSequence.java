@@ -61,7 +61,7 @@ public class LinkedCharSequence {
         }
     }
 
-    public NodeChar appendArrayNumbers(char[] a){
+    public void appendArrayChar(char[] a){
         for(int i = 0; i < a.length; i++){
             NodeChar node = new NodeChar(a[i]);
             if (this.getSize() == 0) {
@@ -72,9 +72,6 @@ public class LinkedCharSequence {
             }
             size++;
         }
-        NodeChar FirstValue = new NodeChar(a[0]);
-        System.out.print("The first element has been added. It's reference is: ");
-        return FirstValue;
     }
 
     public boolean searchIsThereElementInteger(int k){
@@ -176,5 +173,32 @@ public class LinkedCharSequence {
         }
         System.out.print("The element has not been found. Status of deletion is: ");
         return false;
+    }
+    
+    public NodeChar convertToLinkedSeq(String s){
+        NodeChar res = null;
+        int n = this.size;
+        NodeChar aux = null;
+
+        if(s != null) {
+            int i = s.length() - 1;
+            while (i >= 0) {
+                char c = s.charAt(i);
+                res = new NodeChar(c, res);
+                size++;
+                if(i == s.length()-1){
+                    aux = res;
+                }
+                i--;
+            }
+            if(n == 0){
+                this.first = res;
+                this.last = aux;
+            }
+            else{
+                this.last.next = res;
+            }
+        }
+        return res;
     }
 }

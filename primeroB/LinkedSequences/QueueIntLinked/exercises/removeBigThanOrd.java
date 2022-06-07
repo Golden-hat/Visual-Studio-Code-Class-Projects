@@ -10,7 +10,7 @@ public class removeBigThanOrd {
         System.out.println(k);
         k.removeBigThanInOrd(20);
         System.out.println(k);
-        k.sneak(1);
+        k.sneak(18);
         System.out.println(k);
     }
 }

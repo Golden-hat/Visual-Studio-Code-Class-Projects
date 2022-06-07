@@ -130,7 +130,6 @@ public class QueueIntLinked {
         while(aux != null && aux.data != x){
             prevAux = aux;
             aux = aux.next;
-            System.out.println(prevAux.getData());
         }
 
         if(aux != null && prevAux != null){

@@ -123,7 +123,6 @@ public class QueueIntLinked {
         size = i;
     }
 
-
     public int size(){
         return this.size;
     }

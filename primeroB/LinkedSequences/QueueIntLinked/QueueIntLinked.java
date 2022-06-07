@@ -123,6 +123,28 @@ public class QueueIntLinked {
         size = i;
     }
 
+    public void sneak(int x){
+        NodeInt4Queues aux = first;
+        NodeInt4Queues prevAux = null;
+
+        while(aux != null && aux.data != x){
+            prevAux = aux;
+            aux = aux.next;
+            System.out.println(prevAux.getData());
+        }
+
+        if(aux != null && prevAux != null){
+            NodeInt4Queues priorNextAux = aux.next;
+            NodeInt4Queues priorFirst = this.first;
+            aux.next = priorFirst;
+            this.first = aux;
+            prevAux.next = priorNextAux;
+        }
+        else if(prevAux == null){
+            System.out.println("The selected element is already the head of the queue.");
+        }
+    }
+
     public int size(){
         return this.size;
     }

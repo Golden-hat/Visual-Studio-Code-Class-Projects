@@ -16,6 +16,7 @@ public class alternatingQueues {
         System.out.println(fusion(n, k)); 
     }
 
+    //Esta implementación NO UTILIZA EXCLUSIVAMENTE los métodos de la clase QueueIntLinked. Curso 2017-18.
     public static QueueIntLinked fusion(QueueIntLinked q1, QueueIntLinked q2){
         QueueIntLinked aux = new QueueIntLinked();
         int minimum = Math.min(q1.size(), q2.size());

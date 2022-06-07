@@ -44,12 +44,12 @@ public class QueueIntLinked {
             size--;
             return x;
         }
-        else{throw new NoSuchElementException("Queue is empty, this method returns the following value: ");}
+        else{throw new NoSuchElementException("Queue is empty.");}
     }
 
     public int element(){
         if(size == 0){
-            throw new NoSuchElementException("Queue is empty, this method returns the following value: ");
+            throw new NoSuchElementException("Queue is empty.");
         }
         else{
             return this.first.getData();

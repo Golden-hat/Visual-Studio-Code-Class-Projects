@@ -86,10 +86,21 @@ public class QueueIntLinked {
         QueueIntLinked aux = new QueueIntLinked();
         int j = this.size/2;
         
+        NodeInt4Queues p = this.first;
         int i = 0;
         while(i < j){
-        
+            p = p.next;
+            i++;
         }
+        aux.first = p;
+
+        NodeInt4Queues q = aux.first;
+        i = 0;
+        while(i < this.size-j){
+            q = q.next;
+            i++;
+        }
+        aux.last = q;
         return aux;
     }
 

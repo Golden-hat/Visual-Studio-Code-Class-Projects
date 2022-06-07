@@ -76,6 +76,27 @@ public class LinkedIntSequence {
         return FirstValue;
     }
 
+    public void adelantar(int x){
+        NodeInt aux = this.first;
+        NodeInt prevAux = null;
+
+        while(aux != null && aux.data != x){
+            prevAux = aux;
+            aux = aux.next;
+        }
+
+        if(prevAux != null){
+            int dato = prevAux.data;
+            prevAux.data = aux.data;
+            aux.data = dato;
+        }
+        else{
+            int dato = this.last.data;
+            this.last.data = this.first.data;
+            this.first.data = dato;
+        }
+    }
+
     public boolean searchIsThereElementInteger(int k){
         NodeInt aux = this.first;
         while(aux != null){

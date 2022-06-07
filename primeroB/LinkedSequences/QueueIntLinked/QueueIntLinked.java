@@ -82,6 +82,17 @@ public class QueueIntLinked {
         return "The elements of the linked sequence (from most recently added to last) are the following: \n"+elem+"}";
     }
 
+    public QueueIntLinked divideQueue(){
+        QueueIntLinked aux = new QueueIntLinked();
+        int j = this.size/2;
+        
+        int i = 0;
+        while(i < j){
+        
+        }
+        return aux;
+    }
+
     public int size(){
         return this.size;
     }

@@ -73,7 +73,6 @@ public class LinkedIntSequence {
             size++;
         }
         NodeInt FirstValue = new NodeInt(a[0]);
-        System.out.print("The first element has been added. It's reference is: ");
         return FirstValue;
     }
 

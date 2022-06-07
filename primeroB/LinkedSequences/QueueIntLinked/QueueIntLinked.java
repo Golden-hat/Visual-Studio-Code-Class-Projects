@@ -88,21 +88,41 @@ public class QueueIntLinked {
         
         NodeInt4Queues p = this.first;
         int i = 0;
-        while(i < j){
+        while(i < j - 1){
             p = p.next;
             i++;
         }
-        aux.first = p;
-
-        NodeInt4Queues q = aux.first;
-        i = 0;
-        while(i < this.size-j){
-            q = q.next;
-            i++;
-        }
-        aux.last = q;
+        aux.first = p.next;
+        aux.last = this.last;
+        p.next = null;
+        aux.size = this.size - j;
+        this.last = p;
+        this.size = j; 
         return aux;
     }
+
+    public void removeBigThanInOrd(int x){
+        NodeInt4Queues aux = this.first;
+        NodeInt4Queues prev = null;
+
+        int i = 0;
+        while(aux != null && aux.data <= x){
+            prev = aux;
+            aux = aux.next;
+            i++;
+        }
+
+        if(aux == first){
+            first = null;
+            last = null;
+        }
+        else{
+            prev.next = null;
+            last = prev;
+        }
+        size = i;
+    }
+
 
     public int size(){
         return this.size;

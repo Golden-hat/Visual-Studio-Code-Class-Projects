@@ -144,6 +144,27 @@ public class QueueIntLinked {
         }
     }
 
+    public void OnlyOneElement(){
+        if(size != 1){
+            NodeInt4Queues ant = this.first;
+            NodeInt4Queues aux = first.next;
+
+            while(aux != null){
+                if(aux.data == ant.data){
+                    ant.next = aux.next;
+                    if(ant.next == null){
+                        this.last = ant;
+                    }
+                    size--;
+                }
+                else{
+                    ant = aux;
+                }
+                aux = aux.next;
+            }
+        }
+    }
+
     public int size(){
         return this.size;
     }

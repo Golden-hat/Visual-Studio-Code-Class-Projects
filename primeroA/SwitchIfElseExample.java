@@ -10,7 +10,7 @@ class SwitchIfElseExample {
         System.out.println("\nHola!, por favor introduzca el segundo valor a comparar: ");
         double y = sc.nextDouble();
 
-        if ( x == y){
+        if (x == y){
             System.out.println("\nEl valor del primer término y el segundo es equivalente");
         }
         else if( x > y){

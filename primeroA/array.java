@@ -11,9 +11,9 @@ public class array {
         addSingleTerm(a, 1231);
         addSingleTerm(a, 342);
         addMultipleTerm(a, z);
-        double[][] res = SegmentsList(a, 3);
+        double[][] res = SegmentsList(a, 2);
         printArr(a);
-        printArr(res, 3);
+        printArr(res, 2);
     }
 
     public static void swap(double [] a, int j, int k){

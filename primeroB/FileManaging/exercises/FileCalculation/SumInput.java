@@ -1,10 +1,10 @@
-package primeroB.FileManaging.FileCalculation;
+package primeroB.FileManaging.exercises.FileCalculation;
 import java.io.*;
 import java.util.*;
 
 public class SumInput {
-    public static final String fileInName = "D:/Proyectos código/Visual-Studio-Code-Class-Projects/primeroB/FileManaging/FileCalculation/FileIn.txt";
-    public static final String fileOutName = "D:/Proyectos código/Visual-Studio-Code-Class-Projects/primeroB/FileManaging/FileCalculation/FileOut.txt";
+    public static final String fileInName = "D:/Proyectos código/Visual-Studio-Code-Class-Projects/primeroB/FileManaging/exercises/FileCalculation/FileIn.txt";
+    public static final String fileOutName = "D:/Proyectos código/Visual-Studio-Code-Class-Projects/primeroB/FileManaging/exercises/FileCalculation/FileOut.txt";
     public static Scanner sc = null;
     public static PrintWriter pw = null;
 

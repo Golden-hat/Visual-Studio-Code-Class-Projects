@@ -1,4 +1,4 @@
-package primeroB.FileManaging.FileArray;
+package primeroB.FileManaging.exercises.FileArray;
 import java.io.*;
 
 public class ArrayHandler {

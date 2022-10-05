@@ -1,23 +1,19 @@
 package primeroA;
+
 public class array {
 
     public static final int maxsize = 10000;
-    public static int size = 50;
-    public static int Offset = 50;
+    public static int size = 0;
     public static double[] a = new double[maxsize];
 
-    public static void main(String[] args) {
-        addSingleTerm(a, 1);
+    public static void main(String[] args){
+        double[] z = {2,2,3,4,5,6};
+        addSingleTerm(a, 1231);
         addSingleTerm(a, 342);
-        addSingleTerm(a, 5642);
-        addSingleTerm(a, 2231);
-        addSingleTerm(a, 12);
-        addSingleTerm(a, 21312);
-        addSingleTerm(a, 223);
+        addMultipleTerm(a, z);
+        double[][] res = SegmentsList(a, 3);
         printArr(a);
-
-        desplazarDcha(a, 4, 8);
-        printArr(a);
+        printArr(res, 3);
     }
 
     public static void swap(double [] a, int j, int k){
@@ -32,6 +28,27 @@ public class array {
             System.out.print(a[i]+", ");
         }
         System.out.print(a[size-1]);
+        System.out.println("}");
+    }
+
+    public static void printArr(double [][] a, int SegLen){
+        System.out.print("{");
+        for (int i = 0; i < a.length-1; i++){
+            System.out.print("{");
+            for(int j = 0; j < SegLen-1; j++){
+                System.out.print(a[i][j]+", ");
+            }
+            System.out.print(a[i][SegLen-1]);
+            System.out.print("}, ");
+        }
+
+        //last sub-array
+        System.out.print("{");
+        for(int j = 0; j < SegLen-1; j++){
+            System.out.print(a[a.length-1][j]+", ");
+        }
+        System.out.print(a[a.length-1][SegLen-1]);
+        System.out.print("}");
         System.out.println("}");
     }
 
@@ -143,17 +160,9 @@ public class array {
         size++;
 
         while (size != temporal){
-            a[size-1-Offset] = b;
+            a[temporal] = b;
             temporal++;
         }
-    }
-    
-    public static void desplazarDcha(double[] a, int pos, double add){
-        for(int i = size-1; i >= pos; i--){
-            a[i] = a[i-1];
-        }
-        a[pos] = add;
-        
     }
 
     public static void RemoveAndShiftLeft(double[] a, int pos){
@@ -192,5 +201,22 @@ public class array {
                 }
             }
         }
+    }
+
+    public static double[][] SegmentsList(double[] a, int SegLen){
+        int n = (size+1-SegLen);
+        double[][] returnList = new double[n][SegLen];
+
+        int iter = 0;
+
+        for(int i = 0; i < n; i++){
+            iter = i;
+            for(int j = 0; j < SegLen; j++){
+                returnList[i][j] = a[iter];
+                iter++;
+            }
+        }
+        
+        return returnList;
     }
 }

@@ -1,14 +1,14 @@
-package primeroB.LinkedSequences.LinkedIntSequences;
+package primeroB.LinkedSequences.LinkedCharSequences;
 
-public class LinkedIntSequence {
-    NodeInt first;
-    NodeInt last;
-    NodeInt cursor;
+public class LinkedCharSequence {
+    NodeChar first;
+    NodeChar last;
+    NodeChar cursor;
 
     int size = 0;
 
     //creates an empty list of nodes
-    public LinkedIntSequence(){
+    public LinkedCharSequence(){
         first = last = cursor = null;
         size = 0;
     }
@@ -18,21 +18,21 @@ public class LinkedIntSequence {
         return size;
     }
 
-    public NodeInt getFirst(){
+    public NodeChar getFirst(){
         return first;
     }
     
-    public NodeInt getLast(){
+    public NodeChar getLast(){
         return last;
     }
 
-    public NodeInt getCursor(){
+    public NodeChar getCursor(){
         return cursor;
     }
 
-    public boolean append(int x)
+    public boolean append(char x)
     {
-        NodeInt node = new NodeInt(x);
+        NodeChar node = new NodeChar(x);
 
         if (this.getSize() == 0) {
             first = last = cursor = node; // trivial
@@ -44,12 +44,12 @@ public class LinkedIntSequence {
         return true;
     }
 
-    public void addElement(int x, int k){
-        NodeInt foundElem = returnFoundElement(k);
+    public void addElement(char x, char k){
+        NodeChar foundElem = returnFoundElement(k);
     
         if(foundElem != null){
-            NodeInt aux = foundElem.next;
-            NodeInt InsertObject = new NodeInt(x, aux);
+            NodeChar aux = foundElem.next;
+            NodeChar InsertObject = new NodeChar(x, aux);
             foundElem.setNext(InsertObject);
             System.out.println("The element has been added to its corresponding position.");
             size++;
@@ -61,9 +61,9 @@ public class LinkedIntSequence {
         }
     }
 
-    public NodeInt appendArrayNumbers(int[] a){
+    public void appendArrayChar(char[] a){
         for(int i = 0; i < a.length; i++){
-            NodeInt node = new NodeInt(a[i]);
+            NodeChar node = new NodeChar(a[i]);
             if (this.getSize() == 0) {
                 first = last = cursor = node; // trivial
             } else {
@@ -72,33 +72,10 @@ public class LinkedIntSequence {
             }
             size++;
         }
-        NodeInt FirstValue = new NodeInt(a[0]);
-        return FirstValue;
-    }
-
-    public void adelantar(int x){
-        NodeInt aux = this.first;
-        NodeInt prevAux = null;
-
-        while(aux != null && aux.data != x){
-            prevAux = aux;
-            aux = aux.next;
-        }
-
-        if(prevAux != null){
-            int dato = prevAux.data;
-            prevAux.data = aux.data;
-            aux.data = dato;
-        }
-        else{
-            int dato = this.last.data;
-            this.last.data = this.first.data;
-            this.first.data = dato;
-        }
     }
 
     public boolean searchIsThereElementInteger(int k){
-        NodeInt aux = this.first;
+        NodeChar aux = this.first;
         while(aux != null){
             if(aux.getData() == k){
                 return true;
@@ -108,7 +85,7 @@ public class LinkedIntSequence {
         return false;
     }
 
-    public NodeInt returnFoundElement(int k){
+    public NodeChar returnFoundElement(int k){
         cursor = this.first;
         while(cursor != null){
             if(cursor.getData() == k){
@@ -121,7 +98,7 @@ public class LinkedIntSequence {
 
     public boolean deleteFoundElementV2(int k){
         try{
-            NodeInt aux = returnFoundElement(k);
+            NodeChar aux = returnFoundElement(k);
             if(aux.previous != null && aux.next != null){
                 aux.previous.setNext(aux.next);
                 System.out.print("The element has been erased successfully. Status is: ");
@@ -151,7 +128,7 @@ public class LinkedIntSequence {
 
     @Override
     public String toString(){
-        NodeInt aux = this.first;
+        NodeChar aux = this.first;
         String elem = "{";
         while(aux != null){
             if(aux == this.first){
@@ -166,8 +143,8 @@ public class LinkedIntSequence {
         return "The elements of the linked sequence (from most recently added to last) are the following: \n"+elem+"}";
     }
 
-    public boolean RemoveElem(int n){
-        NodeInt aux = this.first;
+    public boolean RemoveElem(char n){
+        NodeChar aux = this.first;
         while(aux != null){
             if(aux.getData() == n && aux.previous != null && aux.next != null){
                 aux.previous.setNext(aux.next);
@@ -196,5 +173,32 @@ public class LinkedIntSequence {
         }
         System.out.print("The element has not been found. Status of deletion is: ");
         return false;
+    }
+    
+    public NodeChar convertToLinkedSeq(String s){
+        NodeChar res = null;
+        int n = this.size;
+        NodeChar aux = null;
+
+        if(s != null) {
+            int i = s.length() - 1;
+            while (i >= 0) {
+                char c = s.charAt(i);
+                res = new NodeChar(c, res);
+                size++;
+                if(i == s.length()-1){
+                    aux = res;
+                }
+                i--;
+            }
+            if(n == 0){
+                this.first = res;
+                this.last = aux;
+            }
+            else{
+                this.last.next = res;
+            }
+        }
+        return res;
     }
 }

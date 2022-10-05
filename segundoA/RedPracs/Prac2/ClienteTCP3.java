@@ -5,7 +5,11 @@ class ClienteTCP3{
     public static void main(String[] args) throws UnknownHostException, IOException{
         try{
             Socket s = new Socket("www.upv.es", 80);
-            System.out.println("Conectado de nuevo!");
+            //EJERCICIO 9
+            System.out.println(s.getPort());
+            System.out.println(s.getInetAddress());
+            System.out.println(s.getLocalPort());
+            System.out.println(s.getLocalAddress());
             s.close();
         }
         catch (UnknownHostException e){

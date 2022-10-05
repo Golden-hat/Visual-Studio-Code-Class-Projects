@@ -2,20 +2,20 @@ import java.io.*;
 import java.net.*;
 import java.util.Scanner;
 
-public class ClienteEco {
+class ClienteHTTP{
     public static void main(String[] args) throws UnknownHostException, IOException{
         try{
-            //ES IMPORTANTE UTILIZAR LA VPN PARA QUE FUNCIONE, Ejercicio 4, 5
-            Socket c = new Socket("zoltar.redes.upv.es", 7);
+            System.setProperty ("line.separator","\r\n");
+            Socket s = new Socket("www.upv.es", 80);
             System.out.println("Conectado");
-            PrintWriter salida = new PrintWriter(c.getOutputStream());
-            salida.printf("Hola Mundo!\r\n");
-            //Ejercicio 6
+
+            PrintWriter salida = new PrintWriter(s.getOutputStream());
+            salida.printf("GET / HTTP/1.0\r\n\r\n");
             salida.flush();
 
-            Scanner entrada = new Scanner(c.getInputStream());
+            Scanner entrada = new Scanner(s.getInputStream());
             System.out.println(entrada.nextLine());
-            c.close();
+            s.close();
         }
         catch (UnknownHostException e){
             System.out.println("Host desconocido!");

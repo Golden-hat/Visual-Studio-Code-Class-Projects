@@ -2,15 +2,16 @@ import java.io.*;
 import java.net.*;
 import java.util.Scanner;
 
-public class ClienteEco {
+public class ClienteSMTP {
     public static void main(String[] args) throws UnknownHostException, IOException{
         try{
-            //ES IMPORTANTE UTILIZAR LA VPN PARA QUE FUNCIONE, Ejercicio 4, 5
-            Socket c = new Socket("zoltar.redes.upv.es", 7);
+            //EJERCICIO 7
+            System.setProperty ("line.separator","\r\n");
+            Socket c = new Socket("smtp.upv.es", 25);
             System.out.println("Conectado");
+
             PrintWriter salida = new PrintWriter(c.getOutputStream());
-            salida.printf("Hola Mundo!\r\n");
-            //Ejercicio 6
+            salida.printf("HELO rdc7.redes.upv.es");
             salida.flush();
 
             Scanner entrada = new Scanner(c.getInputStream());
@@ -27,3 +28,5 @@ public class ClienteEco {
         }
     }
 }
+
+//ìY Exº|@<+i*ø2*$òâ¹ªâßÌPsGh250 smtp.upv.es Hello vpn36-19.vpns.upv.es [158.42.36.19], pleased to meet you

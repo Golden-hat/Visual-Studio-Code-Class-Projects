@@ -16,8 +16,8 @@ public class Circle extends Figures{
     }
 
     public String toString(){
-        return "Circle, "+super.toString() 
+        return "\nCircle, "+super.toString() 
         + ", and with radius: "+this.getRadius()+
-        "\nA total area of: "+this.area();
+        "\nA total area of: "+this.area()+"\n";
     }
 }

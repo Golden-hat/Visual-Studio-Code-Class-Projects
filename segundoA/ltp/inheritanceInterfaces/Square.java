@@ -11,8 +11,8 @@ public class Square extends Rectangle {
     }
 
     public String toString(){
-        return "Square, Located at: ("+super.getX()+", "+super.getY()+")"
+        return "\nSquare, Located at: ("+super.getX()+", "+super.getY()+")"
         +", and with side: ("+super.getHeight()+")"+
-        "\nA total area of: "+super.area();
+        "\nA total area of: "+super.area()+"\n";
     }
 }

@@ -1,4 +1,4 @@
-public abstract class Figures{
+public abstract class Figures implements Comparable<Figures>{
 
     private double x;
     private double y;
@@ -17,6 +17,16 @@ public abstract class Figures{
     }
 
     public abstract double area();
+
+    public int compareTo(Figures f){
+        if(this.area() > f.area()){
+            return 1;
+        }
+        else if (this.area() < f.area()){
+            return -1;
+        }
+        return 0;
+    }
 
     @Override
     public String toString(){

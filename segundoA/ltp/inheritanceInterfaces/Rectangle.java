@@ -22,9 +22,9 @@ public class Rectangle extends Figures{
     }
 
     public String toString(){
-        return "Rectangle, "+super.toString() 
+        return "\nRectangle, "+super.toString() 
         + ", and with height; width: ("+height+", "+width+")"+
-        "\nA total area of: "+this.area();
+        "\nA total area of: "+this.area()+"\n";
     }
 }
 

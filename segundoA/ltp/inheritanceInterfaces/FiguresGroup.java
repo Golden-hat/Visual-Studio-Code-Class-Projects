@@ -62,15 +62,18 @@ public class FiguresGroup{
 
     public static void main(String[] args) {
         FiguresGroup n = new FiguresGroup(100);
+
         Figures s = new Circle(5, 4, 90);
         Figures t = new Circle(5, 4, 6);
         Figures v = new Circle(5, 3, 10);
         Figures j = new Circle(5, 5, 1123);
+
         n.addToGroup(s);
         n.addToGroup(t);
         n.addToGroup(v);
         n.addToGroup(j);
         n.printFigs();
+
         System.out.println(n.greatestFigure());        
         System.out.println(n.orderedList());
     }

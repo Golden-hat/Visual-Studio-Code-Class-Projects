@@ -1,4 +1,4 @@
-public abstract class Figures implements Comparable<Figures>{
+public abstract class Figures implements Comparable<Figures>{ 
 
     private double x;
     private double y;

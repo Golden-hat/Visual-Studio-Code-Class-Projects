@@ -7,7 +7,7 @@ class ClienteHTTP{
         try{
             System.setProperty ("line.separator","\r\n");
             Socket s = new Socket("www.upv.es", 80);
-            System.out.println("Conectado");
+            System.out.println("Conectadoasdasd");
 
             PrintWriter salida = new PrintWriter(s.getOutputStream());
             salida.printf("GET / HTTP/1.0\r\n\r\n");

@@ -2,7 +2,7 @@ import java.net.*;
 import java.io.*;
 import java.util.Scanner;
 
-public class ClienteSMTP {
+public class ClienteSMTP3 {
 
         static void error(String cadena) {
         System.out.println(cadena);

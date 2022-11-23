@@ -13,14 +13,13 @@ public class SCTCP extends Thread{
         try{
             Scanner recibe = new Scanner(id.getInputStream());
             PrintWriter envia = new PrintWriter(id.getOutputStream(), true);
-            String test = "";
             
-            test = recibe.nextLine();
+            String texto = recibe.nextLine();
 
-            while(!test.equalsIgnoreCase("FIN")){
+            while(!texto.equalsIgnoreCase("FIN")){
 
-                envia.println(test);
-                test = recibe.nextLine();
+                envia.println(texto);
+                texto = recibe.nextLine();
             }
             id.close();
         }

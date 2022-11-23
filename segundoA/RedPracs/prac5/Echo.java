@@ -11,11 +11,9 @@ public class Echo{
                 Socket s=ss.accept(); 
                 
                 Scanner recibe = new Scanner(s.getInputStream());
-                PrintWriter envia = new PrintWriter(s.getOutputStream());
-                envia.printf("mensaje a enviar\r\n");
-                envia.flush();
+                PrintWriter envia = new PrintWriter(s.getOutputStream(), true);
+                envia.println(recibe.nextLine());
                 
-                System.out.println(recibe.nextLine());
                 System.out.println("Se ha conectado un cliente al servidor.");
                 
                 s.close();

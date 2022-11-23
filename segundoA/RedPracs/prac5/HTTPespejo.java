@@ -20,10 +20,12 @@ public class HTTPespejo{
                 envia.flush();
                 envia.println();
                 
-                String entrada = "a";
-                while(!entrada.equals("")){
+                String entrada = "";
+                while(!entrada.equals("FIN")){
+                    recibe = new Scanner(s.getInputStream());
+                    envia = new PrintWriter(s.getOutputStream(), true);
                     entrada = recibe.nextLine();
-                    System.out.println(entrada);
+                    envia.println(entrada);
                 }
                 
                 System.out.println("Se ha conectado un cliente al servidor.");

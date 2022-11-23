@@ -18,11 +18,9 @@ public class EchoEj2{
                 System.out.println("Local port del Server Socket:   "+ss.getLocalPort());
                 
                 Scanner recibe = new Scanner(s.getInputStream());
-                PrintWriter envia = new PrintWriter(s.getOutputStream());
-                envia.printf("mensaje a enviar\r\n");
-                envia.flush();
+                PrintWriter envia = new PrintWriter(s.getOutputStream(), true);
+                envia.println(recibe.nextLine());
                 
-                System.out.println(recibe.nextLine());
                 System.out.println("Se ha conectado un cliente al servidor.");
                 
                 s.close();

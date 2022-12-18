@@ -18,10 +18,19 @@ public class servidorTCPSecuencialEcho {
                  */
                 Scanner entrada = new Scanner (s.getInputStream());
                 PrintWriter salida = new PrintWriter(s.getOutputStream(), true);
+                String mensaje = "";
 
                 System.out.println("Se ha conectado un cliente al servidor.");
-                salida.println(entrada.nextLine());
-
+                /*
+                 * Este servidor es un echo que retornará al cliente todo lo que
+                 * escriba hasta que el mensaje que mande sea FIN, por lo que debemos
+                 * de hacer el bucle pertinente para conseguirlo.
+                 */
+                while(!mensaje.equalsIgnoreCase("FIN")){
+                    salida.println(mensaje);
+                    //se vuelve a pedir entrada del cliente.                    
+                    mensaje = entrada.nextLine();
+                }
                 s.close();
             }
         }

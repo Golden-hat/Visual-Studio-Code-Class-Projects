@@ -10,10 +10,14 @@ public class Cliente extends Thread {
 
     public void run(){
         try{
+            PrintWriter salida = new PrintWriter(id.getOutputStream() ,true);
             Scanner entrada = new Scanner(id.getInputStream());
-            while(entrada.hasNextLine()){
-                System.out.println(entrada.nextLine());
+            String s = entrada.nextLine();
+            while(!s.equalsIgnoreCase("FIN")){
+                salida.println(s);
+                s = entrada.nextLine();
             }
+            id.close();
         }
         catch(Exception e){
             System.out.println(e);
@@ -22,21 +26,10 @@ public class Cliente extends Thread {
     
     public static void main(String[] args) throws UnknownHostException, IOException{
 
-        try (ServerSocket ss = new ServerSocket(7777)) {
-
-            String l = "";
-
+        try (ServerSocket ss = new ServerSocket(7777)){
             while(true){
                 Socket s = ss.accept();
                 new Cliente(s).start();
-
-                PrintWriter salida = new PrintWriter(s.getOutputStream());
-                try (Scanner entradaTeclado = new Scanner(System.in)) {
-                    l = entradaTeclado.nextLine();
-                }
-
-                salida.println(l);
-                if(l.equalsIgnoreCase("quit")) break;
             }
         }
     }

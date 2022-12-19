@@ -15,6 +15,5 @@ public class ClienteNombreApellidos {
 
         sc.close();
         ds.close();
-
     }
 }

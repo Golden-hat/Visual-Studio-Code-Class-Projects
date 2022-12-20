@@ -1,20 +1,12 @@
 package ExamenPracRepaso;
 import java.net.*;
-import java.util.*;
 
 public class clienteUDP {
     public static void main(String[] args) throws Exception{
         //Datagram socket ds crea un socket de datagramas en cualquier puerto disponible del PC
         DatagramSocket ds = new DatagramSocket();
-
-        /*
-         * Se utiliza un escaner para recibir el input del usuario.
-         * Este input pasa a una string, la cual debe pasarse a bytes...
-         */
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Por favor, escriba su datagrama: ");
-        String name = sc.nextLine();
-
+        String name = "Mensaje1\n";
+        
         /* Datagram packet con 4 parámetros crea un datagrama que enviar a través del
          * socket abierto por datagram socket, HACIA EL PUERTO ESTIPULADO.
          * 
@@ -30,6 +22,5 @@ public class clienteUDP {
         System.out.println(s);
 
         ds.close();
-        sc.close();
     }
 }

@@ -23,30 +23,30 @@ public class calculadoraConcurrente extends Thread{
     }
 
     public static float calculate(String s){
-        int[] ret = new int[2];
+        float[] ret = new float[2];
 
         int i = 0;
         while(i < s.length()){
             switch(s.charAt(i)){
             case '/':
-                ret[0] = Integer.parseInt(s.substring(0, i));
-                ret[1] = Integer.parseInt(s.substring(i+1, s.length()));
+                ret[0] = Float.parseFloat(s.substring(0, i));
+                ret[1] = Float.parseFloat(s.substring(i+1, s.length()));
                 return (ret[0] / ret[1]);
             case '*':
-                ret[0] = Integer.parseInt(s.substring(0, i));
-                ret[1] = Integer.parseInt(s.substring(i+1, s.length()));
+                ret[0] = Float.parseFloat(s.substring(0, i));
+                ret[1] = Float.parseFloat(s.substring(i+1, s.length()));
                 return (ret[0] * ret[1]);
             case '+':
-                ret[0] = Integer.parseInt(s.substring(0, i));
-                ret[1] = Integer.parseInt(s.substring(i+1, s.length()));
+                ret[0] = Float.parseFloat(s.substring(0, i));
+                ret[1] = Float.parseFloat(s.substring(i+1, s.length()));
                 return (ret[0] + ret[1]);
             case '-':
-                ret[0] = Integer.parseInt(s.substring(0, i));
-                ret[1] = Integer.parseInt(s.substring(i+1, s.length()));
+                ret[0] = Float.parseFloat(s.substring(0, i));
+                ret[1] = Float.parseFloat(s.substring(i+1, s.length()));
                 return (ret[0] - ret[1]);
             case '%':
-                ret[0] = Integer.parseInt(s.substring(0, i));
-                ret[1] = Integer.parseInt(s.substring(i+1, s.length()));
+                ret[0] = Float.parseFloat(s.substring(0, i));
+                ret[1] = Float.parseFloat(s.substring(i+1, s.length()));
                 return (ret[0] % ret[1]);
             }
             i++;

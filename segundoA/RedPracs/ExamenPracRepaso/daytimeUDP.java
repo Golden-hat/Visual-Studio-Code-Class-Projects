@@ -4,11 +4,17 @@ import java.util.*;
 
 public class daytimeUDP extends Thread{
     public static void main(String[] args) throws Exception{
-        DatagramSocket serverSocket = new DatagramSocket(7777);
-        byte[] receiveDataBuffer = new byte[1024];
-        byte[] sendDataBuffer = new byte[1024];
+        byte[] buffer = new byte[1000];
+        DatagramSocket ds = new DatagramSocket(7777);
+        DatagramPacket p = new DatagramPacket(buffer, 1000);
+        ds.receive(p);
+        Date now = new Date();
+        String now_string = now.toString() + "\r+\n";
 
-        DatagramPacket receivePacket = new DatagramPacket(receiveDataBuffer, receiveDataBuffer.length);
+        p.setData(now_string.getBytes());
+        p.setLength(now_string.getBytes().length);
+        ds.send(p);
+        ds.close();
     }
 }
 

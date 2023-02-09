@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=LinkedNode
+comment0.text=\ Friendly\ class\ that\ represents\ a\ Node\ in\ a\ Generic\ LinkedList\n\ \ IT\ CONTAINS\:\n\ \ -\ data,\ the\ element\ contained\ in\ the\ Node\n\ \ -\ next,\ the\ reference\ to\ the\ next\ Node\ in\ the\ LinkedList\n
+comment1.params=e\ next
+comment1.target=LinkedNode(java.lang.Object,\ LinkedNode)
+comment1.text=\ Creates\ a\ Node\ that\ contains\ Element\ e,\ which\ is\ followed\ by\ Node\ next\n\ \ @param\ e\ Element\ contained\ in\ the\ Node\n\ \ @param\ next\ The\ node\ that\ follows\ this\ one\n
+comment2.params=data
+comment2.target=LinkedNode(java.lang.Object)
+comment2.text=\ Creates\ a\ Node\ that\ contains\ Element\ e,\ which\ is\ not\ followed\ by\ another\ node\n\ \ @param\ data\ Element\ that\ contains\ a\ Node\n
+numComments=3

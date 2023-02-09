@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.target=ArrayStack
+comment1.params=
+comment1.target=ArrayStack()
+comment1.text=creates\ an\ empty\ Stack\ *
+comment2.params=e
+comment2.target=void\ push(java.lang.Object)
+comment2.text=inserts\ Element\ e\ in\ a\ Stack,\ placing\ it\ at\ its\ top\ *
+comment3.params=
+comment3.target=void\ duplicateArray()
+comment4.params=
+comment4.target=java.lang.Object\ pop()
+comment4.text=\ IFF\ \!isEmpty()\:\n\ obtains\ and\ removes\ from\ a\ list\ the\ Element\ at\ its\ top\n
+comment5.params=
+comment5.target=java.lang.Object\ top()
+comment5.text=\ IFF\ \!isEmpty()\:\n\ obtains\ the\ Element\ at\ the\ top\ of\ a\ Stack\n
+comment6.params=
+comment6.target=boolean\ isEmpty()
+comment6.text=checks\ whether\ a\ Stack\ is\ empty\ *
+comment7.params=
+comment7.target=java.lang.String\ toString()
+comment7.text=\ returns\ a\ String\ with\ the\ Elements\ of\ a\ Stack\ in\ LIFO\ order,\n\ or\ the\ reverse\ of\ its\ insertion\ order,\ with\ the\ format\ used\n\ in\ Java's\ standard.\ Thus,\ if\ a\ Stack\ contains\ Integers\ from\ 1\ to\ 4,\n\ in\ LIFO\ order,\ toString\ returns\ [4,\ 3,\ 2,\ 1];\ if\ the\ Stack\ is\n\ empty,\ then\ returns\ []\n
+numComments=8

@@ -9,19 +9,26 @@ public class LinkedStack<E> implements Stack<E> {
 
     /** creates an empty Stack **/
     public LinkedStack() {
-        /*TO BE COMPLETED*/
+        this.size = 0;
+        top = null;
     }
       
     /** pushes an Element e onto a Stack, or places it at its top **/
     public void push(E e) {
-        /*TO BE COMPLETED*/
+        top = new LinkedNode<E>(e, top);
+        size++;
     }
       
     /** IFF !isEmpty():
      * obtains and removes from a list the Element at its top
      */
     public E pop() {
-        /*TO BE CHANGED AND COMPLETED*/
+        E dataS = top.data;
+        if(!this.isEmpty()){   
+            top = top.next;
+            size--;
+            return dataS;
+        }
         return null;
     }
       
@@ -29,14 +36,12 @@ public class LinkedStack<E> implements Stack<E> {
      * obtains the Element at the top of a Stack
      */
     public E top() {
-        /*CHANGE THIS*/
-        return null;
+        return top.data;
     }
       
     /** checks whether a Stack is empty **/
     public boolean isEmpty() {
-        /*CHANGE THIS*/
-        return false;
+        return (size == 0);
     }
       
     /** returns a String with the Elements of a Stack in LIFO order,
@@ -47,8 +52,18 @@ public class LinkedStack<E> implements Stack<E> {
      */
     public String toString() { 
         StringBuilder res = new StringBuilder();
-        res.append("["); 
-        /*TO BE COMPLETED*/
-        return res.toString(); 
+        LinkedNode<E> aux = top;
+        if(this.isEmpty()){
+            res.append("[]");
+        }
+        else{
+            res.append("["); 
+            for(int i = size-1; i >= 1; i--){
+                res.append(aux.data.toString()+", ");
+                aux = aux.next;
+            }
+            res.append(top.data+"]");
+        }
+        return res.toString();  
     }
 }

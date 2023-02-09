@@ -10,13 +10,16 @@ public class ArrayStack<E> implements Stack<E> {
     /** creates an empty Stack **/
     @SuppressWarnings("unchecked")
     public ArrayStack() {
-        /*TO BE COMPLETED*/
+        this.theArray = (E []) new Object[DEFAULT_CAPACITY];
         top = -1;
     }
       
     /** inserts Element e in a Stack, placing it at its top **/
     public void push(E e) {
-        /*TO BE COMPLETED*/
+        if(top < 49){
+            top++;
+            this.theArray[top] = e; 
+        }
     }
       
     // duplicates an array's current capacity
@@ -31,7 +34,10 @@ public class ArrayStack<E> implements Stack<E> {
      * obtains and removes from a list the Element at its top
      */
     public E pop() {
-        /*TO BE CHANGED AND COMPLETED*/
+        if(top >= 0){
+            this.theArray[top] = null;
+            top--;
+        }
         return null;
     }
 
@@ -39,13 +45,15 @@ public class ArrayStack<E> implements Stack<E> {
      * obtains the Element at the top of a Stack
      */
     public E top() {
-        /*TO BE COMPLETED*/
+        if(!this.isEmpty()){return theArray[top];}
         return null;
     }
       
     /** checks whether a Stack is empty **/
     public boolean isEmpty() {
-        /*CHANGE THIS*/
+        if(top == -1){
+            return true;
+        }
         return false;
     }
         
@@ -57,8 +65,16 @@ public class ArrayStack<E> implements Stack<E> {
      */
     public String toString() { 
         StringBuilder res = new StringBuilder();
-        res.append("["); 
-        /*TO BE COMPLETED*/
+        if(this.isEmpty()){
+            res.append("[]");
+        }
+        else{
+            res.append("["); 
+            for(int i = 0; i <= top-1; i++){
+                res.append(theArray[i]+", ");
+            }
+            res.append(theArray[top]+"]");
+        }
         return res.toString(); 
     }
 }

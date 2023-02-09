@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=LinkedStack
+comment1.params=
+comment1.target=LinkedStack()
+comment1.text=creates\ an\ empty\ Stack\ *
+comment2.params=e
+comment2.target=void\ push(java.lang.Object)
+comment2.text=pushes\ an\ Element\ e\ onto\ a\ Stack,\ or\ places\ it\ at\ its\ top\ *
+comment3.params=
+comment3.target=java.lang.Object\ pop()
+comment3.text=\ IFF\ \!isEmpty()\:\n\ obtains\ and\ removes\ from\ a\ list\ the\ Element\ at\ its\ top\n
+comment4.params=
+comment4.target=java.lang.Object\ top()
+comment4.text=\ IFF\ \!isEmpty()\:\n\ obtains\ the\ Element\ at\ the\ top\ of\ a\ Stack\n
+comment5.params=
+comment5.target=boolean\ isEmpty()
+comment5.text=checks\ whether\ a\ Stack\ is\ empty\ *
+comment6.params=
+comment6.target=java.lang.String\ toString()
+comment6.text=\ returns\ a\ String\ with\ the\ Elements\ of\ a\ Stack\ in\ LIFO\ order,\n\ or\ the\ reverse\ of\ its\ insertion\ order,\ with\ the\ format\ used\n\ in\ Java's\ standard.\ Thus,\ if\ a\ Stack\ contains\ Integers\ from\ 1\ to\ 4,\n\ in\ LIFO\ order,\ toString\ returns\ [4,\ 3,\ 2,\ 1];\ if\ the\ Stack\ is\n\ empty,\ then\ returns\ []\n
+numComments=7

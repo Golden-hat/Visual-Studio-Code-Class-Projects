@@ -1,0 +1,23 @@
+#BlueJ package file
+objectbench.height=100
+objectbench.width=484
+package.editor.height=207
+package.editor.width=691
+package.editor.x=21
+package.editor.y=60
+package.numDependencies=0
+package.numTargets=2
+package.showExtends=true
+package.showUses=true
+target1.height=62
+target1.name=excepciones
+target1.type=PackageTarget
+target1.width=100
+target1.x=60
+target1.y=100
+target2.height=62
+target2.name=estructurasDeDatos
+target2.type=PackageTarget
+target2.width=140
+target2.x=190
+target2.y=100

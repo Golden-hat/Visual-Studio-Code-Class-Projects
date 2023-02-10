@@ -21,6 +21,7 @@ public class App extends Application {
         var scene = new Scene(new StackPane(label), 640, 480);
         stage.setScene(scene);
         stage.show();
+        //ijasdfuahbouahbfguabf
     }
 
     public static void main(String[] args) {

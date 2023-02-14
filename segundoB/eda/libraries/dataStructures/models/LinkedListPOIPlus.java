@@ -69,23 +69,43 @@ public class LinkedListPOIPlus<E> extends LinkedListPOI<E> implements ListPOIPlu
             }
             next();
         }
-        }
     }
     
     /** removes all Elements contained in a List with POI, leaving it empty **/
-    public void clear(){}
+    public void clear(){
+        begin();
+        while(!isEmpty()){
+            remove();
+            next();
+        }
+    }
     
     /** adds all elements of 'other' at the end of this List
      * i.e., if 'this' contains "1, 2, 3" and 'other' contains "4, 5",
      * the state of 'this' after calling this method should be
      * "1, 2, 3, 4, 5", and 'other' should remain unaltered.
      */
-    public void addAll(ListPOI<E> other){}
+    public void addAll(ListPOI<E> other){
+        end();
+        for(int i = 0; i < other.size(); i++){
+            add(other.get());
+            end();
+        }
+    }
     
-    public void search(E e){}
+    public void search(E e){
+        begin();
+        while(!isEnd() && !get().equals(e)){
+            next();
+        }
+    }
     
-    public String toString(){}
+    public String toString(){return super.toString();}
 
     /** reverses a List in-situ from its POI **/
-    public void reverseFromPOI(){}
+    public void reverseFromPOI(){
+        for(int i = 0; i < size(); i++){
+            
+        }
+    }
 }

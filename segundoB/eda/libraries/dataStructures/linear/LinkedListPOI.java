@@ -110,6 +110,18 @@ public class LinkedListPOI<E> implements ListPOI<E> {
     }
     
     public static <E extends Comparable<E>> Queue<E> removesSort(ListPOI<E> p, ListPOI<E> q){        
-        
+        p.begin();
+        Queue<E> cola = null;
+        while(!p.isEnd()){
+            q.begin();
+            while(!q.isEnd()){
+                q.next();
+                if(q.get().compareTo(p.get()) == 0){
+                    cola.enqueue((E)q);
+                }
+            }
+            p.next();
+        }
+        return cola;
     }
 }

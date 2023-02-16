@@ -4,7 +4,7 @@ package libraries.dataStructures.models;
  * Model for a List with a Point of Interest (POI), or with
  * Sequential Access to a Collection's Elements
  */
-public interface ListPOI<E> {
+public interface ListPOI<E>{
     // Modifier methods - state of the List with POI
     /** adds e to a List before the Element at its POI,
      * which remains unaltered

@@ -1,6 +1,6 @@
-package libraries.dataStructures.models;
-import libraries.dataStructures.linear.LinkedListPOI;
+package libraries.dataStructures.linear;
 import libraries.exceptions.ElementNotFound;
+import libraries.dataStructures.models.*;
 
 public class LinkedListPOIPlus<E> extends LinkedListPOI<E> implements ListPOIPlus<E>{
     public boolean contains(E e){
@@ -30,23 +30,18 @@ public class LinkedListPOIPlus<E> extends LinkedListPOI<E> implements ListPOIPlu
      * the non-existance of e by throwing an ElementNotFound Exception
      */
     public E removeLast(E e) throws ElementNotFound{
+        LinkedNode<E> lastE = null;
         begin();
-        int aux = 0;
-        while(!isEmpty()){
+        while(!isEnd()){
             if(get().equals(e)){
-                aux++;
-            }
-        }
-        if(aux == 0) {throw new ElementNotFound("element can't be found within the list");}
-        while(aux>0){
-            if(get().equals(e)){
-                aux--;
+                lastE = prev;
             }
             next();
         }
-        E p = get();
-        remove();
-        return p;
+        if(lastE == null) {throw new ElementNotFound("element can't be found within the list");}
+        else {
+            prev = lastE; remove(); return (E) prev;
+        }
     }
     
     /** if Element e appears in a List with POI, removes all
@@ -55,19 +50,11 @@ public class LinkedListPOIPlus<E> extends LinkedListPOI<E> implements ListPOIPlu
      */
     public void removeAll(E e) throws ElementNotFound{
         begin();
-        int aux = 0;
-        while(!isEmpty()){
-            if(get().equals(e)){
-                aux++;
-            }
-        }
-        if(aux == 0) {throw new ElementNotFound("element(s) can't be found within the list");}
-        while(aux>0){
-            if(get().equals(e)){
-                aux--;
+        while(!isEnd()){
+            if (get().equals(e)){
                 remove();
             }
-            next();
+            else {this.next();}
         }
     }
     
@@ -86,10 +73,11 @@ public class LinkedListPOIPlus<E> extends LinkedListPOI<E> implements ListPOIPlu
      * "1, 2, 3, 4, 5", and 'other' should remain unaltered.
      */
     public void addAll(ListPOI<E> other){
-        end();
+        this.end();
+        other.begin();
         for(int i = 0; i < other.size(); i++){
-            add(other.get());
-            end();
+            this.add(other.get());
+            other.next();
         }
     }
     
@@ -103,9 +91,14 @@ public class LinkedListPOIPlus<E> extends LinkedListPOI<E> implements ListPOIPlu
     public String toString(){return super.toString();}
 
     /** reverses a List in-situ from its POI **/
-    public void reverseFromPOI(){
-        for(int i = 0; i < size(); i++){
-            
+    //los reverses son recursivos! Normalmente...
+    public void reverseFromPOI(){ 
+        if(!isEmpty()){
+            //begin();
+            E data = get();
+            remove();
+            reverseFromPOI();
+            add(data);
         }
     }
 }

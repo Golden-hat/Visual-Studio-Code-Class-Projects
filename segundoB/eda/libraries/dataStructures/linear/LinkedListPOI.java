@@ -1,6 +1,5 @@
 package libraries.dataStructures.linear;
-
-import libraries.dataStructures.models.ListPOI;
+import libraries.dataStructures.models.*;
 
 /** Implements the ListPOI through a generic LinkedList ...
  *  (a) With a fictitious Node as its header.
@@ -108,5 +107,9 @@ public class LinkedListPOI<E> implements ListPOI<E> {
             s.append(aux.data.toString() + "]");
         } else { s.append("]"); }
         return s.toString();
+    }
+    
+    public static <E extends Comparable<E>> Queue<E> removesSort(ListPOI<E> p, ListPOI<E> q){        
+        
     }
 }

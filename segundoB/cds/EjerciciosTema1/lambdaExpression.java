@@ -1,4 +1,4 @@
-package segundoB.cds;
+package segundoB.cds.EjerciciosTema1;
 public class lambdaExpression {
     public static void main(String[] args) {
         System.out.println(Thread.currentThread().getName());

@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.target=LinkedListPOIPlus
+comment1.params=e
+comment1.target=boolean\ contains(java.lang.Object)
+comment2.params=e
+comment2.target=boolean\ remove(java.lang.Object)
+comment2.text=\ removes\ the\ first\ instance\ of\ Element\ e\ in\ a\ List\ with\ POI\n\ and\ returns\ true,\ or\ returns\ false\ if\ e\ is\ not\ in\ the\ List\n
+comment3.params=e
+comment3.target=java.lang.Object\ removeLast(java.lang.Object)
+comment3.text=\ if\ Element\ e\ appears\ in\ a\ List\ with\ POI,\ removes\ its\ last\n\ instance\ and\ returns\ it\ back\ to\ the\ user;\ otherwise\ it\ signals\n\ the\ non-existance\ of\ e\ by\ throwing\ an\ ElementNotFound\ Exception\n
+comment4.params=e
+comment4.target=void\ removeAll(java.lang.Object)
+comment4.text=\ if\ Element\ e\ appears\ in\ a\ List\ with\ POI,\ removes\ all\n\ its\ appearances\ in\ it;\ otherwise\ it\ signals\ the\ non-existence\n\ by\ throwing\ an\ ElementNotFound\ Exception\n
+comment5.params=
+comment5.target=void\ clear()
+comment5.text=removes\ all\ Elements\ contained\ in\ a\ List\ with\ POI,\ leaving\ it\ empty\ *
+comment6.params=other
+comment6.target=void\ addAll(libraries.dataStructures.models.ListPOI)
+comment6.text=\ adds\ all\ elements\ of\ 'other'\ at\ the\ end\ of\ this\ List\n\ i.e.,\ if\ 'this'\ contains\ "1,\ 2,\ 3"\ and\ 'other'\ contains\ "4,\ 5",\n\ the\ state\ of\ 'this'\ after\ calling\ this\ method\ should\ be\n\ "1,\ 2,\ 3,\ 4,\ 5",\ and\ 'other'\ should\ remain\ unaltered.\n
+comment7.params=e
+comment7.target=void\ search(java.lang.Object)
+comment8.params=
+comment8.target=java.lang.String\ toString()
+comment9.params=
+comment9.target=void\ reverseFromPOI()
+comment9.text=reverses\ a\ List\ in-situ\ from\ its\ POI\ *
+numComments=10

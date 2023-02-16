@@ -1,5 +1,4 @@
 package libraries.dataStructures.models;
-
 import libraries.exceptions.ElementNotFound;
 
 public interface ListPOIPlus<E> extends ListPOI<E> {
@@ -33,6 +32,10 @@ public interface ListPOIPlus<E> extends ListPOI<E> {
      * "1, 2, 3, 4, 5", and 'other' should remain unaltered.
      */
     void addAll(ListPOI<E> other);
+    
+    void search(E e);
+    
+    String toString();
 
     /** reverses a List in-situ from its POI **/
     void reverseFromPOI();

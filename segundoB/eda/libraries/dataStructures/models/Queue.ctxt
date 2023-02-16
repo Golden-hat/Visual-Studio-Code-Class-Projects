@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Queue
+comment1.params=e
+comment1.target=void\ enqueue(java.lang.Object)
+comment1.text=\ adds\ Element\ e\ to\ a\ Queue,\ or\ places\ it\ at\ the\ end\n
+comment2.params=
+comment2.target=java.lang.Object\ dequeue()
+comment2.text=\ IFF\ \!isEmpty()\:\n\ obtains\ and\ removes\ from\ a\ Queue\ its\ first\ Element\n
+comment3.params=
+comment3.target=java.lang.Object\ first()
+comment3.text=\ IFF\ \!isEmpty()\:\n\ obtains\ the\ first\ Element\ of\ a\ Queue,\n\ i.e.,\ first\ pushed\ into\ the\ Queue\n
+comment4.params=
+comment4.target=boolean\ isEmpty()
+comment4.text=\ checks\ whether\ a\ Queue\ is\ empty\n
+numComments=5

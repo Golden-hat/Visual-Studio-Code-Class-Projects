@@ -25,7 +25,7 @@
             <RowConstraints fillHeight="false" maxHeight="219.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField fx:id="userName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="userName" onAction="#loginClicked" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" textAlignment="CENTER" wrappingWidth="323.203125" GridPane.columnSpan="2">
                <font>
                   <Font size="49.0" />
@@ -42,8 +42,8 @@
                </font>
             </Text>
             <PasswordField prefHeight="25.0" prefWidth="190.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button fx:id="loginClicked" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" text="Log In" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-            <Text fx:id="userMessage" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" onAction="#loginClicked" prefHeight="25.0" prefWidth="62.0" text="Log In" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+            <Text fx:id="userMessage" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.rowIndex="3" />
          </children>
          <padding>
             <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />

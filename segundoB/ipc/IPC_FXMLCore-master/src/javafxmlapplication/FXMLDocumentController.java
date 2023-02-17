@@ -25,17 +25,18 @@ public class FXMLDocumentController implements Initializable {
     private TextField userName;
     @FXML
     private Text userMessage;
-    @FXML
-    private Button loginClicked;
     
     //=========================================================
     // you must initialize here all related with the object 
+     
+    private void handleButtonAction(ActionEvent event){
+        userMessage.setText("Welcome "+userName.getText());
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
-    
+    @FXML
     public void loginClicked(ActionEvent event) {
         userMessage.setText("Welcome " + userName.getText());
     }
-    
 }

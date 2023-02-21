@@ -1,6 +1,5 @@
 // CSD feb 2015 Juansa Sendra
 //     dic 2016 Mario Gonzalez, Fernando Alvarruiz
-
 import javax.swing.*;
 
 import java.awt.*;

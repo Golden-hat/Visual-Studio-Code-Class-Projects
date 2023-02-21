@@ -1,4 +1,4 @@
-package segundoB.cds.EjerciciosTema1;
+package segundoB.csd.EjerciciosTema1;
 
 public class T extends Thread /**implements Runnable **/{
     protected int n;

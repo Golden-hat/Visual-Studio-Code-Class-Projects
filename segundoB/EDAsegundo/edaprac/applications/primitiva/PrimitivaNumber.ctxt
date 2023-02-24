@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=PrimitivaNumber
+comment0.text=\ PrimitivaNumber\:\ represents\ an\ integer\ number\n\ \ between\ 1\ and\ 49,\ chosen\ randomly.\n\n\ \ @version\ February\ 2019\n
+comment1.params=
+comment1.target=PrimitivaNumber()
+comment1.text=\n\ Creates\ a\ PrimitivaNumber\ by\ choosing\ randomly\n\ a\ number\ in\ the\ integer\ range\ [1,\ 49].\n
+comment2.params=
+comment2.target=java.lang.String\ toString()
+comment2.text=\n\ Returns\ the\ String\ that\ represents\ a\ (this)\ PrimitivaNumber\n\ in\ text\ format\n\ \n\ @return\ the\ String\ with\ the\ NumeroPrimitiva\ in\ text\ format.\n
+numComments=3

@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=ArrayQueuePlus
+comment1.params=
+comment1.target=int\ size()
+comment1.text=returns\ a\ Queue's\ size\ *
+numComments=2

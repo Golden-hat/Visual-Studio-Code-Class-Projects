@@ -8,9 +8,8 @@ import java.util.Random;
  *  @version February 2019
  */
 
-public class PrimitivaNumber /* TO BE COMPLETED */ {
+public class PrimitivaNumber implements Comparable<PrimitivaNumber>{
     
-    // A PrimitivaNumber HAS AN int in the [1, 49] range
     private int number;
     
     /**
@@ -30,9 +29,9 @@ public class PrimitivaNumber /* TO BE COMPLETED */ {
      * @return true if this and other hold the same value,
      *              false otherwise
      */
-    
-    /* COMPLETE HERE THE equals METHOD */
-
+    public boolean equals(PrimitivaNumber n){
+        return this.number == n.number;
+    }
 
     /**
      * Compares a (this) PrimitivaNumber with another.
@@ -42,9 +41,16 @@ public class PrimitivaNumber /* TO BE COMPLETED */ {
      *         int > 0 if this is larger than other
      *          0      if this and other are equal
      */
-
-    /* COMPLETE HERE THE compareTo METHOD */
-
+    @Override
+    public int compareTo(PrimitivaNumber n){
+        if(this.number == n.number){
+            return 0;
+        }
+        else if(this.number < n.number){
+            return -1;
+        }
+        return 1;
+    }
 
     /**
      * Returns the String that represents a (this) PrimitivaNumber

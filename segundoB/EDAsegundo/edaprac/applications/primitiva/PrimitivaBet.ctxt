@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=PrimitivaBet
+comment0.text=\ \n\ PrimitivaBet\:\ represents\ a\ random\ bet\ in\ La\ Primitiva,\ a\n\ combination\ of\ 6\ different\ numbers\ between\ 1\ and\ 49\ chosen\n\ randomly.\n\ \n\ @version\ February\ 2019\n
+comment1.params=sorted
+comment1.target=PrimitivaBet(boolean)
+comment1.text=\n\ Creates\ a\ PrimitivaBet,\ a\ combination\ of\ six\n\ random\ and\ distinct\ numbers\ in\ the\ range\ [1,\ 49].\n\ \n\ @param\ sorted\ A\ boolean\ that\ indicates\ whether\ the\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ combination\ (its\ 6\ numbers)\ must\ be\ sorted\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ in\ ascending\ order\ (true)\ or\ not\ (false).\n
+comment2.params=n
+comment2.target=int\ indexOf(PrimitivaNumber)
+comment2.text=\n\ Returns\ the\ position\ or\ index\ of\ a\ number\ n\ in\ a\ PrimitiveBet,\n\ or\ -1\ if\ n\ does\ not\ appear\ in\ the\ combination.\n\ IMPORTANT\:\ we\ assume\ that\ the\ first\ element\ in\ a\ combination\n\ has\ index\ 0,\ and\ the\ last,\ index\ 5.\n\ \n\ @param\ n\ a\ number\n\ @return\ \ the\ index\ of\ n\ in\ a\ combination,\ an\ integer\ value\n\ \ \ \ \ \ \ \ \ \ in\ the\ interval\ [0,\ 5]\ if\ n\ exists\ in\ the\ combination,\n\ \ \ \ \ \ \ \ \ \ or\ -1\ otherwise\n
+comment3.params=
+comment3.target=java.lang.String\ toString()
+comment3.text=\n\ Returns\ a\ String\ that\ represents\ a\ PrimitivaBet\ in\ the\ text\ format\n\ shown\ in\ the\ following\ example\:\ "16,\ 25,\ 28,\ 49,\ 9,\ 20".\n\ \n\ @return\ the\ String\ with\ the\ PrimitivaBet\ in\ the\ specified\ format.\n
+numComments=4

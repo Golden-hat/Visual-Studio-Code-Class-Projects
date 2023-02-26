@@ -13,7 +13,6 @@ import libraries.dataStructures.linear.SortedLinkedListPOI;
  */
 
 public class PrimitivaBet {
-
     // La Primitiva HAS A List with POI that holds
     // a combination of 6 Primitiva numbers
     private ListPOI<PrimitivaNumber> combination;
@@ -27,9 +26,13 @@ public class PrimitivaBet {
      *               in ascending order (true) or not (false).
      */
     public PrimitivaBet(boolean sorted) {
-
-        /* TO BE COMPLETED */
-
+        if(sorted){combination = new SortedLinkedListPOI<PrimitivaNumber>();}
+        else{combination = new LinkedListPOI<PrimitivaNumber>();}
+        
+        while(combination.size() < 6){
+            PrimitivaNumber n = new PrimitivaNumber();
+            if(indexOf(n) == -1) {combination.add(n);}
+        }
     }
     
     /**
@@ -44,9 +47,12 @@ public class PrimitivaBet {
      *          or -1 otherwise
      */
     protected int indexOf(PrimitivaNumber n) {
-
-        /* TO BE COMPLETED */
-
+        combination.begin();
+        for(int i = 0; i < combination.size(); i++){
+            if(n.equals(combination.get())){return i;}
+            combination.next();
+        }
+        return -1;
     }
     
     /**
@@ -56,8 +62,13 @@ public class PrimitivaBet {
      * @return the String with the PrimitivaBet in the specified format.
      */
     public String toString() {
-
-        /* TO BE COMPLETED */
-
+        combination.begin();
+        String s = "("+combination.get();
+        combination.next();
+        while(!combination.isEnd()){
+            s += ", "+combination.get().toString();
+            combination.next();
+        }
+        return s+").";
     }
 }

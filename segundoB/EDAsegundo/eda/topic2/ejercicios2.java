@@ -57,4 +57,9 @@ public class ejercicios2{
             return concaveCurve(v, m, end);
         }
     }
+
+    public static mergeSort(){
+
+    }
 }
+ç

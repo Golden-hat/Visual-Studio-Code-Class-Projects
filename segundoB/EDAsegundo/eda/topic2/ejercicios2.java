@@ -57,4 +57,27 @@ public class ejercicios2{
             return concaveCurve(v, m, end);
         }
     }
+
+    public static <T extends Comparable<T>> T[] mergeSort(T[] array){
+        return MergeSort(array, 0, array.length-1);
+    }
+
+    private static <T extends Comparable<T>> T[] mergeSort(T[] array, int left, int right){
+        return
+    }
+
+    public static <E extends Comparable<E>> E[] merge(E[] a, E[] b){
+        E[] res = (E[]) new Comparable[a.length + b.length];
+        int k = 0;
+        
+        for(int i = 0; i < a.length; i++){
+            for(int j = 0; j < b.length; j++){
+                if(a[i].compareTo(b[j]) == -1){
+                    res[k] = a[i];
+                }
+                else{res[k] = a[j];}
+                k++;
+            }
+        }
+    }
 }

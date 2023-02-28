@@ -14,7 +14,6 @@ public class Pool3 extends Pool{ //max capacity
         }
         kidNum++;
         log.swimming();
-        notifyAll();
     }
 
     public synchronized void kidRests() throws InterruptedException{

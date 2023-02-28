@@ -12,7 +12,6 @@ public class Pool1 extends Pool {   //no kids alone
         }
         kidNum++;
         log.swimming();
-        notifyAll();
     }
 
     public synchronized void kidRests() throws InterruptedException{

@@ -9,13 +9,12 @@ public class Pool4 extends Pool{ //max capacity
     public void init(int ki, int cap){this.KI = ki; this.max = cap;}
 
     public synchronized void kidSwims() throws InterruptedException{
-        while(insNum <= 0 || kidNum >= this.KI*insNum || ((insNum + kidNum) >= max) || waiting > 0){
+        while(kidNum >= this.KI*insNum || ((insNum + kidNum) >= max) || waiting > 0){
             log.waitingToSwim();
             wait();
         }
         kidNum++;
         log.swimming();
-        notifyAll();
     }
 
     public synchronized void kidRests() throws InterruptedException{

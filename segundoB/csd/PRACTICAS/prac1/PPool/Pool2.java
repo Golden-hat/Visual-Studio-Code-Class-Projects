@@ -13,7 +13,6 @@ public class Pool2 extends Pool{ //max kids/instructor
         }
         kidNum++;
         log.swimming();
-        notifyAll();
     }
     
     public synchronized void kidRests() throws InterruptedException{
@@ -25,7 +24,6 @@ public class Pool2 extends Pool{ //max kids/instructor
     public synchronized void instructorSwims() throws InterruptedException{
         insNum++;
         log.swimming();
-        notifyAll();
     }
 
     public synchronized void instructorRests() throws InterruptedException{
@@ -35,6 +33,5 @@ public class Pool2 extends Pool{ //max kids/instructor
         }
         insNum--;
         log.resting();
-        notifyAll();
     }
 }

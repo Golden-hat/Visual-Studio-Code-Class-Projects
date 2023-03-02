@@ -7,12 +7,14 @@ package javafxmlapplication;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import static javafxmlapplication.Utils.*;
 
@@ -28,12 +30,19 @@ public class FXMLDocumentController implements Initializable {
     private GridPane myGridPane;
     private double x_ini;
     private double y_ini;
+    @FXML
+    private ToggleButton myToggle;
+    @FXML
+    private Slider mySlider;
+    @FXML
+    private ColorPicker myPicker;
     
     //=========================================================
     // you must initialize here all related with the object 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        myBall.radiusProperty().bind(Bindings.min(myGridPane.widthProperty(), myGridPane.heightProperty()).divide(5).divide(2));
+        myBall.radiusProperty().bind(Bindings.divide(mySlider.valueProperty(), 2));
     }    
 
     @FXML
@@ -58,23 +67,43 @@ public class FXMLDocumentController implements Initializable {
         GridPane.setConstraints(myBall, Utils.columnCalc(myGridPane, x),Utils.rowCalc(myGridPane, y));
     }
 
-    @FXML
     private void handleMouseReleased(MouseDragEvent event) {
         myBall.setTranslateX(0);
         myBall.setTranslateY(0);
         event.consume();
     }
-
-    @FXML
-    private void handleMouseDraggedBall(MouseDragEvent event) {
-        myBall.setTranslateX(event.getSceneX() - x_ini);
-        myBall.setTranslateY(event.getSceneY() - y_ini);
-    }
-
+    
     @FXML
     private void handleMousePressedBall(MouseEvent event) {
         x_ini = event.getSceneX();
         y_ini = event.getSceneY();
     }
-    
+
+    @FXML
+    private void handleMouseReleased(MouseEvent event) {
+        myBall.setTranslateX(0);
+        myBall.setTranslateY(0);
+        double x = event.getSceneX();
+        double y = event.getSceneY();
+        GridPane.setConstraints(myBall, Utils.columnCalc(myGridPane, x), Utils.rowCalc(myGridPane, y));
+        event.consume();
+    }
+
+    @FXML
+    private void handleMouseDraggedBall(MouseEvent event) {
+        myBall.setTranslateX(event.getSceneX() - x_ini);
+        myBall.setTranslateY(event.getSceneY() - y_ini);
+    }
+
+    @FXML
+    private void handleActionToggle(ActionEvent event) {
+        if(myToggle.isSelected()){
+            myBall.setFill(Color.TRANSPARENT);
+            myBall.setStroke(myPicker.getValue());
+        }
+        else{
+            myBall.setFill(myPicker.getValue());
+            myBall.setStroke(Color.TRANSPARENT);
+        }
+    }
 }

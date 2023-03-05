@@ -111,13 +111,34 @@ public class ejercicios2{
     }
 
     private static int[] mergeSortTwo(int[] a, int ini, int fin){
-        int mid = (ini+fin)/2;
+        int mid = (fin+ini)/2 - ini;
+
+        int[] left = new int[fin-ini-mid+1];
+        int[] right = new int[fin-ini-mid];
+        System.out.println(mid+1);
+        System.out.println(fin-mid);
+        printArr(a);
+
         if(ini < fin){
-            mergeSortTwo(a, ini, mid);
-            mergeSortTwo(a, mid+1, fin);
-            mergeTwo(a, a);
+            int k = 0;
+            for(int i = 0; i <= mid; i++){
+                left[k] = a[i];
+                k++;          
+            }
+            k = 0;
+            for(int i = mid+1; i <= fin; i++){
+                right[k] = a[i];
+                k++;           
+            }
+    
+            printArr(left);
+            printArr(right);
+            
+            mergeSortTwo(left, ini, mid);
+            mergeSortTwo(right, mid+1, fin);
+            mergeTwo(left, right);
         }
-        return a;
+        return left;
     }
 
     private static int[] mergeTwo(int[] a, int[] b){

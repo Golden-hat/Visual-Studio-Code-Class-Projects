@@ -123,53 +123,39 @@ public class Sorting {
      * @param v  Its elements must implement the Comparable interface
      */
     
-    
-    public static <T extends Comparable<T>> void mergeSort2(T[] v) {
-        mergeSort2(v, 0, v.length - 1);
+     public static <T extends Comparable<T>> void mergeSort2(T[] v) {
+        T[] aux = mergeSort2(v,0,v.length-1);
+        for(int i= 0; i < v.length; i++){
+            v[i] = aux[i];
+        }
     }
     
     /**
-     * IFF i<=f: returns an array with the elements of
-     * the subarray v[i, f] sorted in ascending order.
-     *
-     * @param v  Its elements must implement the Comparable interface
-     * @param i  Lower bound of the interval to be sorted
-     * @param f  Upper bound of the interval to be sorted
-     * @return T[], the array that results from sorting v[i, f]
+     * SII i<=f: devuelve un array con los elementos del subarray 
+     * v[i, f] ordenados Asc. 
+     * 
+     * @param v  Sus elementos implementan la interfaz Comparable
+     * @param i  Extremo inferior del intervalo a ordenar
+     * @param f  Extremo superior del intervalo a ordenar
+     * @return T[], el array resultante de ordenacion de v[i, f]
      */
     private static <T extends Comparable<T>> T[] mergeSort2(T[] v,
                                                              int i, int f) {
-        T[] left = (T []) new Comparable[(v.length/2)];
-        T[] right = (T []) new Comparable[(v.length/2)+1];
-
-        int m = (f+i)/2;
-        int j = i;
         
-        T[] aux = (T []) new Comparable[(v.length)];
-        
-        while(j < m){
-            left[j] = v[j];
-            System.out.println(left[j]);
-            j++;
-        }
-        while(j < f-m){
-            right[j] = v[j];
-            System.out.println(right[j]);
-            j++;
-        }   
-        if (i < f) {
-            mergeSort1(v, i, m);
-            mergeSort1(v, m + 1, f);
-            T[] ret = merge2(left, right);
-            
-            j = 0;
-            while(j < aux.length){
-                aux[j] = ret[j];
-                j++;
+        if (f - i == 1 ){
+            if (v[i].compareTo(v[f]) > 0){
+                return (T[]) new Comparable[]{v[f],v[i]};
+            }else{
+                return (T[]) new Comparable[]{v[i],v[f]};
             }
+        } else if (i < f) {
+            int m = (f + i)/2;
+            T[] v1 = mergeSort2(v,i, m);
+            T[] v2 = mergeSort2(v,m+1,f);
+            return merge2(v1,v2);
         }
-        return aux;
-    }
+        return (T[]) new Comparable[]{v[i]};
+    }        
 
     /**
      * Returns the array that results from merging v1 and v2,

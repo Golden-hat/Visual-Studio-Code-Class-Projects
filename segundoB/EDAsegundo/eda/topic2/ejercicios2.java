@@ -12,10 +12,13 @@ public class ejercicios2{
         printArr(b);
         mergeSortTwo(b);
         printArr(b);
+        
+        printArr(mergeS);
+        mergeSort(mergeS);
         printArr(mergeS);
     }
     
-    //the argument must be a monotonically increasing curve
+    /* the argument must be a monotonically increasing curve */
     public static int arrayIntegersCurveLinear(int[] a){
         return arrayIntegersCurveLinear(a, 0, a.length-1);
     }
@@ -46,7 +49,7 @@ public class ejercicios2{
         }
     }
 
-    //the argument must be a concave curve
+    /* the argument must be a concave curve */
     public static int concaveCurve(int[] v){
         return concaveCurve(v, 0, v.length-1);
     }
@@ -64,9 +67,9 @@ public class ejercicios2{
         }
     }
 
-    /* ---------------------------------- MERGE SORT WITH INTEGER ARRAYS ---------------------------------- */
+    /* ---------------------------------- MERGE SORT WITH INTEGER ARRAYS ----------------------------------  */
 
-    /* void methods, where the array is modified in each call */
+    /* --------- void methods, where the array is modified in each call --------- */
 
     public static void mergeSort(int[] a){
         mergeSort(a, 0, a.length-1);
@@ -86,6 +89,7 @@ public class ejercicios2{
 
     private static void merge(int[] a, int ini, int mid, int fin){
         int[] aux = new int[fin-ini+1];
+
         int i = ini, j = mid+1, k = 0;
         while(i <= mid && j <= fin){
             if(a[i] < a[j]){
@@ -105,7 +109,7 @@ public class ejercicios2{
         }
     }
 
-    /* int[] methods, where the array is modified only when needed */
+    /* --------- int[] methods, where the array is modified only when needed --------- */
 
     public static void mergeSortTwo(int[] a){
         int[] ret = mergeSortTwo(a, 0, a.length-1);
@@ -128,8 +132,6 @@ public class ejercicios2{
         else if(ini < fin){
             int[] left = mergeSortTwo(a, ini, mid);
             int[] right = mergeSortTwo(a, mid+1, fin);
-            printArr(left);
-            printArr(right);
             return mergeTwo(left, right);
         }
         return new int[]{a[ini]};
@@ -153,7 +155,47 @@ public class ejercicios2{
 
     /* ---------------------------------- MERGE SORT WITH GENERIC ARRAYS ----------------------------------*/
 
-    /* E[] methods, where the array is modified only when needed */
+    /* --------- void methods, where the array is modified in each call --------- */
+
+    public static <E extends Comparable<E>> void mergeSort(E[] a){
+        mergeSort(a, 0, a.length-1);
+    }
+
+    private static <E extends Comparable <E>> void mergeSort(E[] a, int ini, int fin){
+        int mid = (ini+fin)/2;
+        if(ini < fin){
+            mergeSort(a,ini,mid);
+            mergeSort(a,mid+1,fin);
+            merge(a, ini, mid, fin);
+        }
+        else{
+            return;
+        }
+    }
+
+    private static <E extends Comparable <E>> void merge(E[] a, int ini, int mid, int fin){
+        E[] aux = (E[]) new Comparable[fin-ini+1]; 
+
+        int i = ini, j = mid+1, k = 0;
+        while(i <= mid && j <= fin){
+            if(a[i].compareTo(a[j]) < 0){
+                aux[k++] = a[i++];
+            }
+            else{
+                aux[k++] = a[j++];
+            }
+        }
+        for(int r = i; r <= mid; r++){aux[k++] = a[r];}
+        for(int r = j; r <= fin; r++){aux[k++] = a[r];}
+
+        k = 0;
+        for(i = ini; i <= fin; i++){
+            a[i] = aux[k];
+            k++;
+        }
+    }
+
+    /* --------- E[] methods, where the array is modified only when needed --------- */
     
     public static <E extends Comparable<E>> void mergeSortTwo(E[] a){
         E[] ret = mergeSortTwo(a, 0, a.length-1);
@@ -176,8 +218,6 @@ public class ejercicios2{
         else if(ini < fin){
             E[] left = mergeSortTwo(a, ini, mid);
             E[] right = mergeSortTwo(a, mid+1, fin);
-            printArr(left);
-            printArr(right);
             return merge(left, right);
         }
         return (E[]) new Comparable[]{a[ini]};

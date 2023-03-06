@@ -9,11 +9,8 @@ public class ejercicios2{
         int[] a = {-5, -4, -3, -2, -1, 1, 2, 3, 4};
         int[] b = {33,10,8,1532,11,9235,25,56,12345,7456,2,45,26,47356,236,4768,45,-5634,-37};
 
-        System.out.println(arrayIntegersCurveLinear(a));
-        System.out.println(arrayIntegersCurveLog(a));
-        System.out.println(concaveCurve(b));
         printArr(b);
-        printArr(mergeSortTwo(b));
+        mergeSortTwo(b);
         printArr(b);
         printArr(mergeS);
     }
@@ -67,7 +64,9 @@ public class ejercicios2{
         }
     }
 
-    /* MERGE SORT WITH INTEGER ARRAYS */
+    /* ---------------------------------- MERGE SORT WITH INTEGER ARRAYS ---------------------------------- */
+
+    /* void methods, where the array is modified in each call */
 
     public static void mergeSort(int[] a){
         mergeSort(a, 0, a.length-1);
@@ -106,39 +105,34 @@ public class ejercicios2{
         }
     }
 
-    public static int[] mergeSortTwo(int[] a){
-        return mergeSortTwo(a, 0, a.length-1);
+    /* int[] methods, where the array is modified only when needed */
+
+    public static void mergeSortTwo(int[] a){
+        int[] ret = mergeSortTwo(a, 0, a.length-1);
+        for(int i = 0; i < a.length; i++){
+            a[i] = ret[i];
+        }
     }
 
     private static int[] mergeSortTwo(int[] a, int ini, int fin){
-        int mid = (fin+ini)/2 - ini;
+        int mid = (fin+ini)/2;
 
-        int[] left = new int[fin-ini-mid+1];
-        int[] right = new int[fin-ini-mid];
-        System.out.println(mid+1);
-        System.out.println(fin-mid);
-        printArr(a);
-
-        if(ini < fin){
-            int k = 0;
-            for(int i = 0; i <= mid; i++){
-                left[k] = a[i];
-                k++;          
+        if(fin-ini == 1){
+            if(a[ini] < a[fin]){
+                return new int[]{a[ini], a[fin]};
             }
-            k = 0;
-            for(int i = mid+1; i <= fin; i++){
-                right[k] = a[i];
-                k++;           
+            else{
+                return new int[]{a[fin], a[ini]};
             }
-    
+        }
+        else if(ini < fin){
+            int[] left = mergeSortTwo(a, ini, mid);
+            int[] right = mergeSortTwo(a, mid+1, fin);
             printArr(left);
             printArr(right);
-            
-            mergeSortTwo(left, ini, mid);
-            mergeSortTwo(right, mid+1, fin);
-            mergeTwo(left, right);
+            return mergeTwo(left, right);
         }
-        return left;
+        return new int[]{a[ini]};
     }
 
     private static int[] mergeTwo(int[] a, int[] b){
@@ -157,7 +151,37 @@ public class ejercicios2{
         return aux;
     }
 
-    /* MERGE SORT WITH GENERIC ARRAYS */
+    /* ---------------------------------- MERGE SORT WITH GENERIC ARRAYS ----------------------------------*/
+
+    /* E[] methods, where the array is modified only when needed */
+    
+    public static <E extends Comparable<E>> void mergeSortTwo(E[] a){
+        E[] ret = mergeSortTwo(a, 0, a.length-1);
+        for(int i = 0; i < a.length; i++){
+            a[i] = ret[i];
+        }
+    }
+
+    private static <E extends Comparable<E>> E[] mergeSortTwo(E[] a, int ini, int fin){
+        int mid = (fin+ini)/2;
+
+        if(fin-ini == 1){
+            if(a[ini].compareTo(a[fin]) < 0){
+                return (E[]) new Comparable[]{a[ini], a[fin]};
+            }
+            else{
+                return (E[]) new Comparable[]{a[fin], a[ini]};
+            }
+        }
+        else if(ini < fin){
+            E[] left = mergeSortTwo(a, ini, mid);
+            E[] right = mergeSortTwo(a, mid+1, fin);
+            printArr(left);
+            printArr(right);
+            return merge(left, right);
+        }
+        return (E[]) new Comparable[]{a[ini]};
+    }
 
     /* Given 2 sorted arrays in ascending order, this methods merges them in order */
     public static <E extends Comparable<E>> E[] merge(E[] a, E[] b){
@@ -175,6 +199,8 @@ public class ejercicios2{
         for (int r = j; r < b.length; r++) res[k++] = b[r];
         return res;
     }
+
+    /* ---------------------------------- PRINT ARRAY MEHTODS ---------------------------------- */
 
     /* This method prints integer type arrays */
     public static void printArr(int[] a){

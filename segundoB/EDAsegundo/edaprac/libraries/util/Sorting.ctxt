@@ -30,5 +30,5 @@ comment8.target=void\ mergeSort2(java.lang.Comparable[])
 comment8.text=\n\ Sorts\ array\ v\ in\ ascending\ order.\n\n\ @param\ v\ \ Its\ elements\ must\ implement\ the\ Comparable\ interface\n
 comment9.params=v\ i\ f
 comment9.target=java.lang.Comparable[]\ mergeSort2(java.lang.Comparable[],\ int,\ int)
-comment9.text=\n\ IFF\ i<\=f\:\ returns\ an\ array\ with\ the\ elements\ of\n\ the\ subarray\ v[i,\ f]\ sorted\ in\ ascending\ order.\n\n\ @param\ v\ \ Its\ elements\ must\ implement\ the\ Comparable\ interface\n\ @param\ i\ \ Lower\ bound\ of\ the\ interval\ to\ be\ sorted\n\ @param\ f\ \ Upper\ bound\ of\ the\ interval\ to\ be\ sorted\n\ @return\ T[],\ the\ array\ that\ results\ from\ sorting\ v[i,\ f]\n
+comment9.text=\n\ SII\ i<\=f\:\ devuelve\ un\ array\ con\ los\ elementos\ del\ subarray\ \n\ v[i,\ f]\ ordenados\ Asc.\ \n\ \n\ @param\ v\ \ Sus\ elementos\ implementan\ la\ interfaz\ Comparable\n\ @param\ i\ \ Extremo\ inferior\ del\ intervalo\ a\ ordenar\n\ @param\ f\ \ Extremo\ superior\ del\ intervalo\ a\ ordenar\n\ @return\ T[],\ el\ array\ resultante\ de\ ordenacion\ de\ v[i,\ f]\n
 numComments=12

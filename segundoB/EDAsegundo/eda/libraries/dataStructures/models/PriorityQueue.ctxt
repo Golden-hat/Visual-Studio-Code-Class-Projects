@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=PriorityQueue
+comment0.text=\n\ Model\ of\ a\ Priority\ Queue\ (PQ),\ or\ a\ Dynamic\ Search\ of\ the\ highest\n\ priority\ Element\ in\ a\ Collection\n
+comment1.params=e
+comment1.target=void\ add(java.lang.Comparable)
+comment1.text=\ taking\ into\ account\ its\ priority,\ adds\ Element\ e\n\ \ to\ a\ Priority\ Queue\n
+comment2.params=
+comment2.target=java.lang.Comparable\ removeMin()
+comment2.text=\ IFF\ \!isEmpty()\:\n\ obtains\ and\ removes\ the\ Element\ with\ the\ highest\ priority\ in\ a\ PQ\n
+comment3.params=
+comment3.target=java.lang.Comparable\ getMin()
+comment3.text=\ IFF\ \!isEmpty()\:\n\ returns\ the\ Element\ with\ the\ highest\ priority\ in\ a\ PQ\n
+comment4.params=
+comment4.target=boolean\ isEmpty()
+comment4.text=\ checks\ whether\ a\ PQ\ is\ empty\n
+numComments=5

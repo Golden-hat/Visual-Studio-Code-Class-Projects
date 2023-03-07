@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=BothOrNoneTable
+comment1.params=state
+comment1.target=BothOrNoneTable(StateManager)
+comment2.params=s
+comment2.target=void\ illegal(java.lang.String)
+comment3.params=id
+comment3.target=void\ takeR(int)
+comment4.params=id
+comment4.target=void\ takeL(int)
+comment5.params=id
+comment5.target=void\ end(int)
+comment6.params=id
+comment6.target=void\ takeLR(int)
+numComments=7

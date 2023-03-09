@@ -1,4 +1,4 @@
-package topic2;
+package examples.topic2;
 
 public class ejercicios2{
     public static void main(String[] args){

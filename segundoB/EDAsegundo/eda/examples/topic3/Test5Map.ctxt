@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=Test5Map
+comment0.text=\n\ Word-by-word\ bilingual\ translation\ of\ a\ text.\n\ To\ do\ this,\ the\ class\ provides\ two\ methods\:\n\ 1.-\ loadDictionary\:\ creates\ and\ returns\ the\ Map\ used\ in\ the\ translation,\ \n\ reading\ its\ entries\ from\ the\ diccioSpaEng.txt\ file\ located\ in\ eda.\n\ 2.-\ translate\:\ translates\ the\ sentence\ textC\ word\ by\ word\ using\ the\ Map\ d\ \n\ When\ d\ does\ not\ contain\ the\ translation\ for\ a\ word\ of\ textC,\ the\ translation\ result\ string\ must\ contain\ the\ translation\ result.\ \n\ String\ result\ of\ translating\ must\ contain\ the\ literal\ "<error>"\ in\ \ \n\ instead\ of\ its\ translation\n\ \ \ \ \ \ \n\ @author\ (prof\ EDA)\ \n\ @version\ (Course\ 2022-2023)\n
+comment1.params=
+comment1.target=libraries.dataStructures.models.Map\ loadDictionary()
+comment2.params=textS\ d
+comment2.target=java.lang.String\ translate(java.lang.String,\ libraries.dataStructures.models.Map)
+numComments=3

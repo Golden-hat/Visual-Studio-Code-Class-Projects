@@ -122,16 +122,54 @@ public class FXMLSignUpController implements Initializable {
         validEmail.setValue(Boolean.FALSE);
         equalPasswords.setValue(Boolean.FALSE);
         
-       
-        
-        
+        bCancel.setOnAction( (event)->{
+            bCancel.getScene().getWindow().hide();
+        });
+      
         BooleanBinding validFields = Bindings.and(validEmail, validPassword)
                  .and(equalPasswords);
          
-
-        
-
-    } 
-   
+            eemail.focusedProperty().addListener((observable, oldValue, newValue) -> {
+                if(newValue == false){
+                    checkEditEmail();
+                }
+            });
+            
+            PassField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+               if(newValue == false){
+                   checkEditPassword();
+               }
+           });
+        }
     
+        private void checkEditEmail(){
+            if(Utils.checkEmail(eemail.textProperty().getValueSafe()) == false){
+                manageError(lIncorrectEmail, eemail, validEmail);
+            }
+            else{
+                manageCorrect(lIncorrectEmail, eemail, validEmail);
+            }
+        }
+        
+        private void checkEditPassword(){
+            if(Utils.checkPassword(PassField.textProperty().getValueSafe()) == false){
+                manageError(lIncorrectPassword, PassField, validPassword);
+            }
+            else{
+                manageCorrect(lIncorrectPassword, PassField, validPassword);
+            }
+        }
+        
+        private void checkEquals(){
+            if(PassField.textProperty().getValueSafe().compareTo(
+            epassword2.textProperty().getValueSafe()) != EQUALS){
+            showErrorMessage(lPassDifferent,epassword2);
+            equalPasswords.setValue(Boolean.FALSE);
+            PassField.textProperty().setValue("");
+            epassword2.textProperty().setValue("");
+            PassField.requestFocus();
+            }else
+            manageCorrect(lPassDifferent,epassword2,equalPasswords);
+        }
+        
 }

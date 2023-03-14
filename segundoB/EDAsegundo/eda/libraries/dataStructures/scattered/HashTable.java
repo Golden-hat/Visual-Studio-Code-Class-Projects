@@ -86,7 +86,7 @@ public class HashTable<K, V> implements Map<K, V> {
      *  which is equivalent to the average length of its
      *  buckets in a Linked implementation of the Table */
     public final double loadFactor() {
-        return 0; /*CHANGE / COMPLETE*/
+        return (double) size / this.theArray.length;
     }
 
     /** Checks whether a Hash Table is empty,
@@ -99,7 +99,10 @@ public class HashTable<K, V> implements Map<K, V> {
     /** Returns a ListPOI with the size() keys of a Hash Table */
     public ListPOI<K> keys() {
         ListPOI<K> res = new LinkedListPOI<K>();
-        // COMPLETE
+        for(int i = 0; i < theArray.length; i++){
+            
+        }
+        
         return res;
     }
 
@@ -109,8 +112,15 @@ public class HashTable<K, V> implements Map<K, V> {
         int pos = hashIndex(k);
         ListPOI<HashEntry<K, V>> l = theArray[pos];
         V value = null;
-        // COMPLETE
         
+        l.begin();
+        while(!l.isEnd() && !l.get().key.equals(k)){
+            l.next();
+        }
+        
+        if(!l.isEnd()){
+            value = l.get().value;
+        }
         return value;
     }
 

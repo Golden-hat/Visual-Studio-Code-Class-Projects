@@ -100,7 +100,13 @@ public class HashTable<K, V> implements Map<K, V> {
     public ListPOI<K> keys() {
         ListPOI<K> res = new LinkedListPOI<K>();
         for(int i = 0; i < theArray.length; i++){
-            
+            int n = 0;
+            ListPOI<HashEntry<K, V>> l = theArray[i];
+            l.begin();
+            while(!l.isEnd()){
+                l.next();
+                n++;
+            }
         }
         
         return res;
@@ -131,7 +137,15 @@ public class HashTable<K, V> implements Map<K, V> {
         int pos = hashIndex(k);
         ListPOI<HashEntry<K, V>> l = theArray[pos];
         V value = null;
-        // COMPLETE
+        
+        l.begin();
+        while(!l.isEnd() && !l.get().key.equals(k)){
+            l.next();
+        }
+        
+        if(!l.isEnd()){
+            l.remove();
+        }
         
         return value;
     }
@@ -141,9 +155,19 @@ public class HashTable<K, V> implements Map<K, V> {
      *  if no old entry existed in the Table */
     public V put(K k, V v) {
         int pos = hashIndex(k);
+        HashEntry entry = new HashEntry<K ,V>(k, v);
         ListPOI<HashEntry<K, V>> l = theArray[hashIndex(k)];
         V oldValue = null;
-        // COMPLETE
+
+        l.begin();
+        while(!l.isEnd() && !l.get().key.equals(k)){
+            l.next();
+        }
+        
+        if(!l.isEnd()){
+            oldValue = v;
+            l.add(entry);
+        }
         
         return oldValue;
     }

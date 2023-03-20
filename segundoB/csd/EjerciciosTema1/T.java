@@ -1,5 +1,5 @@
 package segundoB.csd.EjerciciosTema1;
-
+//Question 1.
 public class T extends Thread /**implements Runnable **/{
     protected int n;
     public T(int n) {this.n = n;}
@@ -24,10 +24,19 @@ public class T extends Thread /**implements Runnable **/{
         for (int i=0; i<6; i++) {
             T thread = new T(i);
             thread.start();
+            /* If thread.run() had been used instead, the main
+             * thread would have executed each one sequentially
+             */
             threads[i] = thread;
             //new T(i).start(); /** new Thread(new T(i)).start(); **/
         }
-        for(int i = 0; i < 6; i++){
+        /* We can ensure the "End of execution" message printing
+         * by creating the threads in an array and then making the main
+         * thread to wait until they finish their execution. We need
+         * to store our created threads in an array in order to "keep track"
+         * any thread that we must also close. 
+         */
+        for(int i = 0; i < 6; i++){ //6 Threads have been created.
             threads[i].join();
         }
         System.out.println("--- End of execution ---- ");

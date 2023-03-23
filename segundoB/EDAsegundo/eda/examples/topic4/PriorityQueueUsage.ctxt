@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=PriorityQueueUsage
+comment0.text=\n\ class\ PriorityQueueUsage.\n\ \n\ @author\ EDA\ \n\ @version\ 1.0\n
+comment1.params=v
+comment1.target=void\ pQSort(java.lang.Comparable[])
+comment1.text=\ Exercise\ 1\:\ \n\ Design\ a\ static,\ iterative\ method\ pQSort.\ \n\ that,\ with\ the\ help\ of\ a\ Priority\ Queue,\ \n\ sort\ an\ array\ v\ of\ Comparable\ elements.\ \n
+comment2.params=pQ1\ pQ2
+comment2.target=libraries.dataStructures.models.ListPOI\ pQMerge(libraries.dataStructures.models.PriorityQueue,\ libraries.dataStructures.models.PriorityQueue)
+comment2.text=\ Exercise\ 2\:\n\ Design\ a\ static,\ generic,\ iterative\ method\ pQMerge.\ \n\ that\ returns\ a\ ListPOI\ with\ the\ data\ from\ 2\ given\ Priority\ Queues,\ \n\ pQ1\ and\ pQ2,\ sorted\ in\ ascending\ order.\ \n\ The\ method\ cannot\ use\ any\ auxiliary\ EDA\ to\ compute\ its\ result.\ \n\ and,\ moreover,\ pQ1\ and\ pQ2\ must\ be\ empty\ at\ the\ end\ of\ its\ execution.\n
+comment3.params=pQ\ epsilon
+comment3.target=boolean\ pQisLinear(libraries.dataStructures.models.PriorityQueue,\ double)
+comment3.text=\ Exercise\ 3\:\n\ Design\ a\ static,\ iterative\ method\ pQisLinear.\ \n\ that\ determines\ whether\ a\ set\ of\ real\ values\ conforms\ (approx.)\ \n\ to\ an\ increasing\ linear\ function\ using\ the\ following\ algorithm\:\ \n\ check\ whether\ the\ difference\ between\ any\ pair\ of\ consecutive\ values,\ \n\ in\ ascending\ order,\ is\ bounded\ by\ a\ given\ epsilon.\ \n
+comment4.params=v\ k
+comment4.target=libraries.dataStructures.models.PriorityQueue\ pQTopK(java.lang.Comparable[],\ int)
+comment4.text=\ Exercise\ 4\:\n\ Design\ a\ static,\ generic,\ iterative\ method\ pQTopK.\ \n\ that,\ given\ an\ array\ of\ data\ v\ and\ an\ integer\ k,\ \n\ returns\ a\ Priority\ Queue\ with\ the\ k\ best\ (Top\ K)\ data\ from\ v.\ \n\ The\ method\ must\ have\ a\ cost\ O(N\ log\ k),\ where\ N\ is\ the\ length\ of\ v.\n
+numComments=5

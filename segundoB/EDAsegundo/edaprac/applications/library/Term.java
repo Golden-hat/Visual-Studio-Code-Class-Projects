@@ -63,7 +63,7 @@ public class Term {
         if (res != 0){return res;}
         int aux = 1;
         for(int i = this.term.length()-1; i >= 0 ; i--){
-            this.hashValue += this.term.charAt(i)*aux;
+            res += this.term.charAt(i)*aux;
             aux = aux * this.hashCodeBase; 
         }
         this.hashValue = res;
@@ -75,8 +75,8 @@ public class Term {
      *  hash values of this and other are equal.
      */
     public boolean equals(Object other) {
-        if(((Term) other).hashValue ==  this.hashValue){
-            return (other instanceof Term) && this.term.equals((Term) other);
+        if((other instanceof Term) && ((Term) other).hashValue ==  this.hashValue){
+            return this.term.equals(((Term)other).term);
         }
         return false;
     }

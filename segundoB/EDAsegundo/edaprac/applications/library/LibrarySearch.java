@@ -194,7 +194,29 @@ public class LibrarySearch {
      *  of the Digital Library, or null if none exist.
      */
     public ListPOI<Term> hapax() {
-        /* TO BE COMPLETED */
-        return /* CHANGE THIS */ null;
+        ListPOI<Term> list = new LinkedListPOI<Term>();
+        ListPOI<Term> c = index.keys();
+        /* Se crea tanto una lista "list" auxiliar 
+           donde se hara el return, y una lista c
+           donde se almacenan todas las keys de
+           la libreria digital */
+        
+        ListPOI<LibrarySearch.Posting> value;
+        // Necesitamos crear una lista del mismo tipo que la key de Index
+        for(c.begin(); !c.isEnd(); c.next()){
+            /* Primero se obtiene la key del valor sobre
+               el que se itera, y en valor (que es una lista)
+               almacenamos todos los items que coinciden en
+               key con la extraida del iterando */
+            Term key = c.get();
+            value = index.get(key);
+            if(value.size() == 1){
+                /* si solo encontramos un unico valor en el mapa,
+                   entonces lo añadimos a la lista resultado*/
+                list.add(key);
+            }
+        }
+        if(list.size() == 0) return null;
+        return list;
     }
 }    

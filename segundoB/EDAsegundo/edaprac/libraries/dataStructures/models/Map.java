@@ -1,4 +1,4 @@
-package applications.library;
+package libraries.dataStructures.models;
 
 /**
  * Dictionary Model WITHOUT repeated keys, or Map: Dynamic Search

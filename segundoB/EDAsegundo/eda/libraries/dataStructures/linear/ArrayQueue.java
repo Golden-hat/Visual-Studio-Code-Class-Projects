@@ -75,6 +75,7 @@ public class ArrayQueue<E> implements Queue<E> {
         // StringBuilder instead of String
         StringBuilder res = new StringBuilder();
         res.append("[");
+        
         // NOTE: to produce the required format we ...
         // -Traverse the ArrayQueue
         //  from the first to its second-to-last element;
@@ -82,8 +83,10 @@ public class ArrayQueue<E> implements Queue<E> {
         //  if aux is the loop's variable in the traversal,
         //  append to res, the output, theArray[aux].toString() + ", "
         int aux = qBegin;
-        for (int i = 0, j = size - 1; i < j; i++, aux = increment(aux))
-              res.append(theArray[aux].toString() + ", ");
+        for (int i = 0, j = size - 1; i < j; i++, aux = increment(aux)){
+            res.append(theArray[aux].toString() + ", ");
+        }
+              
         // NOTE: to produce the required format, after the end
         // of the loop, we add the last element to the output;
         // depending on the size, said element is the String

@@ -101,4 +101,15 @@ public class LinkedListPOIPlus<E> extends LinkedListPOI<E> implements ListPOIPlu
             add(data);
         }
     }
+
+    public void shiftLeft(){
+        if(size() <= 1){
+            return;
+        }
+        last.next = first.next;
+        first.next = first.next.next;
+        last = last.next;
+        last.next = null;
+
+    }
 }

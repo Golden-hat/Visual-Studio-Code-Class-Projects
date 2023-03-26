@@ -29,8 +29,9 @@ public class PrimitivaNumber implements Comparable<PrimitivaNumber>{
      * @return true if this and other hold the same value,
      *              false otherwise
      */
-    public boolean equals(PrimitivaNumber n){
-        return this.number == n.number;
+    public boolean equals(Object n){
+        return (n instanceof PrimitivaNumber) &&
+        this.number == ((PrimitivaNumber) n).number;
     }
 
     /**
@@ -43,13 +44,7 @@ public class PrimitivaNumber implements Comparable<PrimitivaNumber>{
      */
     @Override
     public int compareTo(PrimitivaNumber n){
-        if(this.number == n.number){
-            return 0;
-        }
-        else if(this.number < n.number){
-            return -1;
-        }
-        return 1;
+        return this.number - n.number;
     }
 
     /**

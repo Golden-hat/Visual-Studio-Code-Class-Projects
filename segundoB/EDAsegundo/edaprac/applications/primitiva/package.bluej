@@ -2,12 +2,12 @@
 dependency1.from=PrimitivaBet
 dependency1.to=PrimitivaNumber
 dependency1.type=UsesDependency
-objectbench.height=257
-objectbench.width=936
+objectbench.height=254
+objectbench.width=557
 package.divider.horizontal=0.6
-package.divider.vertical=0.7252861602497399
-package.editor.height=690
-package.editor.width=806
+package.divider.vertical=0.7246835443037974
+package.editor.height=680
+package.editor.width=832
 package.editor.x=960
 package.editor.y=32
 package.frame.height=1048

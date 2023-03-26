@@ -63,12 +63,12 @@ public class PrimitivaBet {
      */
     public String toString() {
         combination.begin();
-        String s = "("+combination.get();
+        String s = combination.get().toString();
         combination.next();
         while(!combination.isEnd()){
             s += ", "+combination.get().toString();
             combination.next();
         }
-        return s+").";
+        return s;
     }
 }

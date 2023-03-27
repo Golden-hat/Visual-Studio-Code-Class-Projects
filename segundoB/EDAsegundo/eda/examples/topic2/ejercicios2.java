@@ -18,7 +18,11 @@ public class ejercicios2{
         printArr(mergeS);
     }
     
-    /* the argument must be a monotonically increasing curve */
+    /*  1.1. Let v be an array of integers conforming to the profile of a continuous
+        monotonically increasing curve, such that v[0]<0 and v[v.length-1]>0.
+        There exists a unique position k of v, 0≤k<v.length-1, such that between v[k] and v[k+1]
+        the function is 0, i.e. such that v[k]≤0 and v[k+1]>0.
+        Design the "best" recursive method that computes k and analyse its cost.    */ 
     public static int arrayIntegersCurveLinear(int[] a){
         return arrayIntegersCurveLinear(a, 0, a.length-1);
     }
@@ -49,7 +53,10 @@ public class ejercicios2{
         }
     }
 
-    /* the argument must be a concave curve */
+    /*  Exercise 1.2: Let v be an array of positive integers that conform to the profile of a
+        concave curve, i.e. there exists a unique position k of v, 0≤k<v.length, such that:
+        "j : 0≤j<k : v[j]>v[j+1] & "j : k<j<v.length : v[j-1]<v[j].
+        Design the best recursive method that computes k and analyse its cost   */
     public static int concaveCurve(int[] v){
         return concaveCurve(v, 0, v.length-1);
     }
@@ -65,6 +72,93 @@ public class ejercicios2{
             }
             return concaveCurve(v, m, end);
         }
+    }
+
+    /*  1.3. Design a recursive method that, with the least
+        possible cost, determines whether an array v of integers, sorted in ascending order and
+        with no repeated elements, contains any component whose value is equal to the
+        position it occupies.  */
+    public static int isAnyInPos(int[] e){
+        return isAnyInPos(e, 0, e.length-1);
+    }
+
+    public static int isAnyInPos(int[] e, int ini, int fin){
+        if(ini > fin) return -1;
+        int middle = (fin+ini)/2;
+        if(e[middle] == middle){return middle;}
+        if(e[middle] > middle){return isAnyInPos(e, ini, middle-1);}
+        return isAnyInPos(e, middle+1, fin);
+    }
+
+    /*  Exercise 1.4. Design the best recursive method that searches for two Strings in
+        consecutive positions of an array.
+        The method, with the lowest possible cost, checks whether two Strings x and y (such
+        that x is strictly less than y) occupy consecutive positions in an array of String v, sorted
+        in ascending order and with no repeated elements. */
+    public static boolean consecutiveString(String[] a, String x, String y){
+        return consecutiveString(a, x, y, 0, a.length-1);
+    }
+
+    public static boolean consecutiveString(String[] a, String x, String y, int ini, int fin){
+        int middle = (fin+ini)/2;
+        if(ini > fin){
+            return false;
+        }
+        if (ini == a.length - 1) return false;
+        if(a[middle].compareTo(y) < 0){
+            return consecutiveString(a, x, y, ini, middle-1);
+        }
+        else if (a[middle].equals(y)){
+            return a[middle-1].equals(y);    
+        }
+        return consecutiveString(a, x, y, middle+1, fin);
+    }
+
+    /*  Exercise 2.5: Given an array of n integers in ascending order, with values in the range [1
+        ... n], we want to find, if it exists, the only integer value that is repeated. If no repeated
+        element is found, it shall be denoted by the special value -1.  */
+    public static int repeatedInteger(int[] n){
+        return repeatedInteger(n, 0, n.length-1);
+    }
+
+    public static int repeatedInteger(int[] n, int ini, int fin){
+        int middle = fin+ini/2;
+        if(ini > fin){return -1;}
+        /* Un array ascendente cuya diferencia entre elementos no supera la unidad y que 
+            * únicamente puede tener un elemento repetido (donde sí o sí ambos aparecerán pegados)
+            * quiere decir que todos los números antes de la duplicación estarán en una posición tal
+            * que su valor coincidirá con su índice + (MÁS! IMPORTANTE) el valor del primer elemento
+            * del array.
+            * 
+            * Sabiendo esto...
+            */
+        if(n[middle] != middle + n[0]){
+            /* Se comprueba si el elemento del medio se encuentra en el lugar correspondiente,
+                * en ese caso, se cogerá la parte del array superior (ver línea 14).
+                * En caso contrario, o bien...
+                *      primero comprobamos para ver si el medio analizado tiene al número repetido, o...
+                *      cogemos la parte inferior, ya que sabremos que la repetición ya se ha dado anteriormente.
+                */
+            if (middle > 0 && n[middle] == n[middle-1]) { return n[middle]; }
+            return repeatedInteger(n, ini, middle-1);
+
+        }
+        return repeatedInteger(n, middle+1, fin);
+    }
+
+    /*  Exercise 2.6: Implement an efficient recursive method that, given a non-empty array of
+        integers, sorted in ascending order and with no repeated elements, returns the first
+        omitted value that would make its elements consecutive. If there is no missing value,
+        the next value in sequence is returned.  */
+    public static int missingValue(int[] n){
+        return missingValue(n, 0, n.length-1);
+    }
+
+    public static int missingValue(int[] n, int ini, int fin){
+        if (ini > fin || n[ini] != n[0] + ini) return n[0] + ini;
+        int m = (ini + fin) / 2;
+        if (n[m] == n[0] + m) return missingValue(n, m + 1, fin);
+        else return missingValue(n, ini, m - 1);
     }
 
     /* ---------------------------------- MERGE SORT WITH INTEGER ARRAYS ----------------------------------  */

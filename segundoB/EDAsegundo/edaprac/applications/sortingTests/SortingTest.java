@@ -31,13 +31,13 @@ public class SortingTest {
         // against quickSort
 
         // Sort a1 using quickSort:
-        // TO BE COMPLETED
+        Sorting.quickSort(a1);
 
         // Sort a2 using mergeSort (version 2):
-        // TO BE COMPLETED
+        Sorting.mergeSort2(a2);
 
         // Are a1 (quickSort) and a2 (mergeSort2) equal?
-        // return TO BE COMPLETED
+        return Sorting.areEqual(a1, a2);
     }
 
     /**
@@ -75,8 +75,10 @@ public class SortingTest {
                 acc1 += t2 - t1;
                 
                 //  To be completed:
-                //  Time the execution of mergeSort2
-                
+                t1 = System.nanoTime();
+                Sorting.mergeSort2(aux2);
+                t2 = System.nanoTime();
+                acc2 += t2 - t1;
                 
                 t1 = System.nanoTime();
                 Sorting.quickSort(aux3);
@@ -142,8 +144,10 @@ public class SortingTest {
                 t2 = System.nanoTime();
                 acc1 += t2 - t1;
 
-                //  To be completed:
-                //  Time the execution of mergeSort2
+                t1 = System.nanoTime();
+                Sorting.mergeSort2(aux2);
+                t2 = System.nanoTime();
+                acc2 += t2 - t1;
                                                                 
                 t1 = System.nanoTime();
                 Sorting.quickSort(aux3);
@@ -169,15 +173,21 @@ public class SortingTest {
      * @return String[]
      */
     public static String[] createRandomString(int size, int n) {
-        /* CHANGE THIS*/
-        return null;
+        String[] res = new String[size];
+        StringGenerator g = new StringGenerator(n);
+        for(int i = 0; i < size; i++){
+            res[i] = g.generate();
+        }
+        return res;
     }
     
     public static void main(String[] args) {
         boolean okMS2 = check();
         if (okMS2) {
             System.out.println("To obtain timings for Integers, you must execute time()");
+            time();
             System.out.println("To obtain timings for Strings, you must execute timeString()");
+            timeString();
         }
         else {
             System.out.println("ERROR in mergeSort2: it doesn't sort arrays properly\n" +

@@ -17,7 +17,7 @@ public interface Map<K, V> {
      *  the Map contains another Entry with Key k, returns its
      *  associated value and replaces it with v (updates the Entry).
      */
-    V put(K k, V v);
+    V put(K e, V v);
     
     /** removes the Entry with Key k from a Map, and returns its
      *  associated value, or null if no Entry exists with the given key

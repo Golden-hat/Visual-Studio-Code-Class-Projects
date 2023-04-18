@@ -189,6 +189,25 @@ public class LibrarySearch {
         return true;
     }
 
+    public Term mostFrequent(ListPOI<Term> list){
+        list.begin();
+        int maxSize = 0;
+        Term maxTerm = null;
+        while(!list.isEnd()){
+            //Map<Term, ListPOI<LibrarySearch.Posting>> index;
+            Term currentTerm = list.get();
+            ListPOI<LibrarySearch.Posting> listOfTerm = index.get(currentTerm);
+            if(listOfTerm != null && listOfTerm.size() > maxSize){
+                maxSize = listOfTerm.size();
+                maxTerm = currentTerm;
+            }
+            else{System.out.println("Attention: The Term "+currentTerm.toString()+" does not appear in the index.");}
+            list.next();
+        }
+        System.out.println("The most frequent Term is "+maxTerm.toString()+", with "+maxSize+" appearances.");
+        return maxTerm;
+    }
+    
     /** Returns a ListPOI with the terms of the Digital Library's Index that
      *  appear only once in its books, i.e., the so-called "hapax legomena"
      *  of the Digital Library, or null if none exist.

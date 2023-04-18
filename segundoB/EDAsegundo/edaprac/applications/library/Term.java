@@ -82,5 +82,5 @@ public class Term {
     }
     
     /** Returns a String that represents a Term in a given textual format */
-    public String toString() { return term + " (" + hashValue + ")\n"; }
+    public String toString() { return term + " (" + hashValue + ")"; }
 }

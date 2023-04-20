@@ -39,11 +39,11 @@ public class TableViewController implements Initializable {
     @FXML
     private Button addButton;
     @FXML
-    private TableView<?> personTableView;
+    private TableView<Persona> personTableView;
     @FXML
-    private TableColumn<?, ?> firstNameColumn;
+    private TableColumn<Persona, String> firstNameColumn;
     @FXML
-    private TableColumn<?, ?> lastNameColumn;
+    private TableColumn<Persona, String> lastNameColumn;
     @FXML
     private Button modifyButton;
     @FXML
@@ -63,9 +63,40 @@ public class TableViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         initializeModel();
-       
+        personTableView.setItems(myObservableList);
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<Persona, String>("nombre"));
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory<Persona, String>("apellidos"));
+        deleteButton.disableProperty().bind(personTableView.getSelectionModel().selectedIndexProperty().isEqualTo(-1));
     }
-
+    
+    private void addAction(ActionEvent event){
+    
+    }
+    
+    private void modifyAction(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PersonView.fxml"));
+        Parent root = loader.load();
+        PersonViewController controller = loader.getController();
+        controller.initPerson(personTableView.getSelectionModel().getSelectedItem());
+        
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Demo view");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+        if(controller.isAccepted()){
+            Persona personModified = controller.getPerson();
+            myObservableList.set(personTableView.getSelectionModel().getSelectedIndex(),personModified);
+        }
+    }
+     
+    private void deleteAction(ActionEvent event){
+        myObservableList.remove(personTableView.getSelectionModel().getSelectedIndex());
+        personTableView.getSelectionModel().clearSelection();
+    }
+    
+    
 
 
 }

@@ -28,6 +28,7 @@ public class PersonViewController implements Initializable {
     @FXML
     private Button acceptButton;
     
+    Persona localPerson;
 
 
     /**
@@ -45,9 +46,25 @@ public class PersonViewController implements Initializable {
 
     @FXML
     private void acceptOnAction(ActionEvent event) {
+        if(localPerson == null){
+            localPerson = new Persona("","");
+        }
+        localPerson.setNombre(nameTextField.getText());
+        localPerson.setApellidos(surnameTextField.getText());
+        nameTextField.getScene().getWindow().hide();
     }
 
-
-
+    void initPerson(Persona myPerson){
+        this.localPerson = myPerson;
+        nameTextField.setText(localPerson.getNombre());
+        surnameTextField.setText(localPerson.getApellidos());
+    }
     
+    boolean isAccepted(){
+        return acceptedPressed;
+    }
+    
+    Persona getPerson(){
+        return localPerson;
+    }
 }

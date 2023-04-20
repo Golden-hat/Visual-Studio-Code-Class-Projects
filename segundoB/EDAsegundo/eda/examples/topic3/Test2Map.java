@@ -1,4 +1,6 @@
 package examples.topic3;
+// Design a new Test2Map program that reads a text from the keyboard and
+// displays on the screen the number of different words it contains
 
 //to use Map and ListPOI
 import libraries.dataStructures.models.*; 
@@ -10,9 +12,8 @@ import java.util.Locale;
 import java.util.Scanner; 
 
 public class Test2Map {
-    
     public static void main(String[] args) {
-        int n = 0;
+        
         // For simplicity, the text is not read from a file,  
         // but is read from the keyboard as a String of words separated by blanks. 
         // An example String would be: 
@@ -33,16 +34,13 @@ public class Test2Map {
         // from the text read: 
         // use of String split method with separator " " (one or more).
         String[] textWords = text.split(" +");
-        for (int i = 0; i < textWords.length; i++){
+        for (int i = 0; i < textWords.length; i++) 
             // NOTE: THE CHEAPEST WOULD BE 
             // m.put(textWords[i].toLowerCase(), 
             // textWords[i].toLowerCase());
-            m.put(textWords[i].toLowerCase(), "");
-            n++;
-        }
-        // WARNING: we are asked to show the different words that appear, 
-        // which are NOT the Map Entries but ONLY their keys.
-        ListPOI<String> keys = m.keys();
-        System.out.println("Number of words that appear in the map: " + n);
+            m.put(textWords[i].toLowerCase(), ""); 
+        
+        // we are asked ONLY for the number of different words
+        System.out.println("Number of different words, " + "or size of the Map " + m.size());
     } 
 }

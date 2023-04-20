@@ -41,6 +41,14 @@ public class Test5Map {
     }
     
     public static String translate(String textS, Map<String, String> d) {
-        return "";
+        String ret = "";
+        String[] textSS = textS.split(" +");
+        for(int i = 0; i < textSS.length; i++){
+            String s = d.get(textSS[i]);
+            if(s != null){ret += s;}
+            else{ret += "<error>";}
+            if(i < textSS.length - 1){ret += " ";}
+        }
+        return ret;
     }          
 }

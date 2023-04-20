@@ -2,7 +2,7 @@ package segundoB.csd.EjerciciosTema3;
 import java.util.concurrent.locks.Condition;
 
 public class manageParkingLot{ //Monitor
-    int n = 10; int nCars = 0;
+    int n = 100; int nCars = 0; // Car limit set to 100
     int nWaitNorth = 0; int nWaitSouth = 0;
     boolean turnS = true; boolean turnN = true;
     Condition freeSpace;

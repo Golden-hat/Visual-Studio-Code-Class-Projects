@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=QueuePlus
+comment1.params=
+comment1.target=int\ size()
+comment1.text=\ obtains\ a\ Queue's\ size\n
+comment2.params=
+comment2.target=void\ reverse()
+numComments=3

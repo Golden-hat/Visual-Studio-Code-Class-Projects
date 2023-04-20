@@ -150,7 +150,7 @@ public class Sorting {
             }
         } else if (i < f) {
             int m = (f + i)/2;
-            T[] v1 = mergeSort2(v,i, m);
+            T[] v1 = mergeSort2(v,i,m);
             T[] v2 = mergeSort2(v,m+1,f);
             return merge2(v1,v2);
         }
@@ -169,7 +169,7 @@ public class Sorting {
     private static <T extends Comparable<T>> T[] merge2(T[] v1, T[] v2) {
         int a = 0, b = 0, k = 0;
         T[] aux = (T[]) new Comparable[v1.length + v2.length];
-        while (a <= v1.length && b <= v2.length) {
+        while (a < v1.length && b < v2.length) {
             if (v1[a].compareTo(v2[b]) < 0) { aux[k++] = v1[a++]; }
             else                          { aux[k++] = v2[b++]; }
         }

@@ -29,6 +29,7 @@ public class PersonViewController implements Initializable {
     private Button acceptButton;
     
     Persona localPerson;
+    boolean acceptPressed;
 
 
     /**
@@ -46,6 +47,7 @@ public class PersonViewController implements Initializable {
 
     @FXML
     private void acceptOnAction(ActionEvent event) {
+        acceptPressed = true;
         if(localPerson == null){
             localPerson = new Persona("","");
         }
@@ -61,7 +63,7 @@ public class PersonViewController implements Initializable {
     }
     
     boolean isAccepted(){
-        return acceptedPressed;
+        return acceptPressed;
     }
     
     Persona getPerson(){

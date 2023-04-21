@@ -23,8 +23,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import static javax.accessibility.AccessibleState.MODAL;
 import model.Persona;
 
 /**
@@ -50,7 +52,7 @@ public class TableViewController implements Initializable {
     private Button deleteButton;
 
     private void initializeModel() {
-        ArrayList<Persona> personData = new ArrayList<Persona>();
+        ArrayList<Persona> personData = new ArrayList<>();
         personData.add(new Persona("Jordan", "Belfort"));
         personData.add(new Persona("Gregor", "MacGregor"));
         myObservableList = FXCollections.observableList(personData);
@@ -64,21 +66,23 @@ public class TableViewController implements Initializable {
         // TODO
         initializeModel();
         personTableView.setItems(myObservableList);
-        firstNameColumn.setCellValueFactory(new PropertyValueFactory<Persona, String>("nombre"));
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<Persona, String>("nombre"));         
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<Persona, String>("apellidos"));
         deleteButton.disableProperty().bind(personTableView.getSelectionModel().selectedIndexProperty().isEqualTo(-1));
+        modifyButton.disableProperty().bind(personTableView.getSelectionModel().selectedIndexProperty().isEqualTo(-1));
     }
     
-    private void addAction(ActionEvent event){
-    
+    private void deleteAction(ActionEvent event){
+        myObservableList.remove(personTableView.getSelectionModel().getSelectedIndex());
+        personTableView.getSelectionModel().clearSelection();
     }
-    
-    private void modifyAction(ActionEvent event) throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PersonView.fxml"));
+
+    @FXML
+    private void modifyAction(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("view/PersonView.fxml"));
         Parent root = loader.load();
         PersonViewController controller = loader.getController();
         controller.initPerson(personTableView.getSelectionModel().getSelectedItem());
-        
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
@@ -90,11 +94,7 @@ public class TableViewController implements Initializable {
             myObservableList.set(personTableView.getSelectionModel().getSelectedIndex(),personModified);
         }
     }
-     
-    private void deleteAction(ActionEvent event){
-        myObservableList.remove(personTableView.getSelectionModel().getSelectedIndex());
-        personTableView.getSelectionModel().clearSelection();
-    }
+
     
     
 

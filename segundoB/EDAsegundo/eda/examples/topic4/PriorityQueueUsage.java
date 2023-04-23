@@ -40,8 +40,22 @@ public class PriorityQueueUsage {
     public static <E extends Comparable<E>> ListPOI<E> pQMerge(
         PriorityQueue<E> pQ1, PriorityQueue<E> pQ2) 
     {
-        // COMPLETE
-        return null;
+        ListPOI<E> ret = new LinkedListPOI<>();
+        ret.begin();
+
+        while(!pQ1.isEmpty() && !pQ2.isEmpty()){
+            E elem1 = pQ1.getMin();
+            E elem2 = pQ2.getMin();
+            if(elem1.compareTo(elem2) < 0){
+                ret.add(elem1);
+            }
+            else {ret.add(elem2);}
+        }
+
+        while(!pQ2.isEmpty()){E elem2 = pQ2.getMin(); ret.add(elem2);}
+        while(!pQ1.isEmpty()){E elem1 = pQ2.getMin(); ret.add(elem1);}
+
+        return ret;
     }
     
     /** Exercise 3:
@@ -52,8 +66,19 @@ public class PriorityQueueUsage {
      * in ascending order, is bounded by a given epsilon. 
      */
     public static boolean pQisLinear(PriorityQueue<Double> pQ, double epsilon) {
-        // COMPLETE
-        return false;
+        ListPOI<Double> aux = new LinkedListPOI<>();
+        boolean res = true;
+
+        while(!pQ.isEmpty()){ 
+            double aux1 = pQ.removeMin(); aux.add(aux1);
+            if(pQ.isEmpty()){break;}
+            double aux2 = pQ.removeMin(); aux.add(aux2);
+            if(Math.abs(aux1-aux2) < epsilon) {res = false; break;};
+        }
+
+        aux.begin();
+        while(!aux.isEmpty()){pQ.add(aux.get()); aux.next();}
+        return res;
     }
     
     /** Exercise 4:
@@ -65,8 +90,16 @@ public class PriorityQueueUsage {
     public static <E extends Comparable<E>> PriorityQueue<E> pQTopK(
         E[] v, int k) 
     {
-        // COMPLETE
-        return null;
+        PriorityQueue<E> aux = new BinaryHeap<E>();
+        PriorityQueue<E> ret = new BinaryHeap<E>();
+
+        for(int i = 0; i < k; i++){
+            aux.add(v[i]);
+        }
+        for(int i = 0; i < k; i++){
+            ret.add(aux.removeMin());
+        }
+        return ret;
     }
     
 }

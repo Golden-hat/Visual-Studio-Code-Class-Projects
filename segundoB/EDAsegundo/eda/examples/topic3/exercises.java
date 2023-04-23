@@ -44,9 +44,13 @@ public class exercises {
         ListPOI<K> keys = map2.keys();
 
         keys.begin();
-        while(){
-            
+        while(!keys.isEnd()){
+            V value = map1.get(keys.get());
+            if(value == null){
+                map.put(keys.get(), value);
+            }
+            keys.next();
         }
-
+        return map;
     }
 }

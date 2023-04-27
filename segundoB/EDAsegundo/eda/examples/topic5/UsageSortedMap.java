@@ -23,8 +23,8 @@ public class UsageSortedMap {
     ListPOI<MapEntry<K, V>> entries(SortedMap<K, V> m) 
     {
         // COMPLETE
-		
-		return null;
+        
+        return null;
     }
     
     /** Design a static, generic, iterative mapSort method 
@@ -33,7 +33,7 @@ public class UsageSortedMap {
      */
     public static <C extends Comparable<C>> void mapSort(C[] v) {
         // COMPLETE
-		
+        
     }
     
     /** Design a static, iterative method 2ThatSum 
@@ -41,7 +41,7 @@ public class UsageSortedMap {
      * determine whether there exist in v two numbers whose sum is k. 
      * Use an SortedMap as an auxiliary EDA.
      */
-    public static boolean 2ThatSum(int[] v, int k) {
+    public static boolean TwoThatSum(int[] v, int k) {
         // CI�OMPLETE
         return false;
     }

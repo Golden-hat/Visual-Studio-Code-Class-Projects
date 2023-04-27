@@ -61,14 +61,32 @@ public class UsageSortedMap {
         SortedMap<Integer,Integer> m = new SortedMapBST<>();
 
         for(int i = 0; i < v.length; i++){
-            m.put(v[i], k);
+            m.put(v[i], i);
         }
 
-        int aux = m.getMin();
         for(int i = 0; i < v.length; i++){
-            if(v[0] + aux == k){return true;}
-            aux = m.successor(aux);
+            int aux = m.getMin();
+            while(aux != m.getMax()){
+                if(v[0] + aux == k){return true;}
+                aux = m.successor(aux);
+            }
         }
         return false;
+    
+        /*Alternate solution.
+         * 
+         * Integer min = m.getMin();
+         * Integer max = m.getMax();
+         * 
+         *      for(int i = 0; i < v.length-1; i++){
+         *          int sum = min + max;
+         *          if (sum == k) {return true;}
+         *          if (sum > k) {min = m.successor(min);}
+         *          else {max = m.predecessor(max);}
+         *     }
+         *  
+         * return false;
+         * 
+         */
     }
 }

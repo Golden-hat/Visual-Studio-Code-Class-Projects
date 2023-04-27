@@ -42,7 +42,7 @@ public class UsageSortedMap {
      * Use an SortedMap as an auxiliary EDA.
      */
     public static boolean 2ThatSum(int[] v, int k) {
-        // CI¡OMPLETE
+        // CIï¿½OMPLETE
         return false;
     }
 }

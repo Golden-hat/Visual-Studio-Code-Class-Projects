@@ -22,18 +22,34 @@ public class UsageSortedMap {
     public static <K extends Comparable<K>, V> 
     ListPOI<MapEntry<K, V>> entries(SortedMap<K, V> m) 
     {
-        // COMPLETE
-        
-        return null;
+        ListPOI<MapEntry<K,V>> l  = new LinkedListPOI<>();
+        MapEntry<K,V> e = m.getMinEntry();
+
+        l.add(e);
+        for(int i = 2; i <= m.size(); i++){
+            e = m.successorEntry(e.getKey());
+            l.add(e);
+        }
+        return l;
     }
     
     /** Design a static, generic, iterative mapSort method 
      * that, with the help of a SortedMap, 
      * sorts the (Comparable) elements of a non-empty, non-repeated array v.  
      */
-    public static <C extends Comparable<C>> void mapSort(C[] v) {
-        // COMPLETE
+    public static <K extends Comparable<K>> void mapSort(K[] v) {
+        SortedMap<K,K> m = new SortedMapBST<K,K>();
         
+        for(int i = 0; i < v.length; i++){
+            m.put(v[i], v[i]);
+        }
+        
+        K k = m.getMin();
+        v[0] = k;
+        for(int i = 1; i < v.length; i++){
+            k = m.successor(k);
+            v[i] = k;
+        }
     }
     
     /** Design a static, iterative method 2ThatSum 
@@ -42,7 +58,17 @@ public class UsageSortedMap {
      * Use an SortedMap as an auxiliary EDA.
      */
     public static boolean TwoThatSum(int[] v, int k) {
-        // CI�OMPLETE
+        SortedMap<Integer,Integer> m = new SortedMapBST<>();
+
+        for(int i = 0; i < v.length; i++){
+            m.put(v[i], k);
+        }
+
+        int aux = m.getMin();
+        for(int i = 0; i < v.length; i++){
+            if(v[0] + aux == k){return true;}
+            aux = m.successor(aux);
+        }
         return false;
     }
 }

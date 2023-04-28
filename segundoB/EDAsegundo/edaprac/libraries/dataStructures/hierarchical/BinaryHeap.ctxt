@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.target=BinaryHeap
+comment0.text=\ BinaryHeap\ class\:\ represents\ a\ Heap\ with\ an\ array,\n\ \ and\ stores\ its\ Root\ at\ index\ 1.\n\n\ \ Its\ main\ features\ are\:\n\ \ @param\ <E>,\ the\ type\ of\ its\ elements,\ must\ implement\ Comparable\n\ \ ATTRIBUTES\ (protected\ so\ that\ child\ classes\ can\ see\ them)\:\n\ \ \ \ \ \ HAS\ AN\ array\ to\ store\ the\ elements\ (E[]\ theArray)\n\ \ \ \ \ \ HAS\ A\ size\ that\ stores\ the\ number\ of\ elements\ contained\n\ \ \ \ \ \ \n\ @author\ (profesores\ EDA)\n\ @version\ (Curso\ 2021-2022)\n
+comment1.params=
+comment1.target=BinaryHeap()
+comment1.text=\ Creates\ an\ empty\ Priority\ Queue\ (PQ)\n\ \ with\ initial\ capacity\ DEFAULT_CAPACITY\n
+comment2.params=n
+comment2.target=BinaryHeap(int)
+comment2.text=\ Creates\ an\ empty\ Priority\ Queue\ (PQ)\n\ with\ initial\ capacity\ n\n
+comment3.params=
+comment3.target=boolean\ isEmpty()
+comment3.text=Checks\ whether\ a\ PQ\ is\ empty
+comment4.params=
+comment4.target=java.lang.Comparable\ getMin()
+comment4.text=\ IFF\ \!isEmpty()\:\ gets\ the\ datum\ with\ the\ maximum\ priority\ in\ the\ PQ\n\ \ @return\ Element\ with\ the\ highest\ priority\ in\ the\ PQ\n
+comment5.params=e
+comment5.target=void\ add(java.lang.Comparable)
+comment5.text=\ Adds\ the\ element\ e\ to\ a\ PQ,\ taking\ into\ account\ its\ priority\n\ \ @param\ e\ Element\ to\ be\ added\n
+comment6.params=
+comment6.target=void\ duplicateArray()
+comment7.params=
+comment7.target=java.lang.Comparable\ removeMin()
+comment7.text=\ IFF\ \!isEmpty()\:\ gets\ and\ removes\ the\ datum\ with\n\ \ the\ highest\ priority\ from\ the\ PQ\n\ \ @return\ Element\ with\ maximum\ priority\ of\ the\ PQ\n
+comment8.params=pos
+comment8.target=void\ sink(int)
+numComments=9

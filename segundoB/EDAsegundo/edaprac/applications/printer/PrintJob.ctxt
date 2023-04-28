@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=PrintJob
+comment0.text=\ PrintJob\ class\:\ represents\ a\ print\ job.\n\ \ ATTRIBUTES\:\n\ \ \ \ \ \ HAS\ A\ title\ (String)\n\ \ \ \ \ \ HAS\ A\ number\ of\ pages\ (int)\n\ \ \ \ \ \ HAS\ AN\ instant\ in\ time\ (in\ seconds)\n\ \ \ \ \ \ in\ which\ it\ "enters"\ (is\ sent\ to)\ the\ print\ server\ (int)\n\n\ \ @author\ (EDA-QB)\n\ \ @version\ (Curso\ 2020-2021)\n
+comment1.params=t\ n\ e
+comment1.target=PrintJob(java.lang.String,\ int,\ int)
+comment1.text=\ Creates\ a\ PrintJob\ with\ title\ t,\ number\ of\ pages\ n\n\ \ and\ time\ that\ it\ "entered"\ the\ server\ e.\n\ \ @param\ t\ \ \ \ String\n\ \ @param\ n\ \ \ \ int\ (pages)\n\ \ @param\ e\ \ \ \ int\ (seconds)\n
+comment2.params=
+comment2.target=java.lang.String\ getTitle()
+comment2.text=Returns\ the\ title\ of\ a\ PrintJob
+comment3.params=
+comment3.target=int\ getNumPages()
+comment3.text=Returns\ the\ number\ of\ pages\ of\ a\ PrintJob.
+comment4.params=
+comment4.target=int\ getEnteredServer()
+comment4.text=\ Returns\ the\ time\ instant\ (in\ seconds)\ in\ which\ a\ PrintJob\n"enters"\ the\ print\ server.
+comment5.params=other
+comment5.target=int\ compareTo(PrintJob)
+comment5.text=\ Returns\ the\ integer\ value\ that\ results\ from\ comparing\n\ \ the\ number\ of\ pages\ of\ a\ PrintJob\ (this)\ with\ other's.\n\ \ Said\ value\ will\ be...\n\ \ **\ NEGATIVE\ if\ a\ PrintJob\ (this)\ has\ FEWER\ pages\ than\ other,\n\ \ \ \ \ i.e.\ printing\ it\ has\ a\ HIGHER\ priority\ than\ other.\n\ \ **\ POSITIVE\ if\ a\ PrintJob\ (this)\ has\ MORE\ pages\ than\ other,\n\ \ \ \ \ i.e.\ printing\ it\ has\ a\ LOWER\ priority\ than\ other.\n\ \ **\ ZERO\ if\ both\ PrintJobs\ have\ the\ same\ number\ of\ pages.\n\ \ @param\ other\ The\ PrintJob\ to\ compare\ to.\n\ \ @return\ int\ result\ of\ comparing\ a\ PrintJob\ (this)\ with\ other\n
+comment6.params=
+comment6.target=java.lang.String\ toString()
+comment6.text=Returns\ a\ String\ representation\ of\ a\ PrintJob\ in\ a\ specific\ format
+numComments=7

@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=PrintServer
+comment0.text=\ PrintServer\ interface\:\ specifies\ the\ speed\ of\ a\ printer\ associated\n\ \ to\ a\ Print\ Server\ and\ the\ methods\ it\ has\ to\ implement\ **independently**\n\ \ of\ the\ underlying\ queue\ (Queue\ or\ Priority\ Queue)\ that\ handles\n\ \ the\ print\ jobs\ that\ are\ waiting\ to\ be\ printed.\n\n\ \ @author\ (EDA-QB)\n\ \ @version\ (Curso\ 2020-2021)\n
+comment1.params=j
+comment1.target=void\ add(PrintJob)
+comment1.text=\ Includes\ a\ new\ PrintJob\ j\ in\ a\ PrintServer.\n\ \ @param\ j\ \ \ PrintJob\ to\ be\ added\ to\ the\ server.\n
+comment2.params=
+comment2.target=boolean\ hasJobs()
+comment2.text=Checks\ whether\ there\ is\ any\ PrintJob\ to\ be\ printed\ in\ a\ PrintServer.
+comment3.params=
+comment3.target=PrintJob\ getJob()
+comment3.text=\ IFF\ hasJobs()\:\ returns\ the\ PrintJob\ to\ be\ printed.\n\ \ @return\ PrintJob\ that\ will\ be\ printed\ next.\n
+comment4.params=
+comment4.target=int\ printJob()
+comment4.text=\ IFF\ hasJobs()\:\ removes\ from\ a\ PrintServer\ the\ PrintJob\n\ \ that\ is\ going\ to\ be\ printed\ and\ returns\ the\ time\ it\ will\ take\n\ \ to\ print,\ based\ on\ the\ printer's\ speed.\n\ \ @return\ time\ in\ seconds\n
+numComments=5

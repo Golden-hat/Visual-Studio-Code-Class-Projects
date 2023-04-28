@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=PriorityQueueServer
+comment0.text=\ Clase\ ServidorColaPrioridad\:\ implementa\ un\ ServidorDeImpresion\n\ \ que\ usa\ un\ modelo\ de\ maxima\ prioridad\ (ColaPrioridad)\ para\ \n\ \ gestionar\ los\ trabajos\ a\ la\ espera\ de\ ser\ impresos\ que\ almacena.\n\ \ \n\ \ @author\ (EDA-QB)\n\ \ @version\ (Curso\ 2020-2021)\n
+comment1.params=
+comment1.target=PriorityQueueServer()
+comment1.text=Creates\ an\ empty\ Print\ Server.
+comment2.params=j
+comment2.target=void\ add(PrintJob)
+comment2.text=\ Includes\ a\ new\ PrintJob\ j\ in\ a\ PrintServer.\n\ \ @param\ j\ \ \ PrintJob\ to\ be\ added\ to\ the\ server.\n
+comment3.params=
+comment3.target=boolean\ hasJobs()
+comment3.text=Checks\ whether\ there\ is\ any\ PrintJob\ to\ be\ printed\ in\ a\ PrintServer.
+comment4.params=
+comment4.target=PrintJob\ getJob()
+comment4.text=\ IFF\ hasJobs()\:\ returns\ the\ PrintJob\ to\ be\ printed.\n\ \ @return\ PrintJob\ that\ will\ be\ printed\ next.\n
+comment5.params=
+comment5.target=int\ printJob()
+comment5.text=\ IFF\ hasJobs()\:\ removes\ from\ a\ PrintServer\ the\ PrintJob\n\ \ that\ is\ going\ to\ be\ printed\ and\ returns\ the\ time\ it\ will\ take\n\ \ to\ print,\ based\ on\ the\ printer's\ speed.\n\ \ @return\ time\ in\ seconds\n
+numComments=6

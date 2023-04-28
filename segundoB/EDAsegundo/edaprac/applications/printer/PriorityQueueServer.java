@@ -19,26 +19,29 @@ public class PriorityQueueServer implements PrintServer {
     
     /** Creates an empty Print Server. */
     public PriorityQueueServer() {
-        /* TO BE COMPLETED */
+        pQ = new BinaryHeapR0<PrintJob>();
     }
 
     /** Includes a new PrintJob j in a PrintServer.
      *  @param j   PrintJob to be added to the server.
      */
     public void add(PrintJob j) {
-        /* TO BE COMPLETED */
+        pQ.add(j);
     }
 
     /** Checks whether there is any PrintJob to be printed in a PrintServer. */
     public boolean hasJobs() {
-        /* TO BE COMPLETED */
+        return !pQ.isEmpty();
     }
     
     /** IFF hasJobs(): returns the PrintJob to be printed.
      *  @return PrintJob that will be printed next.
      */
     public PrintJob getJob() {
-        /* TO BE COMPLETED */
+        if(hasJobs()){
+            return pQ.getMin();
+        }
+        return null;
     }
 
     /** IFF hasJobs(): removes from a PrintServer the PrintJob
@@ -47,7 +50,7 @@ public class PriorityQueueServer implements PrintServer {
      *  @return time in seconds
      */
     public int printJob() {
-        /* TO BE COMPLETED */
+        PrintJob job = pQ.removeMin();
         return (int) (Math.round(60.0 * job.getNumPages() / PAGES_PER_MINUTE));
     }
 }

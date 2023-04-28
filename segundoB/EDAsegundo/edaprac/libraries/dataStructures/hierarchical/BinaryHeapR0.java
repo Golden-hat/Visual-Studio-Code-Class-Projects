@@ -60,7 +60,7 @@ public class BinaryHeapR0<E extends Comparable<E>>
         theArray[addPos] = e;
         size++;
     }
-   
+
     // Duplicates the capacity of theArray
     @SuppressWarnings("unchecked")
     protected void duplicateArray() {

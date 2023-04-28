@@ -11,7 +11,7 @@ package applications.printer;
  *  @version (Curso 2020-2021)
  */
  
-public class PrintJob {
+public class PrintJob implements Comparable<PrintJob>{
     
     private String title;
     private int numPages;
@@ -51,7 +51,7 @@ public class PrintJob {
      *  @return int result of comparing a PrintJob (this) with other
      */
     public int compareTo(PrintJob other) {
-        /* TO BE COMPLETED */
+        return this.numPages - other.numPages;
     }
     
     /** Returns a String representation of a PrintJob in a specific format */

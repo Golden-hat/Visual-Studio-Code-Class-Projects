@@ -30,7 +30,7 @@ public class BinaryHeap<E extends Comparable<E>>
      *  with initial capacity DEFAULT_CAPACITY
      */
     public BinaryHeap() { this(DEFAULT_CAPACITY); }
-    
+
     /** Creates an empty Priority Queue (PQ)
      * with initial capacity n
      */

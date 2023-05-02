@@ -10,7 +10,7 @@ package libraries.dataStructures.models;
  */
 
 public interface SortedMap<K extends Comparable<K>, V> extends Map<K, V> {
-    
+    // EXTENDING AN INTERFACE IN ANOTHER INTERFACE DOES NOT REQUIRE THE IMPLEMENTATION OF ITS METHODS
     /** IFF !isEmpty(): 
      * gets the minimum Key Entry of a Sorted Map */
     MapEntry<K, V> getMinEntry();

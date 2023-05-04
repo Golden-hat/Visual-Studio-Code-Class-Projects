@@ -33,5 +33,5 @@ target2.name=StringGenerator
 target2.showInterface=false
 target2.type=ClassTarget
 target2.width=150
-target2.x=140
-target2.y=110
+target2.x=230
+target2.y=120

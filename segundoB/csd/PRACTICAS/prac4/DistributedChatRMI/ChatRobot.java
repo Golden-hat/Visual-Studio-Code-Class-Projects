@@ -4,6 +4,7 @@
 
 import utils_rmi.ChatConfiguration;
 import faces.IChatMessage;
+import faces.INameServer;
 import faces.MessageListener;
 import java.rmi.*;
 import java.rmi.registry.*;
@@ -44,7 +45,7 @@ public class ChatRobot implements MessageListener
        try {
            //*****************************************************************
            // Activity: implement robot connection and joining to channel
-           
+           INameServer reg = INameServer.getNameServer(conf.getNameServerHost(), conf.getNameServerPort());
            
        } catch (Exception e) {
            System.out.println("Something went wrong: " + e);

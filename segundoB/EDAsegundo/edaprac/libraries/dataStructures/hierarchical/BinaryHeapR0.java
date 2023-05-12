@@ -51,7 +51,7 @@ public class BinaryHeapR0<E extends Comparable<E>>
      *  @param e Element to be added
      */
     public void add(E e) {
-        if (size == theArray.length - 1) { duplicateArray(); }
+        if (size == theArray.length) { duplicateArray(); }
         int  addPos = size;
         while (addPos > 0 && e.compareTo(theArray[(addPos - 1)/ 2]) < 0) {
             theArray[addPos] = theArray[(addPos - 1)/ 2];

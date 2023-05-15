@@ -4,12 +4,16 @@
 
 import utils_rmi.ChatConfiguration;
 import faces.IChatMessage;
+import faces.IChatServer;
+import faces.IChatChannel;
 import faces.INameServer;
 import faces.MessageListener;
 import java.rmi.*;
 import java.rmi.registry.*;
 import java.rmi.server.*;
 import java.util.*;
+import impl.*;
+
 
 /**
  * ChatRobot implementation
@@ -22,6 +26,9 @@ public class ChatRobot implements MessageListener
 {
 
     private ChatConfiguration conf;
+    private IChatServer server = null;   // We just connect to one single server
+    private ChatUserImpl user = null;
+
     public ChatRobot (ChatConfiguration conf) {
         this.conf = conf;
     }
@@ -35,22 +42,32 @@ public class ChatRobot implements MessageListener
    
    private void work () {
        
-       String channelName = conf.getChannelName();
-       if (channelName == null) channelName = "#Linux";
-       System.out.println ("Robot will connect to server: '" + conf.getServerName() + "'" + 
-               ", channel: '" + channelName + "'" + 
-               ", nick: '" + conf.getNick() + "'" +        
-               ", using name server: '" + conf.getNameServerHost() + ":" + conf.getNameServerPort() + "'");
-       
-       try {
-           //*****************************************************************
-           // Activity: implement robot connection and joining to channel
-           INameServer reg = INameServer.getNameServer(conf.getNameServerHost(), conf.getNameServerPort());
-           
-       } catch (Exception e) {
-           System.out.println("Something went wrong: " + e);
-       }
-       
+        String channelName = conf.getChannelName();
+        if (channelName == null) channelName = "#Linux";
+        System.out.println ("Robot will connect to server: '" + conf.getServerName() + "'" + 
+                ", channel: '" + channelName + "'" + 
+                ", nick: '" + conf.getNick() + "'" +        
+                ", using name server: '" + conf.getNameServerHost() + ":" + conf.getNameServerPort() + "'");
+        try {
+            INameServer reg = INameServer.getNameServer(conf.getNameServerHost(), conf.getNameServerPort());
+            server = (IChatServer) reg.lookup(conf.getServerName());       
+
+            user = new ChatUserImpl("bot#" + this.hashCode(), this);
+            server.connectUser(user);
+
+            IChatChannel[] channels = server.listChannels();
+            if (channels == null || channels.length == 0){
+                throw new Exception("Server has no channels");
+            }
+            
+            for (IChatChannel channel : channels) {
+                channel.join(user);
+            }
+            System.out.println("Joined all channels. Ready!");
+        }
+        catch (Exception e) {
+            System.out.println("Something went wrong: " + e);
+        }
    }
 
    public static void main (String args [])  {

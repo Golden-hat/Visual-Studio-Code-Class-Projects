@@ -83,6 +83,25 @@ public class PredictiveEditor extends BST<String> {
      * @return List with POI with the successors of prefix found.
      */
     public ListPOI<String> successors(String prefix, int n) {
-        /* TO BE COMPLETED */
+        ListPOI<String> list = new LinkedListPOI<String>();
+
+        if (super.get(prefix)!= null) {
+            n--;
+            list.add(prefix);
+        }
+
+        String next = successor(prefix);
+        while (n > 0) {
+            if (next != null) {
+                if (next.startsWith(prefix)) {
+                    list.add(next);
+                    n--;
+                } else {
+                    break;
+                }
+            }
+            next = successor(next);
+        }
+        return list;   
     }
 }

@@ -27,9 +27,7 @@ public class BST<E extends Comparable<E>> {
      * @param a Array with the elements to add to the BST
      */
     public BST(E[] a) {
-        Arrays.sort(a);
-        int m = a.length/ 2;
-        root = new NodeBST(a[m], buildBalanced(a, 0, m-1), buildBalanced(a, m+1, a.length));
+        this.root = buildBalanced(a, 0, a.length - 1);
     }
     
     /**
@@ -40,16 +38,16 @@ public class BST<E extends Comparable<E>> {
      * @return Root of the subtree that contains the elements of the given array range.
      */
     protected NodeBST<E> buildBalanced(E[] a, int begin, int end) {
-        if(end == begin){
-            return new NodeBST(a[end], null, null);
-        }
-        int m = a.length/2;
+        if(end == begin){return new NodeBST(a[end], null, null);}
+        if(end < begin) {return null;}
+        int m = (begin+end)/2;
         return new NodeBST(a[m], buildBalanced(a, begin, m-1), buildBalanced(a, m+1, end));
     }
 
     /** Rebuilds the BST with the same data, such that it ends up balanced. */
     public void rebuildBalanced() {
-        /* TO BE COMPLETED */
+        E[] elements = toArrayInOrder();
+        this.root = buildBalanced(elements, 0, elements.length-1);
     }
     
     /**

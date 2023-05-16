@@ -52,18 +52,22 @@ public class ChatRobot implements MessageListener
             INameServer reg = INameServer.getNameServer(conf.getNameServerHost(), conf.getNameServerPort());
             server = (IChatServer) reg.lookup(conf.getServerName());       
 
-            user = new ChatUserImpl("bot#" + this.hashCode(), this);
+            user = new ChatUserImpl("Robotito", this);
             server.connectUser(user);
 
             IChatChannel[] channels = server.listChannels();
             if (channels == null || channels.length == 0){
                 throw new Exception("Server has no channels");
             }
-            
+
             for (IChatChannel channel : channels) {
-                channel.join(user);
+                if(channel.getName().equals(channelName)){
+                    channel.join(user);
+                    ChatMessageImpl message = new ChatMessageImpl(user, channel, "hola a todos");
+                    channel.sendMessage(message);
+                    break;
+                }
             }
-            System.out.println("Joined all channels. Ready!");
         }
         catch (Exception e) {
             System.out.println("Something went wrong: " + e);

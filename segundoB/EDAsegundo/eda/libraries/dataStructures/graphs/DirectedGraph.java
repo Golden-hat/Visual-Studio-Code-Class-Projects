@@ -371,5 +371,54 @@ public class DirectedGraph extends Graph {
             res[numVertices() - 1 - orderVisited] = v; 
             orderVisited++;
             return backEdge;
-        }    
+        }
+
+        public int degree(){
+            int[] degreeV = getArrayDegrees();
+            return maxV(degreeV);
+        }
+
+        private int maxV(int[] degreeV) {
+            int max = degreeV[0];
+            for(int i = 0; i < degreeV.length; i++){
+                if(degreeV[i] > max){
+                    max = degreeV[i];
+                }
+            }
+            return max;
+        }
+
+        protected int[] getArrayDegrees(){
+            int[] degrees = new int[numV];
+            for(int i = 0; i < numV; i++){
+                ListPOI<Adjacent> l = theArray[i];
+                degrees[i] += l.size();
+
+                for(l.begin(); !l.isEnd(); l.next()){
+                    degrees[l.get().getTarget()]++;
+                }
+            }
+            return degrees;
+        }
+
+        public double maxWeightEdge(){
+            double res = -1;
+            for(int i = 0; i < numV; i++){
+                ListPOI<Adjacent> l = theArray[i];
+                for(l.begin(); !l.isEnd(); l.next()){
+                    double a = l.get().getWeight();
+                    if(a > res){res = a;}
+                }
+            }
+            return res;
+        }
+
+        public boolean isRegular(){
+            int[] degreeV = getArrayDegrees();
+            int degreeV0 = degreeV[0];
+            for(int i = 1; i < numV; i++){
+                if(degreeV[i] != degreeV0){return false;}
+            }
+            return true;
+        }
     }

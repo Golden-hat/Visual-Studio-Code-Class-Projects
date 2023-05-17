@@ -5,7 +5,6 @@
 import utils_rmi.ChatConfiguration;
 import faces.IChatMessage;
 import faces.IChatServer;
-import faces.IChatUser;
 import faces.IChatChannel;
 import faces.INameServer;
 import faces.MessageListener;
@@ -111,29 +110,19 @@ public class ChatRobot implements MessageListener
             INameServer reg = INameServer.getNameServer(conf.getNameServerHost(), conf.getNameServerPort());
             server = (IChatServer) reg.lookup(conf.getServerName());       
 
-            user = new ChatUserImpl("Robotito", this);
+            user = new ChatUserImpl("bot#" + this.hashCode(), this);
             server.connectUser(user);
 
             IChatChannel[] channels = server.listChannels();
             if (channels == null || channels.length == 0){
                 throw new Exception("Server has no channels");
             }
-
+            
             for (IChatChannel channel : channels) {
-                if(channel.getName().equals(channelName)){
-                    channel.join(user);
-                    ChatMessageImpl message = new ChatMessageImpl(user, channel, "hola a todos");
-                    channel.sendMessage(message);
-
-                    String firstUserCaughtName = channel.getName();
-                    IChatUser firstUser = server.getUser(firstUserCaughtName);
-                    message = new ChatMessageImpl(user, firstUser, "hola a todos");
-                    channel.sendMessage(message);
-
-                    break;
-                }
+                channel.join(user);
             }
-        }
+            System.out.println("Joined all channels. Ready!");
+            }
         catch (Exception e) {
             System.out.println("Something went wrong: " + e);
         }
@@ -141,6 +130,6 @@ public class ChatRobot implements MessageListener
 
    public static void main (String args [])  {
        ChatRobot cr = new ChatRobot (ChatConfiguration.parse (args));
-       cr.work();
+       cr.work ();
    }
 }

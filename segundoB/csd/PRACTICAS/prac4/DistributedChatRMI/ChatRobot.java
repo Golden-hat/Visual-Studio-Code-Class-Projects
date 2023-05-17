@@ -5,7 +5,6 @@
 import utils_rmi.ChatConfiguration;
 import faces.IChatMessage;
 import faces.IChatServer;
-import faces.IChatUser;
 import faces.IChatChannel;
 import faces.INameServer;
 import faces.MessageListener;
@@ -36,66 +35,8 @@ public class ChatRobot implements MessageListener
     
    @Override
    public void messageArrived (IChatMessage msg) {
-        try {
-            // Get the message sender
-            //
-            IChatUser src = msg.getSender();
-            
-            // Get the message destination: it can be IChatUser or IChatChannel.
-            //
-            Remote dst = msg.getDestination();
-            
-            // Get the message contents.
-
-            // if (isPrivate() is true) this is a user message: private message 
-            // sent to me            
-            //
-            if (msg.isPrivate()) {
-                doSendPrivateMessage(src.getNick(), "1+1 son 7");
-                return;
-            }
-            else{
-                doSendChannelMessage (conf.getServerName(), "Priimero que nada COMO ESTAN LOS MAQUINAS")
-                return;
-            }
-    
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-   }
-
-   public void doSendChannelMessage (String dst, String msg) throws Exception
-   {
-       try {
-           IChatChannel c_dst = server.getChannel (dst);
-           IChatMessage c_msg = new ChatMessageImpl(user, c_dst, msg);
-           
-           // Send the message to the destinationchannel. 
-           //
-           c_dst.sendMessage(c_msg);
-           
-       } catch (RemoteException e) {
-           throw new Exception ("Cannot send message", e);
-       }
-   }
-
-   public void doSendPrivateMessage (String dst, String msg) throws Exception
-   {
-       try {
-           // From server, get the user with the specified nick
-           IChatUser u_dst = server.getUser (dst);
-           
-           // Create a ChatMessageImpl object.
-           IChatMessage c_msg = new ChatMessageImpl(user, u_dst, msg);
-           if (u_dst == null) throw new Exception ("User '" + dst + "' disconnected");
-           
-           // Send the message to the destination user  
-           //	  
-           u_dst.sendMessage(c_msg);
-           
-       } catch (Exception e) {
-           throw new Exception ("Cannot send message", e);
-       }
+       //*****************************************************************
+       // Activity: implement robot message processing
        
    }
    
@@ -111,29 +52,19 @@ public class ChatRobot implements MessageListener
             INameServer reg = INameServer.getNameServer(conf.getNameServerHost(), conf.getNameServerPort());
             server = (IChatServer) reg.lookup(conf.getServerName());       
 
-            user = new ChatUserImpl("Robotito", this);
+            user = new ChatUserImpl("bot#" + this.hashCode(), this);
             server.connectUser(user);
 
             IChatChannel[] channels = server.listChannels();
             if (channels == null || channels.length == 0){
                 throw new Exception("Server has no channels");
             }
-
+            
             for (IChatChannel channel : channels) {
-                if(channel.getName().equals(channelName)){
-                    channel.join(user);
-                    ChatMessageImpl message = new ChatMessageImpl(user, channel, "hola a todos");
-                    channel.sendMessage(message);
-
-                    String firstUserCaughtName = channel.getName();
-                    IChatUser firstUser = server.getUser(firstUserCaughtName);
-                    message = new ChatMessageImpl(user, firstUser, "hola a todos");
-                    channel.sendMessage(message);
-
-                    break;
-                }
+                channel.join(user);
             }
-        }
+            System.out.println("Joined all channels. Ready!");
+            }
         catch (Exception e) {
             System.out.println("Something went wrong: " + e);
         }
@@ -141,6 +72,6 @@ public class ChatRobot implements MessageListener
 
    public static void main (String args [])  {
        ChatRobot cr = new ChatRobot (ChatConfiguration.parse (args));
-       cr.work();
+       cr.work ();
    }
 }

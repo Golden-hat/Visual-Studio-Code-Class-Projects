@@ -70,7 +70,7 @@ public class ChatRobot implements MessageListener
            IChatChannel c_dst = server.getChannel (dst);
            IChatMessage c_msg = new ChatMessageImpl(user, c_dst, msg);
            
-           // Send the message to the destinationchannel. 
+           // Send the message to the destination channel. 
            //
            c_dst.sendMessage(c_msg);
            

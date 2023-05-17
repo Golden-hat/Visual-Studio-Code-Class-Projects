@@ -5,6 +5,7 @@
 import utils_rmi.ChatConfiguration;
 import faces.IChatMessage;
 import faces.IChatServer;
+import faces.IChatUser;
 import faces.IChatChannel;
 import faces.INameServer;
 import faces.MessageListener;
@@ -54,7 +55,7 @@ public class ChatRobot implements MessageListener
                 return;
             }
             else{
-                doSendChannelMessage (conf.getServerName(), "Priimero que nada COMO ESTAN LOS MAQUINAS")
+                doSendChannelMessage (conf.getServerName(), "Priimero que nada COMO ESTAN LOS MAQUINAS");
                 return;
             }
     

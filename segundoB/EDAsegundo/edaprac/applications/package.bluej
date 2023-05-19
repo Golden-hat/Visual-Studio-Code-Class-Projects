@@ -1,12 +1,12 @@
 #BlueJ package file
 objectbench.height=92
-objectbench.width=461
+objectbench.width=776
 package.divider.horizontal=0.6
 package.divider.vertical=0.802
 package.editor.height=394
 package.editor.width=646
-package.editor.x=484
-package.editor.y=480
+package.editor.x=420
+package.editor.y=452
 package.frame.height=600
 package.frame.width=800
 package.numDependencies=0
@@ -22,8 +22,8 @@ target1.height=82
 target1.name=primitiva
 target1.type=PackageTarget
 target1.width=120
-target1.x=441
-target1.y=138
+target1.x=460
+target1.y=140
 target2.height=82
 target2.name=predictiveEditor
 target2.type=PackageTarget

@@ -1,0 +1,22 @@
+.root{
+    -fx-font-size: 13px;
+}
+
+.buttonUPDOWN{
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}
+
+.buttonUPDOWN:focus{
+    -fx-background-color: lightblue;
+    -fx-text-fill: white;
+}
+
+.buttonUPDOWN:hover{
+    -fx-background-color: lightblue;
+    -fx-text-fill: white;
+}
+
+.list-cell{
+    -fx-text-fill: blue;
+}

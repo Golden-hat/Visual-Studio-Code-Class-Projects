@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="469.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.mainScreenController">
+   <top>
+      <VBox prefHeight="69.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="List">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#onClear" text="Clear" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#onAbout" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </MenuBar>
+            <HBox prefHeight="86.0" prefWidth="657.0">
+               <children>
+                  <TextField fx:id="addField" prefHeight="25.0" prefWidth="327.0">
+                     <HBox.margin>
+                        <Insets left="30.0" top="10.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddField" prefHeight="25.0" prefWidth="75.0" text="Add">
+                     <HBox.margin>
+                        <Insets left="20.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+   <left>
+      <HBox prefHeight="541.0" prefWidth="461.0" BorderPane.alignment="CENTER">
+         <children>
+            <ListView fx:id="list" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#onClickList" prefHeight="318.0" prefWidth="327.0" styleClass="list" stylesheets="@../style/style.css">
+               <HBox.margin>
+                  <Insets bottom="20.0" left="30.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </ListView>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="320.0" prefWidth="73.0" style="-fx-background-color: #e5e5e5;">
+               <children>
+                  <Button fx:id="UpButton" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onUp" styleClass="buttonUPDOWN" stylesheets="@../style/style.css" text="Up" textAlignment="CENTER">
+                     <VBox.margin>
+                        <Insets left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="DownButton" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onDown" styleClass="buttonUPDOWN" stylesheets="@../style/style.css" text="Down" textAlignment="CENTER">
+                     <VBox.margin>
+                        <Insets left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Region maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="214.0" prefWidth="73.0">
+                     <VBox.margin>
+                        <Insets bottom="20.0" top="20.0" />
+                     </VBox.margin>
+                  </Region>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClear" prefHeight="25.0" prefWidth="44.0" text="Clear" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="5.0" right="5.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets bottom="20.0" left="10.0" top="10.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+   </left>
+</BorderPane>

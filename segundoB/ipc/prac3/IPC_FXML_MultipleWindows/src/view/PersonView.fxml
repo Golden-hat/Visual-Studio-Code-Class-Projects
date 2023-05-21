@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="24.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PersonViewController">
+<VBox alignment="CENTER" spacing="24.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PersonViewController">
    <children>
       <GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" vgap="5.0">
          <columnConstraints>
@@ -52,8 +52,8 @@
       </GridPane>
       <HBox alignment="CENTER" spacing="24.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#acceptAction" text="Accept" />
-            <Button mnemonicParsing="false" onAction="#cancelAction" text="Cancel" />
+            <Button fx:id="AccButton" mnemonicParsing="false" onAction="#acceptAction" text="Accept" />
+            <Button fx:id="CalButton" mnemonicParsing="false" onAction="#cancelAction" text="Cancel" />
          </children>
       </HBox>
    </children>

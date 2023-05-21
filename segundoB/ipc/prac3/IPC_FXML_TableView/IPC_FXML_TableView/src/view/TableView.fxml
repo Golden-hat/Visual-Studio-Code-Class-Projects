@@ -23,15 +23,16 @@
          <children>
             <TableView fx:id="personTableView" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
               <columns>
-                <TableColumn fx:id="firstNameColumn" prefWidth="269.0" text="Name" />
-                <TableColumn fx:id="lastNameColumn" prefWidth="310.0" text="Surname" />
+                <TableColumn fx:id="firstNameColumn" prefWidth="208.0" text="Name" />
+                <TableColumn fx:id="lastNameColumn" prefWidth="174.0" text="Surname" />
+                  <TableColumn fx:id="ImageColumn" prefWidth="119.0" text="Image" />
               </columns>
             </TableView>
             <VBox spacing="12.0">
                <children>
-                  <Button fx:id="addButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Add" />
-                  <Button fx:id="modifyButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Modify" />
-                  <Button fx:id="deleteButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete" />
+                  <Button fx:id="addButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addAction" text="Add" />
+                  <Button fx:id="modifyButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#modifyActionButt" text="Modify" />
+                  <Button fx:id="deleteButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteAction" text="Delete" />
                </children>
             </VBox>
          </children>

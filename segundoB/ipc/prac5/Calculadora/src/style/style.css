@@ -1,0 +1,29 @@
+.root {
+    -fx-font-size: 50px;
+}
+
+.buttonNumber {
+    -fx-background-color: orange;
+    -fx-font-color: black;
+    -fx-background-radius: 80px;
+    -fx-margin: 10px;
+    -fx-font-size: 20px;
+    -fx-transition: all 0.75s linear
+}
+
+.buttonOperation {
+    -fx-background-color: black;
+    -fx-background-radius: 80px;
+    -fx-margin: 10px;
+    -fx-font-size: 20px;
+}
+
+.buttonNumber:hover {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}
+
+.buttonNumber:pressed {
+    -fx-background-color: orange;
+    -fx-text-fill: white;
+}

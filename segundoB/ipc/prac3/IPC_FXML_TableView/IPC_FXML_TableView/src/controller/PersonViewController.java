@@ -37,7 +37,7 @@ public class PersonViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        localPerson = new Persona("","","resources/images/Lloroso.png");
     }    
 
     @FXML
@@ -49,7 +49,7 @@ public class PersonViewController implements Initializable {
     private void acceptOnAction(ActionEvent event) {
         acceptPressed = true;
         if(localPerson == null){
-            localPerson = new Persona("","");
+            localPerson = new Persona("","","resources/images/Lloroso.png");
         }
         localPerson.setNombre(nameTextField.getText());
         localPerson.setApellidos(surnameTextField.getText());

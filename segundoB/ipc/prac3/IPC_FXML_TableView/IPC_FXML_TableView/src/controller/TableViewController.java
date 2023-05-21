@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,9 +21,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -50,11 +54,13 @@ public class TableViewController implements Initializable {
     private Button modifyButton;
     @FXML
     private Button deleteButton;
+    @FXML
+    private TableColumn<Persona, String> ImageColumn;
 
     private void initializeModel() {
         ArrayList<Persona> personData = new ArrayList<>();
-        personData.add(new Persona("Jordan", "Belfort"));
-        personData.add(new Persona("Gregor", "MacGregor"));
+        personData.add(new Persona("Jordan", "Belfort","resources/images/Lloroso.png"));
+        personData.add(new Persona("Gregor", "MacGregor", "resources/images/Lloroso.png"));
         myObservableList = FXCollections.observableList(personData);
     }
 
@@ -68,35 +74,77 @@ public class TableViewController implements Initializable {
         personTableView.setItems(myObservableList);
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<Persona, String>("nombre"));         
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<Persona, String>("apellidos"));
+        ImageColumn.setCellValueFactory( personaFila ->new SimpleStringProperty(personaFila.getValue().getImagenPath())); 
+        ImageColumn.setCellFactory(c-> new ImagenTabCell());
         deleteButton.disableProperty().bind(personTableView.getSelectionModel().selectedIndexProperty().isEqualTo(-1));
         modifyButton.disableProperty().bind(personTableView.getSelectionModel().selectedIndexProperty().isEqualTo(-1));
     }
     
+    @FXML
     private void deleteAction(ActionEvent event){
         myObservableList.remove(personTableView.getSelectionModel().getSelectedIndex());
         personTableView.getSelectionModel().clearSelection();
     }
 
     @FXML
-    private void modifyAction(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("view/PersonView.fxml"));
-        Parent root = loader.load();
-        PersonViewController controller = loader.getController();
-        controller.initPerson(personTableView.getSelectionModel().getSelectedItem());
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Demo view");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.showAndWait();
-        if(controller.isAccepted()){
-            Persona personModified = controller.getPerson();
-            myObservableList.set(personTableView.getSelectionModel().getSelectedIndex(),personModified);
-        }
+    private void addAction(ActionEvent event) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PersonView_wCombo.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root, 500,300);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Demo view");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            PersonViewController_wCombo controller = loader.getController();
+            
+            stage.showAndWait();
+
+            if(controller.isAccepted()){
+                Persona personModified = controller.getPerson();
+                myObservableList.add(personModified);
+            }
+        }catch(Exception e){}
     }
 
-    
-    
+    @FXML
+    private void modifyActionButt(ActionEvent event) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PersonView_wCombo.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root, 500,300);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Demo view");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            
+            PersonViewController_wCombo controller = loader.getController();
+            controller.initPerson(personTableView.getSelectionModel().getSelectedItem());
 
+            stage.showAndWait();
 
+            if(controller.isAccepted()){
+                Persona personModified = controller.getPerson();
+                myObservableList.set(personTableView.getSelectionModel().getSelectedIndex(),personModified);
+            }
+        }catch(Exception e){}
+    }
+
+    class ImagenTabCell extends TableCell<Persona, String> {
+        private ImageView view = new ImageView();
+        private Image imagen;
+        
+        @Override
+        protected void updateItem(String t, boolean bln) {
+            super.updateItem(t, bln);
+            if (t == null || bln) {
+                setText(null);
+                setGraphic(null);
+            } else {
+                imagen = new Image(t, 25, 25, true, true);
+                view.setImage(imagen);
+                setGraphic(view);
+            }
+        }
+    }
 }

@@ -35,23 +35,45 @@ public class PersonViewController_wCombo implements Initializable {
     private TextField surnameTextField;
     @FXML
     private Button acceptButton;
+    
+    Persona localPerson;
+    boolean acceptPressed;
+    
+    @FXML
+    private Button cancelButton;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        localPerson = new Persona("","","resources/images/Lloroso.png");
         imagesCombo.getItems().addAll("/resources/images/Lloroso.png", "/resources/images/Pregunta.png", "/resources/images/Sonriente.png");
         imagesCombo.setCellFactory(c -> new ImagenTabCell());
     }      
 
     @FXML
-    private void acceptOnAction(ActionEvent event) {
+    private void cancelOnAction(ActionEvent event) {
+        nameTextField.getScene().getWindow().hide();
     }
 
     @FXML
-    private void cancelOnAction(ActionEvent event) {
+    private void acceptOnAction(ActionEvent event) {
+        acceptPressed = true;
+        if(localPerson == null){
+            localPerson = new Persona("","","resources/images/Lloroso.png");
+        }
+        localPerson.setNombre(nameTextField.getText());
+        localPerson.setApellidos(surnameTextField.getText());
+        localPerson.setImagenPath(imagesCombo.getSelectionModel().getSelectedItem());
+        nameTextField.getScene().getWindow().hide();
+    }
+    
+    void initPerson(Persona myPerson){
+        this.localPerson = myPerson;
+        nameTextField.setText(localPerson.getNombre());
+        surnameTextField.setText(localPerson.getApellidos());
+        localPerson.setImagenPath(localPerson.getImagenPath());
     }
     
     class ImagenTabCell extends ComboBoxListCell<String> {
@@ -71,5 +93,13 @@ public class PersonViewController_wCombo implements Initializable {
                 setText(null);
             }
         }
+    }
+    
+    boolean isAccepted(){
+        return acceptPressed;
+    }
+    
+    Persona getPerson(){
+        return localPerson;
     }
 }

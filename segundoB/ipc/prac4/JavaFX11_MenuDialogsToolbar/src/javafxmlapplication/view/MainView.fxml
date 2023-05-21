@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="borderPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.controller.MainViewController">
+   <center>
+      <Pane prefHeight="453.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
+   </center>
+   <top>
+      <VBox maxHeight="150.0" prefHeight="100.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu text="_Archivos">
+                  <items>
+                    <MenuItem fx:id="salir" onAction="#onSalir" text="_Salir" />
+                  </items>
+                </Menu>
+                <Menu text="_Lanzar">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#onClickAmazonButton" text="Amazon">
+                           <accelerator>
+                              <KeyCodeCombination alt="DOWN" code="Q" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#onClickBloggerButton" text="Blogger">
+                           <accelerator>
+                              <KeyCodeCombination alt="DOWN" code="W" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#onClickEbayButton" text="Ebay">
+                           <accelerator>
+                              <KeyCodeCombination alt="DOWN" code="E" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#onClickFacebookButton" text="Facebook">
+                           <accelerator>
+                              <KeyCodeCombination alt="DOWN" code="R" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#onClickGooglePlusButton" text="Google+">
+                           <accelerator>
+                              <KeyCodeCombination alt="DOWN" code="T" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+                  </items>
+                </Menu>
+                <Menu text="_Opciones">
+                  <items>
+                        <Menu mnemonicParsing="false" text="Comprar en">
+                          <items>
+                              <RadioMenuItem fx:id="selectAmazon" mnemonicParsing="false" onAction="#onSelectAmazon" text="Amazon">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="DOWN" code="Q" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator></RadioMenuItem>
+                              <RadioMenuItem fx:id="selectEbay" mnemonicParsing="false" onAction="#onSelectEbay" text="Ebay">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="DOWN" code="W" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator>
+                              </RadioMenuItem>
+                          </items>
+                        </Menu>
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <ToolBar maxHeight="180.0" maxWidth="1.7976931348623157E308" prefHeight="180.0" prefWidth="800.0">
+              <items>
+                  <Button fx:id="amazonButton" maxHeight="80.0" maxWidth="100.0" minHeight="80.0" minWidth="100.0" mnemonicParsing="false" onAction="#onClickAmazonButton" prefHeight="80.0" prefWidth="100.0">
+                     <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="90.0" layoutX="80.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icons/amazon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="bloggerButton" maxHeight="80.0" maxWidth="100.0" minHeight="80.0" minWidth="100.0" mnemonicParsing="false" onAction="#onClickBloggerButton" prefHeight="80.0" prefWidth="100.0">
+                     <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="90.0" layoutX="80.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icons/bing.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="ebayButton" layoutX="80.0" layoutY="70.0" maxHeight="80.0" maxWidth="100.0" minHeight="80.0" minWidth="100.0" mnemonicParsing="false" onAction="#onClickEbayButton" prefHeight="80.0" prefWidth="100.0">
+                     <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icons/ebay.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                <Button fx:id="facebookButton" maxHeight="80.0" maxWidth="100.0" minHeight="80.0" minWidth="100.0" mnemonicParsing="false" onAction="#onClickFacebookButton" prefHeight="80.0" prefWidth="100.0">
+                     <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="90.0" layoutX="80.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icons/facebook.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="googlePlusButton" maxHeight="80.0" maxWidth="100.0" minHeight="80.0" minWidth="100.0" mnemonicParsing="false" onAction="#onClickGooglePlusButton" prefHeight="80.0" prefWidth="100.0">
+                     <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icons/googlePlus.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+              </items>
+            </ToolBar>
+         </children>
+      </VBox>
+   </top>
+   <bottom>
+      <HBox prefHeight="22.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text fx:id="textField" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="786.13671875" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </Text>
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

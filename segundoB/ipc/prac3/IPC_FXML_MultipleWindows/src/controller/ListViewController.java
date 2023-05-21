@@ -43,7 +43,7 @@ public class ListViewController implements Initializable {
     private Button deleteButton;
     //=========================================================
 
-    private ObservableList<Persona> myObservablePersonaList = null; // Collection linked to table.
+    public ObservableList<Persona> myObservablePersonaList = null; // Collection linked to table.
 
     /**
      * Initializes the controller class.
@@ -64,7 +64,7 @@ public class ListViewController implements Initializable {
         // in case nothing selected, disable delete button
         deleteButton.disableProperty().bind(Bindings.equal(personasListView.getSelectionModel().selectedIndexProperty(), -1));
         // in case nothing selected, disable modify button
-        
+        modifyButton.disableProperty().bind(Bindings.equal(personasListView.getSelectionModel().selectedIndexProperty(), -1));
     }
 
 
@@ -79,30 +79,63 @@ public class ListViewController implements Initializable {
 
     @FXML
     private void modifyAction(ActionEvent event) throws IOException {
+        try{
+            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/view/PersonView.fxml"));
+            Parent root = miCargador.load();
+            Scene scene = new Scene(root,500,300);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Vista datos persona");
+            stage.initModality(Modality.APPLICATION_MODAL);
 
+            PersonViewController controladorPersona = miCargador.getController();
+            Persona persona = personasListView.getSelectionModel().getSelectedItem();
+            controladorPersona.initPersona(persona); // pasa los datos
+            
+            stage.showAndWait(); 
+            
+            if (controladorPersona.isOKPressed()) {
+                int indice= myObservablePersonaList.indexOf(persona);
+                // índice que ocupara en la lista observable
+                Persona p= controladorPersona.getPersona();
+                //nuevo valor en el formulario emergente
+                myObservablePersonaList.set(indice, p); // actualiza la persona.
+            }
+
+        }catch(Exception e){}
     }
 
     @FXML
-    private void addAction(ActionEvent event) {
-        
+    private void addAction(ActionEvent event){
+        try{
+            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/view/PersonView.fxml"));
+            Parent root = miCargador.load();
+            Scene scene = new Scene(root,500,300);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Añadir persona");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+            
+            PersonViewController controladorPersona = miCargador.getController();
+            Persona p = controladorPersona.getPersona();
+            
+            myObservablePersonaList.add(p);
+        }catch(Exception e){}
     }
 
+    class PersonListCell extends ListCell<Persona> {
 
-
-
-
-class PersonListCell extends ListCell<Persona> {
-
-    @Override
-    protected void updateItem(Persona item, boolean empty) {
-        super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.
-        if (empty) // item is empty
-        {
-            setText("");
-        } else {
-            setText(item.getApellidos() + ", " + item.getNombre());
+        @Override
+        protected void updateItem(Persona item, boolean empty) {
+            super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.
+            if (empty) // item is empty
+            {
+                setText("");
+            } else {
+                setText(item.getApellidos() + ", " + item.getNombre());
+            }
         }
-
     }
-}
+
 }

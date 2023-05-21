@@ -41,7 +41,6 @@ public class FXMLDocumentController implements Initializable {
     // you must initialize here all related with the object 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        myBall.radiusProperty().bind(Bindings.min(myGridPane.widthProperty(), myGridPane.heightProperty()).divide(5).divide(2));
         myBall.radiusProperty().bind(Bindings.divide(mySlider.valueProperty(), 2));
     }    
 

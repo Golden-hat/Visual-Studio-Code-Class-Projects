@@ -35,7 +35,7 @@
             </MenuBar>
             <HBox prefHeight="86.0" prefWidth="657.0">
                <children>
-                  <TextField fx:id="addField" prefHeight="25.0" prefWidth="327.0">
+                  <TextField fx:id="addField" onAction="#onClickField" prefHeight="25.0" prefWidth="327.0">
                      <HBox.margin>
                         <Insets left="30.0" top="10.0" />
                      </HBox.margin>

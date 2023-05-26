@@ -1,14 +1,12 @@
 package libraries.dataStructures.graphs;
 
-import libraries.dataStructures.models.Queue;
-import libraries.dataStructures.models.ListPOI;
+import libraries.dataStructures.models.*;
 import libraries.dataStructures.linear.ArrayQueue;
 
-// IN THE SECOND SESSION: include the following import statements:
-/*import libraries.dataStructures.models.UFSet;
+import libraries.dataStructures.models.UFSet;
 import libraries.dataStructures.hierarchical.ForestUFSet;
 import libraries.dataStructures.models.PriorityQueue;
-import libraries.dataStructures.hierarchical.BinaryHeapR0;*/
+import libraries.dataStructures.hierarchical.BinaryHeapR0;
 
 /** Abstract Graph class: basis for the Graph hierarchy, which
  *  defines a graph's behaviour.<br>
@@ -144,6 +142,29 @@ public abstract class Graph {
             }
         }
     }
+    
+    /** PRECONDITION: !this.isDirected()
+     *  Returns a subset of edges that connect all vertices in an Undirected
+     *  and Connected graph, or null if the graph is Unconnected.
+     *
+     * @return Edge[], array with the numV - 1 edges that connect the numV
+     *         vertices of the graph, or null if the graph is Unconnected.
+     */
+    public Edge[] bfsSpanningTree() {
+        int[] res = new int[numVertices()];
+        visited = new int[numVertices()];
+        visitOrder = 0;
+        /*
+        q = new ArrayQueue<>();
+        for (int  i = 0; i < numVertices(); i++) {
+            if (visited[i] == 0) {
+                a = bfsSpanningTree(i, res);
+            }
+        }
+        return null;
+        */
+       return null;
+    }
 
     protected void bfsSpanningTree(int origin, int[] res) {
         res[visitOrder++] = origin;
@@ -164,29 +185,6 @@ public abstract class Graph {
     }
 
     /** PRECONDITION: !this.isDirected()
-     *  Returns a subset of edges that connect all vertices in an Undirected
-     *  and Connected graph, or null if the graph is Unconnected.
-     *
-     * @return Edge[], array with the numV - 1 edges that connect the numV
-     *         vertices of the graph, or null if the graph is Unconnected.
-     */
-    public Edge[] bfsSpanningTree() {
-        int[] res = new int[numVertices()];
-        visited = new int[numVertices()];
-        visitOrder = 0;
-        
-        Edge[] a = new Edge[numVertices()-1];
-        
-        q = new ArrayQueue<>();
-        for (int  i = 0; i < numVertices(); i++) {
-            if (visited[i] == 0) {
-                a = bfsSpanningTree(i, res);
-            }
-        }
-        return null;
-    }
-
-    /** PRECONDITION: !this.isDirected()
      * Returns a subset of edges that, with minimal cost, connect all the
      * vertices of an Undirected and Connected graph, or null if the graph
      * is Unconnected.
@@ -195,7 +193,12 @@ public abstract class Graph {
      *         vertices with minimum cost, or null if the graph is Unconnected
      */
     public Edge[] kruskal() {
-        /* TO BE COMPLETED IN THE SECOND SESSION */
+        PriorityQueue<Edge> feasibleEdges = new BinaryHeapR0<>();
+        UFSet uf = new ForestUFSet(numVertices());
+        Edge[] aux = bfsSpanningTree();
+        int cardinalEPrime = 0;
+        
+        
         return null;
     }
 }

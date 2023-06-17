@@ -8,10 +8,10 @@ package libraries.dataStructures.graphs;
 public class Edge implements Comparable<Edge>{
 
     // AN Edge HAS A source vertex AND A target vertex:
-    private int source;
-    private int target;
+    protected int source;
+    protected int target;
     // AN Edge HAS A weight:
-    private int weight;
+    protected double weight;
 
     /** Creates an edge (a, b) with weight w.
      *
@@ -20,9 +20,9 @@ public class Edge implements Comparable<Edge>{
      * @param w  Weight
      */
     public Edge(int a, int b, double w) {
-        this.source = a;
-        this.target = b;
-        this.weight = weight;
+        source = a;
+        target = b;
+        weight = w;
     }
 
     /** Returns the source vertex of an edge.
@@ -54,8 +54,9 @@ public class Edge implements Comparable<Edge>{
      *
      * @return  String that represents the edge
      */
+    @Override
     public String toString() {
-        return "("+source+", "+", "+target+", "+", "+weight+").";
+        return "(" + source + ", " + target + ", " + weight + ")"; 
     }
     
     @Override

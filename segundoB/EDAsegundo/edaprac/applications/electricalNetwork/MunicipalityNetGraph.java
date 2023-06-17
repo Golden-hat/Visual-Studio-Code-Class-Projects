@@ -182,20 +182,30 @@ public class MunicipalityNetGraph {
         // builds the kruskalAdjacents Map with the help of the
         // verticesToMunicipalities Map
         double weight = 0.0;
-        kruskalAdjacents = new HashTable<Municipality, ListPOI<Municipality>>(edgeSet.length);
+        kruskalAdjacents = new HashTable<Municipality, ListPOI<Municipality>>(MAX_MUNICIPALITIES);
         
         for(int i = 0; i < edgeSet.length; i++){
-            weight += edgeSet[i].getWeight();
-            Municipality p = verticesToMunicipalities.get(edgeSet[i].getSource());
-            ListPOI<Municipality> l = new LinkedListPOI<Municipality>();
+            Edge edge = edgeSet[i];
+            int source = edge.getSource();
+            int target = edge.getTarget();
+        
+            Municipality sourceMun = verticesToMunicipalities.get(source);
+            Municipality targetMun = verticesToMunicipalities.get(target);
             
+            if(kruskalAdjacents.get(sourceMun) == null){
+                kruskalAdjacents.put(sourceMun, new LinkedListPOI<Municipality>());
+            }
+            if(kruskalAdjacents.get(targetMun) == null){
+                kruskalAdjacents.put(targetMun, new LinkedListPOI<Municipality>());
+            }
             
-            
-            kruskalAdjacents.add();   
+            kruskalAdjacents.get(sourceMun).add(targetMun);
+            kruskalAdjacents.get(targetMun).add(sourceMun);
+            weight += edge.getWeight();
         }
 
         // STEP 4. Return the total cost of the refurbishment, i.e.,
         // the sum of the edges that make up the MST
-        return Double.NaN; /* CHANGE THIS */
+        return weight; /* CHANGE THIS */
     }
 }

@@ -115,6 +115,7 @@ public abstract class Graph {
         int[] res = new int[numVertices()];
         visited = new int[numVertices()];
         visitOrder = 0;
+        
         q = new ArrayQueue<>();
         for (int  i = 0; i < numVertices(); i++) {
             if (visited[i] == 0) {
@@ -129,6 +130,7 @@ public abstract class Graph {
         res[visitOrder++] = origin;
         visited[origin] = 1;
         q.enqueue(origin);
+        
         while (!q.isEmpty()) {
             int u = q.dequeue();
             ListPOI<Adjacent> l = adjacentTo(u);
@@ -151,32 +153,31 @@ public abstract class Graph {
      *         vertices of the graph, or null if the graph is Unconnected.
      */
     public Edge[] bfsSpanningTree() {
-        int[] res = new int[numVertices()];
+        Edge[] res = new Edge[numVertices() - 1];
         visited = new int[numVertices()];
         visitOrder = 0;
-        /*
+        
         q = new ArrayQueue<>();
-        for (int  i = 0; i < numVertices(); i++) {
-            if (visited[i] == 0) {
-                a = bfsSpanningTree(i, res);
-            }
+        bfsSpanningTree(0, res);
+        
+        if(visitOrder != numVertices()-1){
+            return null;
+        }else{
+            return res;
         }
-        return null;
-        */
-       return null;
     }
 
-    protected void bfsSpanningTree(int origin, int[] res) {
-        res[visitOrder++] = origin;
+    protected void bfsSpanningTree(int origin, Edge[] res) {;
         visited[origin] = 1;
         q.enqueue(origin);
+        
         while (!q.isEmpty()) {
-            int u = q.dequeue();
+            int u = q.dequeue().intValue();
             ListPOI<Adjacent> l = adjacentTo(u);
             for (l.begin(); !l.isEnd(); l.next()) {
                 Adjacent a = l.get();
                 if (visited[a.target] == 0) {
-                    res[visitOrder++] = a.target;
+                    res[visitOrder++] = new Edge(u, a.getTarget(), a.getWeight());
                     visited[a.target] = 1;
                     q.enqueue(a.target);
                 }
@@ -192,13 +193,33 @@ public abstract class Graph {
      * @return Edge[], array with the numV - 1 edges that connect the numV
      *         vertices with minimum cost, or null if the graph is Unconnected
      */
-    public Edge[] kruskal() {
-        PriorityQueue<Edge> feasibleEdges = new BinaryHeapR0<>();
-        UFSet uf = new ForestUFSet(numVertices());
-        Edge[] aux = bfsSpanningTree();
-        int cardinalEPrime = 0;
+    public Edge[] kruskal() {    
+        Edge[] aristas = new Edge[numVertices() -1]; int cardinal = 0;
+        int[] array = this.toArrayBFS();
+        PriorityQueue<Edge> aristasfactibles = new BinaryHeapR0<Edge>();
+        ForestUFSet ufo = new ForestUFSet(numVertices());
+        int aux;
+        int xua;
         
+        for(int i = 0;i<numVertices();i++){
+            ListPOI<Adjacent> l = adjacentTo(i);        
+            for(l.begin();!l.isEnd();l.next()){
+                Adjacent ad = l.get();
+                aristasfactibles.add(new Edge(i,ad.getTarget(),ad.getWeight()));
+            }
+        }
         
+        while(cardinal < numVertices() - 1 && !aristasfactibles.isEmpty() ){
+            Edge arista = aristasfactibles.removeMin();
+            aux = ufo.find(arista.getSource());
+            xua = ufo.find(arista.getTarget());
+            if( aux != xua ){
+                aristas[cardinal++]=arista;
+                ufo.union(aux,xua);
+            }
+        }
+        
+        if(cardinal == numVertices() - 1) return aristas;
         return null;
     }
 }

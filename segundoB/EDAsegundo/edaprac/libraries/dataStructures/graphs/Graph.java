@@ -222,4 +222,19 @@ public abstract class Graph {
         if(cardinal == numVertices() - 1) return aristas;
         return null;
     }
+    
+    public int highestDegreeVertex(){
+        kruskal();
+        int value = 0;
+        int ret = 0;
+        for(int i = 0; i < numVertices(); i++){
+            ListPOI<Adjacent> listAdj =  adjacentTo(i);
+            int degreeVertexI = listAdj.size();
+            if(degreeVertexI >= value){
+                value = degreeVertexI;
+                ret = i;
+            }
+        }
+        return ret;
+    }
 }

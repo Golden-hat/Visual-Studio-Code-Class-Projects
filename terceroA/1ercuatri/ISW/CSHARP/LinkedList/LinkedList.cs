@@ -14,7 +14,7 @@ class LinkedList<T>{
 
     public void Add(T n){
         if(this.head == null){
-            Node<T> node = new Node<T>();
+            Node<T> node = new Node<T>();   
             node.data = n;
             node.next = null;
 

@@ -1,7 +1,16 @@
 ﻿using System;
 
+public class LinkedListUsage{
+    public static void Main(){
+        LinkedList<int> n = new LinkedList<int>();
+        n.Add(1);
+        n.Add(31);
+        n.printList();
+    }
+}
+
 class LinkedList<T>{
-    private Node<T> head;
+    private Node<T>? head;
 
     public void Add(T n){
         if(this.head == null){
@@ -21,7 +30,7 @@ class LinkedList<T>{
     }
 
     public void printList(){
-        Node<T> aux = this.head;
+        Node<T>? aux = this.head;
 
         if(aux == null){Console.WriteLine("{}"); return;}
         
@@ -35,12 +44,5 @@ class LinkedList<T>{
 
     public void Insert(){
 
-    }
-}
-
-public class main{
-    public static void Main(){
-        LinkedList<int> n = new LinkedList<int>();
-        n.printList();
     }
 }

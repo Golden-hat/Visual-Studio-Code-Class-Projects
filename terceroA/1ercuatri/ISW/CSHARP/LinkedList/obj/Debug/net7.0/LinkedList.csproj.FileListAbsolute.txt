@@ -1,0 +1,14 @@
+C:\CODIGO\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\LinkedList\obj\Debug\net7.0\LinkedList.GeneratedMSBuildEditorConfig.editorconfig
+C:\CODIGO\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\LinkedList\obj\Debug\net7.0\LinkedList.AssemblyInfoInputs.cache
+C:\CODIGO\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\LinkedList\obj\Debug\net7.0\LinkedList.AssemblyInfo.cs
+C:\CODIGO\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\LinkedList\obj\Debug\net7.0\LinkedList.csproj.CoreCompileInputs.cache
+C:\CODIGO\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\LinkedList\bin\Debug\net7.0\LinkedList.exe
+C:\CODIGO\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\LinkedList\bin\Debug\net7.0\LinkedList.deps.json
+C:\CODIGO\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\LinkedList\bin\Debug\net7.0\LinkedList.runtimeconfig.json
+C:\CODIGO\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\LinkedList\bin\Debug\net7.0\LinkedList.dll
+C:\CODIGO\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\LinkedList\bin\Debug\net7.0\LinkedList.pdb
+C:\CODIGO\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\LinkedList\obj\Debug\net7.0\LinkedList.dll
+C:\CODIGO\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\LinkedList\obj\Debug\net7.0\refint\LinkedList.dll
+C:\CODIGO\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\LinkedList\obj\Debug\net7.0\LinkedList.pdb
+C:\CODIGO\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\LinkedList\obj\Debug\net7.0\LinkedList.genruntimeconfig.cache
+C:\CODIGO\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\LinkedList\obj\Debug\net7.0\ref\LinkedList.dll

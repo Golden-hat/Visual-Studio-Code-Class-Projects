@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\CODIGO\\Visual-Studio-Code-Class-Projects\\terceroA\\1ercuatri\\ISW\\CSHARP\\LinkedList\\LinkedList.csproj": {}
+    "D:\\WINDOWS\\ProyectosCodigo\\Visual-Studio-Code-Class-Projects\\terceroA\\1ercuatri\\ISW\\CSHARP\\LinkedList\\LinkedList.csproj": {}
   },
   "projects": {
-    "C:\\CODIGO\\Visual-Studio-Code-Class-Projects\\terceroA\\1ercuatri\\ISW\\CSHARP\\LinkedList\\LinkedList.csproj": {
+    "D:\\WINDOWS\\ProyectosCodigo\\Visual-Studio-Code-Class-Projects\\terceroA\\1ercuatri\\ISW\\CSHARP\\LinkedList\\LinkedList.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\CODIGO\\Visual-Studio-Code-Class-Projects\\terceroA\\1ercuatri\\ISW\\CSHARP\\LinkedList\\LinkedList.csproj",
+        "projectUniqueName": "D:\\WINDOWS\\ProyectosCodigo\\Visual-Studio-Code-Class-Projects\\terceroA\\1ercuatri\\ISW\\CSHARP\\LinkedList\\LinkedList.csproj",
         "projectName": "LinkedList",
-        "projectPath": "C:\\CODIGO\\Visual-Studio-Code-Class-Projects\\terceroA\\1ercuatri\\ISW\\CSHARP\\LinkedList\\LinkedList.csproj",
+        "projectPath": "D:\\WINDOWS\\ProyectosCodigo\\Visual-Studio-Code-Class-Projects\\terceroA\\1ercuatri\\ISW\\CSHARP\\LinkedList\\LinkedList.csproj",
         "packagesPath": "C:\\Users\\yassi\\.nuget\\packages\\",
-        "outputPath": "C:\\CODIGO\\Visual-Studio-Code-Class-Projects\\terceroA\\1ercuatri\\ISW\\CSHARP\\LinkedList\\obj\\",
+        "outputPath": "D:\\WINDOWS\\ProyectosCodigo\\Visual-Studio-Code-Class-Projects\\terceroA\\1ercuatri\\ISW\\CSHARP\\LinkedList\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\yassi\\AppData\\Roaming\\NuGet\\NuGet.Config"

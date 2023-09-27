@@ -12,3 +12,17 @@ C:\CODIGO\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\Test\T
 C:\CODIGO\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\Test\Test\obj\Debug\net6.0\Test.pdb
 C:\CODIGO\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\Test\Test\obj\Debug\net6.0\Test.genruntimeconfig.cache
 C:\CODIGO\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\Test\Test\obj\Debug\net6.0\ref\Test.dll
+D:\WINDOWS\ProyectosCodigo\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\Test\Test\bin\Debug\net6.0\Test.exe
+D:\WINDOWS\ProyectosCodigo\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\Test\Test\bin\Debug\net6.0\Test.deps.json
+D:\WINDOWS\ProyectosCodigo\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\Test\Test\bin\Debug\net6.0\Test.runtimeconfig.json
+D:\WINDOWS\ProyectosCodigo\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\Test\Test\bin\Debug\net6.0\Test.dll
+D:\WINDOWS\ProyectosCodigo\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\Test\Test\bin\Debug\net6.0\Test.pdb
+D:\WINDOWS\ProyectosCodigo\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\Test\Test\obj\Debug\net6.0\Test.GeneratedMSBuildEditorConfig.editorconfig
+D:\WINDOWS\ProyectosCodigo\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\Test\Test\obj\Debug\net6.0\Test.AssemblyInfoInputs.cache
+D:\WINDOWS\ProyectosCodigo\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\Test\Test\obj\Debug\net6.0\Test.AssemblyInfo.cs
+D:\WINDOWS\ProyectosCodigo\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\Test\Test\obj\Debug\net6.0\Test.csproj.CoreCompileInputs.cache
+D:\WINDOWS\ProyectosCodigo\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\Test\Test\obj\Debug\net6.0\Test.dll
+D:\WINDOWS\ProyectosCodigo\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\Test\Test\obj\Debug\net6.0\refint\Test.dll
+D:\WINDOWS\ProyectosCodigo\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\Test\Test\obj\Debug\net6.0\Test.pdb
+D:\WINDOWS\ProyectosCodigo\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\Test\Test\obj\Debug\net6.0\Test.genruntimeconfig.cache
+D:\WINDOWS\ProyectosCodigo\Visual-Studio-Code-Class-Projects\terceroA\1ercuatri\ISW\CSHARP\Test\Test\obj\Debug\net6.0\ref\Test.dll

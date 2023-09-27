@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\CODIGO\\Visual-Studio-Code-Class-Projects\\terceroA\\1ercuatri\\ISW\\CSHARP\\Test\\Test\\Test.csproj": {}
+    "D:\\WINDOWS\\ProyectosCodigo\\Visual-Studio-Code-Class-Projects\\terceroA\\1ercuatri\\ISW\\CSHARP\\Test\\Test\\Test.csproj": {}
   },
   "projects": {
-    "C:\\CODIGO\\Visual-Studio-Code-Class-Projects\\terceroA\\1ercuatri\\ISW\\CSHARP\\Test\\Test\\Test.csproj": {
+    "D:\\WINDOWS\\ProyectosCodigo\\Visual-Studio-Code-Class-Projects\\terceroA\\1ercuatri\\ISW\\CSHARP\\Test\\Test\\Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\CODIGO\\Visual-Studio-Code-Class-Projects\\terceroA\\1ercuatri\\ISW\\CSHARP\\Test\\Test\\Test.csproj",
+        "projectUniqueName": "D:\\WINDOWS\\ProyectosCodigo\\Visual-Studio-Code-Class-Projects\\terceroA\\1ercuatri\\ISW\\CSHARP\\Test\\Test\\Test.csproj",
         "projectName": "Test",
-        "projectPath": "C:\\CODIGO\\Visual-Studio-Code-Class-Projects\\terceroA\\1ercuatri\\ISW\\CSHARP\\Test\\Test\\Test.csproj",
+        "projectPath": "D:\\WINDOWS\\ProyectosCodigo\\Visual-Studio-Code-Class-Projects\\terceroA\\1ercuatri\\ISW\\CSHARP\\Test\\Test\\Test.csproj",
         "packagesPath": "C:\\Users\\yassi\\.nuget\\packages\\",
-        "outputPath": "C:\\CODIGO\\Visual-Studio-Code-Class-Projects\\terceroA\\1ercuatri\\ISW\\CSHARP\\Test\\Test\\obj\\",
+        "outputPath": "D:\\WINDOWS\\ProyectosCodigo\\Visual-Studio-Code-Class-Projects\\terceroA\\1ercuatri\\ISW\\CSHARP\\Test\\Test\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\yassi\\AppData\\Roaming\\NuGet\\NuGet.Config",

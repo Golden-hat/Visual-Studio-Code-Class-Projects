@@ -1,4 +1,4 @@
-import heapq
+from queue import Queue
 
 G1={
     'A':[('B',1),('C',4)],
@@ -15,22 +15,26 @@ G2={'A':[('B',1),('C',4)],
     'E':[('C',1),('D',1)]
 }
 
+G={'A':['B','C'],'B':['A','D'],'C':['A','E'],'D':['B','E'],'E':['C','D']}
+
 def BFS(G, s, t):
 
     visitedNodes = []
-    pQ = []; heapq.heappush(pQ, (s, G[s]))
-    
-    path = []
+    pQ = Queue(); pQ.put((s, [s]))
 
-    while s != t:
-        currentNodeAdjacents = heapq.heappop(pQ)
-        print(currentNodeAdjacents)
-        for i, j in currentNodeAdjacents:
-            if j not in visitedNodes: 
-                visitedNodes.append(i)
-                heapq.heappush(pQ, (i, G[i]))
+    while pQ:
+        currentNode, path = pQ.get()
+        visitedNodes.append(currentNode)
+        if currentNode == t: return path
+
+        print(currentNode)
+        print(path)
+        
+        for i, j in G[currentNode]:
+            if i not in visitedNodes:
+                pQ.put((i, path+[i]))
 
 
-BFS(G1, 'A', 'D')
+print(BFS(G1, 'A', 'D'))
 
 

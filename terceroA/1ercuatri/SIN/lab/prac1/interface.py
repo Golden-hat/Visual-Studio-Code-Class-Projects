@@ -375,7 +375,7 @@ class InterfaceApp:
         Checks if there is a solution registered in the global variables
         :return: boolean
         """
-        return len(path) > 0
+        return len(path) > -1
 
     @staticmethod
     def solveState():

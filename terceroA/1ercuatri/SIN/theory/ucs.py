@@ -75,7 +75,7 @@ def djikstra(G, s, t):
                     print("Node "+n+ " will be added to the heap and to the Adjacency list")
                     heapq.heappush(Oh, (gn, n, path+[n]))
                     Od[n] = gn
-                print("Our current adjacency list (considering previous weights is the following):")
+                print("Our current adjacency list (considering previous weights) is the following:")
                 print(Od)
             print()
 

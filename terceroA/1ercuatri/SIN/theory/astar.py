@@ -33,7 +33,7 @@ def astar(G, s, t, h):
             # Notice that python does a "cool thing", in which if an element is comprised 
             # of 3 elements, accessing them in the fashion "a, b, c = element" will store them
             # each in their respective a, b, c variables.
-            fs, s, path = heapq.heappop(Oh)
+            s, path = heapq.heappop(Oh)
 
             gs = Od[s]
 

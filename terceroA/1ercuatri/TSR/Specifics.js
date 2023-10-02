@@ -67,3 +67,33 @@ function printFor(x, repetitions){
 printFor("hola", 10)
 console.log(GLOBAL_VARIABLE)
 
+/**
+ * Javascript has a concept called CLOSURES. IT is a composition of the function plus
+ * all the variables that are used by it. A function remembers the envirnoment in which it
+ * is created. An exmple of closure is the following:
+ */
+
+function moz(){
+	let name = "Mozilla"
+	// lambda function
+	return () => {console.log(name)}
+}
+
+let myFunction = moz();
+myFunction()
+
+/**
+ * With this very concept we can create what we call FUNCTION FACTORIES.
+ * Let's imagine a FF (Function Factory) that enables us to create functions
+ * that multiply values by a given x value
+ */
+
+function mult(x){
+	return (y) => {	
+		console.log(x*y)
+		return x*y
+	}
+}
+
+let triple = mult(3);
+let result = triple(21);

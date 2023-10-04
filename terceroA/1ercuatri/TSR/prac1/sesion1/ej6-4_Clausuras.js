@@ -13,26 +13,23 @@ function main(y) {
 			traza += "-g0";
 			x++;
 			console.log("g0: incremento de x:  " + x);
-			return f(++y);
+			return f(++y); //ignoro el valor de retorno
+			/**
+			 * el return de f(++y) no se hace, ya que f(++y) no retorna una función
+			 */
 		}
 
 		function g1() {
 			traza += "-g1";
 			y++;
 			console.log("g1: incremento de y:  " + y);
-			return f(y);
+			return f(y); //ignoro el valor de retorno
 		}
 	}
 }
-
 
 var func = main(-100);
 for (let i = 0; i < 10; i++) {
 	func = func();
 }
 
-/**
-	Cuestión 1. Cuál es la clausura de la función g0
-
-la forma las variables traza y var x
- */

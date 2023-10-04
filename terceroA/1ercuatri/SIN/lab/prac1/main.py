@@ -170,9 +170,6 @@ def getEuclideanDistance(state):
         tot += math.sqrt(pow((goalX - itemX), 2) + pow((goalY - itemY), 2))
     return tot
 
-
-
-
 def function_0(x):
     return 0;
 

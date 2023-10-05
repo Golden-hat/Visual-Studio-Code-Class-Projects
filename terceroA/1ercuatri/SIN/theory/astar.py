@@ -4,7 +4,7 @@
 
 import heapq
 
-G={'A':[('B',1),('C',4)],'B':[('A',1),('D',1)], 'C':[('A',4),('E',1)],'D':[('B',1),('E',4)], 'E':[('C',1),('D',4)]}
+G={'A':[('B',7),('C',4)],'B':[('A',7),('D',1)], 'C':[('A',4),('E',1),('D',1)],'D':[('B',1),('E',4),('C', 1)], 'E':[('C',1),('D',4)]}
 
 h = {'A':5,'B':5,'C':1,'D':4,'E':0}
 
@@ -27,13 +27,13 @@ def astar(G, s, t, h):
         s = None
         # s is initialized to NULL, so that it takes the value of any of the adjacent nodes to the starting node.
         while s not in Od:
-
+            print(Oh)
             # We take out the data from the current node that is stored in the heap
 
             # Notice that python does a "cool thing", in which if an element is comprised 
             # of 3 elements, accessing them in the fashion "a, b, c = element" will store them
             # each in their respective a, b, c variables.
-            s, path = heapq.heappop(Oh)
+            heuristic, s, path = heapq.heappop(Oh)
 
             gs = Od[s]
 
@@ -46,14 +46,29 @@ def astar(G, s, t, h):
             # This dictionary marks the visited nodes
             del Od[s]; Cd[s] = gs
 
-            for n, wsn in G[s]:
+            for n, wsn in G[s]: 
+                print("We're in: "+s)
+                print("Adjacent "+n+", from "+s)
+                print("We have already visited these nodes: "); print(Cd)
+
                 gn = gs + wsn
-                if n in Cd:
-                    if gn < Cd[n]: del Cd[n]
-                    else: continue
+                if n in Cd: 
+                    if gn < Cd[n]: del Cd[n]; print("El valor actual de peso, "+str(gs)+ " + "+ str(wsn)+
+                                                    " es menor que el existente en Cd[n]: "+ str(Cd[n])+
+                                                    ". Lo sustituimos.")
+                    else: 
+                        print("El valor actual de peso, "+str(gs)+"+"+str(wsn)+" es mayor que el existente en Cd[n]: "+ str(Cd[n])+
+                              ". Pasamos.")
+                        continue
+ 
                 elif n in Od and gn >= Od[n]: continue
 
+                print("We add "+n+" to our heap and to our adjacency list.")
                 heapq.heappush(Oh, (gn+h[n], n, path+[n]))
                 Od[n] = gn
 
-print(astar(G, 'A', 'E', h))
+                print("Our current adjacency list (considering previous weights) is the following:")
+                print(Od)
+            print()
+
+print(astar(G, 'A', 'D', h))

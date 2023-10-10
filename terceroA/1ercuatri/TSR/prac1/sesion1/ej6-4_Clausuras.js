@@ -23,8 +23,10 @@ function main(y) {
 			traza += "-g1";
 			y++;
 			console.log("g1: incremento de y:  " + y);
-			return f(y); //ignoro el valor de retorno
-		}
+			return f(y);
+		}		
+		
+		return (x % 2) ? g0 : g1;
 	}
 }
 

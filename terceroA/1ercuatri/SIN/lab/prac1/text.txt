@@ -1,0 +1,41 @@
+ESTADO INICIAL: 023845716
+
+				N.gen:		N.exp:		Max.n:		Sol.cost:	SearchDept:		RunTime:
+
+BFS				8761		3250		5118		14			15				0.04		
+DFS(20)			19689		9823		9829		18			20				0.04
+DFS(bt, 20)		93519		59982		38			20			20				0.03
+Greedy(Manhat)	494			185			298			34			34				0.02		
+ID				20086		12726		27			14			14				0.03
+A* Manhattan	215			79			135			14			14				0.02
+A* Euclidean 	286			106			174			14			14				0.03
+IDA* Manhattan 	307			196			22 			14			14				0.03
+A* Misplaced	758			273			463			14			14				0.03
+A* Sequence		226			82			141			14			14				0.03
+
+ESTADO INICIAL: 781406235
+
+				N.gen:		N.exp:		Max.n:		Sol.cost:	SearchDept:		RunTime:
+
+BFS				233687		86871		110728		22			23				0.16
+DFS(20)			719			404			436			38			40				0.04
+DFS(bt, 20)		2028383		1301341		76			38			40				12.3
+Greedy(Manhat)	82			30			53			22			22				0.03
+ID				2198820		1390965		43			22			22				13.3
+A*(Manhat)		706			266			428			22			22				0.01
+A* Euclid		2781		1028		1650		22			22				0.03
+IDA*(Manhat)	1409		882			35			22			22				0.03
+A* Misplaced	25694		9324		14871		22			22				0.31
+A* Sequence		3940		1341		2304		32			36				0.03	
+
+-	Is the heuristic function Sequences admissible? Why?
+
+It is admissible, because it does not provide an overestimation.
+
+-	Compare the search strategies using the heuristic function Manhattan with Sequences
+explaining which of the two provides better solutions in terms of number of movements and
+nodes involved to reach the goal state.
+
+Sequence is better in the first example, but worse in the second. However though,
+it seems like sequence is better than misplaced in any case
+

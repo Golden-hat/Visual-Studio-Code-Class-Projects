@@ -1,20 +1,21 @@
+
 # Uniform-cost algorithm, or the DJIKSTRA ALGORITHM enumerates paths
 # until finding a solution by prioritizing paths with minimum partial
 # cost and avoiding cycles
 
 import heapq
 
-G={'A':[('B',1),('C',4)],'B':[('A',1),('D',1)], 'C':[('A',4),('E',1),('D',1)],'D':[('B',1),('E',4),('C', 1)], 'E':[('C',1),('D',4)]}
+G={'A':[('B',7),('C',4)],'B':[('A',7),('D',1)], 'C':[('A',4),('E',1),('D',1)],'D':[('B',1),('E',4),('C', 1)], 'E':[('C',1),('D',4)]}
 
 h = {'A':5,'B':5,'C':1,'D':4,'E':0}
 
-def astar(G, s, t, h):
+def astar(G, s, t, f):
 
     # Cd = visited nodes
     # Oh = priority queue
     # Od = adjacents
-
-    Od = {s:0}
+    fs = f[s]
+    Od = {s:(0 ,fs)}
 
     Cd = {}
     Oh = []; heapq.heappush(Oh, (h[s], s, [s]))
@@ -35,7 +36,7 @@ def astar(G, s, t, h):
             # each in their respective a, b, c variables.
             heuristic, s, path = heapq.heappop(Oh)
 
-            gs = Od[s]
+            gs, fs = Od[s]
 
             # If we detect that the current node is the goal node, we return from the method with
             # The weight of the path and the sequence to follow
@@ -44,16 +45,16 @@ def astar(G, s, t, h):
             # Next, we will delete from Od the node we have traveled to.
             # Then we will create a dictionary that pairs the weight of a node with its name (Name = key)
             # This dictionary marks the visited nodes
-            del Od[s]; Cd[s] = gs
+            del Od[s]; Cd[s] = gs, fs
 
             for n, wsn in G[s]: 
                 print("We're in: "+s)
                 print("Adjacent "+n+", from "+s)
                 print("We have already visited these nodes: "); print(Cd)
 
-                gn = gs + wsn
+                gn = gs + wsn; fn = f[n]
                 if n in Cd: 
-                    if gn < Cd[n]: del Cd[n]; print("El valor actual de peso, "+str(gs)+ " + "+ str(wsn)+
+                    if fn < Cd[n][1]: del Cd[n]; print("El valor actual de peso, "+str(gs)+ " + "+ str(wsn)+
                                                     " es menor que el existente en Cd[n]: "+ str(Cd[n])+
                                                     ". Lo sustituimos.")
                     else: 
@@ -61,18 +62,14 @@ def astar(G, s, t, h):
                               ". Pasamos.")
                         continue
  
-                elif n in Od and gn >= Od[n]: continue
+                elif n in Od and fn >= Od[n][0]: continue
 
                 print("We add "+n+" to our heap and to our adjacency list.")
-                heapq.heappush(Oh, (gn+h[n], n, path+[n]))
-                Od[n] = gn
+                heapq.heappush(Oh, (fn, n, path+[n]))
+                Od[n] = gn, fn
 
                 print("Our current adjacency list (considering previous weights) is the following:")
                 print(Od)
             print()
 
 print(astar(G, 'A', 'E', h))
-# Este algoritmo calcula los pesos de los nodos Y LUEGO simplemente añade la heuristica del nodo visitado,
-# por la cual es capaz de seleccionar el camino más cercano al objetivo. Esta heuristica se suma y solo se
-# toma en cuenta en el heap, por lo que Od solo mantiene el peso de los nodos que formarían el camino a una
-# solución posible.

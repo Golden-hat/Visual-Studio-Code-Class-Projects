@@ -56,7 +56,6 @@ existir otra variable con el mismo nombre.
 
 No. no podemos ya que no pertenece al scope del resto de la función (está restringido al bucle for).
 
-
 	Cuestión 3. Este programa no utiliza la directiva “use strict” al comienzo del programa. Añádela y
 	prueba a ejecutar de nuevo el programa. ¿Qué observas? Explica para qué sirve la directiva “use strict”.
 

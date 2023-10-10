@@ -51,7 +51,6 @@ console.log(y)
  **/
 
 function printFor(x, repetitions){
-	
 	/*
 	 * variables in jscript behave... interestingly. A variable declared inside a function
 	 * without the let nor var keywords belongs to the global scope. If we want to keep it
@@ -97,3 +96,5 @@ function mult(x){
 
 let triple = mult(3);
 let result = triple(21);
+
+// Más información respecto a las closures y a las funciones en la primera sesión de la práctica.

@@ -19,9 +19,9 @@ ESTADO INICIAL: 781406235
 
 BFS				233687		86871		110728		22			23				0.16
 DFS(20)			719			404			436			38			40				0.04
-DFS(bt, 20)		2028383		1301341		76			38			40				12.3
+DFS(bt, 40)		2028383		1301341		76			38			40				1.0
 Greedy(Manhat)	82			30			53			22			22				0.03
-ID				2198820		1390965		43			22			22				13.3
+ID				2198820		1390965		43			22			22				2.3
 A*(Manhat)		706			266			428			22			22				0.01
 A* Euclid		2781		1028		1650		22			22				0.03
 IDA*(Manhat)	1409		882			35			22			22				0.03
@@ -37,5 +37,5 @@ explaining which of the two provides better solutions in terms of number of move
 nodes involved to reach the goal state.
 
 Sequence is better in the first example, but worse in the second. However though,
-it seems like sequence is better than misplaced in any case
+it seems like sequence is better than misplaced in any case.
 

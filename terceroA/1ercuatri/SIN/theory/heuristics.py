@@ -1,3 +1,4 @@
+import time
 final_state = "123804765"
 
 def swap(state, index1, index2):
@@ -6,6 +7,9 @@ def swap(state, index1, index2):
     state_list[index1] = state_list[index2]
     state_list[index2] = aux
     state = "".join(state_list)
+    printState(state)
+
+    return state
     
 def isMisplaced(index, state):
     if state[index] != final_state[index]:
@@ -13,31 +17,53 @@ def isMisplaced(index, state):
     return False
 
 def printState(state):
-    print(state[0:2])
-    print(state[0:2])
-    print(state[0:2])
+    print(state[0:3])
+    print(state[3:6])
+    print(state[6:9])
+    print()
 
 def maxSwap(state):
-    stateCopy = state
+    stateCpy = state
     moves = 0
-
-    if int(stateCopy[4]) == 0:
-        swap(stateCopy, 1, 2)
-        moves += 1
-
-    isOrdered = False
-
-    for i in range(0,8):
-        if isMisplaced(i, stateCopy) and stateCopy[i] != 0:
-            pos = stateCopy.find("0")
-            swap(stateCopy, pos, i)
-
-            moves += 1
+    if int(state[4]) == 0:
+        for i in range(0, 9):
+            if isMisplaced(i, state):
+                state = swap(state, i, 4)
+                moves += 1
+                break
     
-        if stateCopy == final_state:
-            continue
+    while(state != final_state):
+        for i in range(0,9):
+            if isMisplaced(i, state):
+                pos = state.find("0")
+                if state[i] == final_state[pos]: 
+                    state = swap(state, pos, i)    
+                    moves += 1
 
-    state = stateCopy
+        if state == final_state:
+            break
+
+    state = stateCpy
     return moves
 
-print(maxSwap("123408765"))
+print(maxSwap("023845716"))
+print()
+
+def nSwap(state):
+    stateCpy = state
+    moves = 0
+    while(state != final_state):
+        for i in range(0,9):
+            if isMisplaced(i, state):
+                pos = final_state.find(state[i])
+                state = swap(state, pos, i)
+
+                moves += 1
+        
+            if state == final_state:
+                break
+
+    state = stateCpy
+    return moves
+
+print(nSwap("123408765"))

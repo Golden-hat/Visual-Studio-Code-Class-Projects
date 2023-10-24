@@ -8,7 +8,7 @@ function argumentsPassed(){
 	return string;
 }
 
-const client = net.connect({port:8004}, function() { //connect listener
+const client = net.connect({port:8005}, function() { //connect listener
 	console.log('client connected');
 	client.write(argumentsPassed());
 });

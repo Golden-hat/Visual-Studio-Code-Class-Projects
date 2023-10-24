@@ -7,7 +7,7 @@ function getLoad(){
 	var min1 = parseFloat(tokens[0])+0.01;
 	var min5 = parseFloat(tokens[1])+0.01;
 	var min15 = parseFloat(tokens[2])+0.01;
-	return min1*10+min5*2+min15;
+	return ""+min1*10+min5*2+min15;
 };
 
 const server = net.createServer( function(c) { //connection listener
@@ -23,6 +23,6 @@ const server = net.createServer( function(c) { //connection listener
  	});
 });
 
-server.listen(8004, function() { //listening listener
+server.listen(8005, function() { //listening listener
 	console.log('server bound');
 });

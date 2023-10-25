@@ -1,0 +1,45 @@
+1) Is this heuristic function admissible?
+
+Yes, it is admissible, as it never provides an overestimation of the real cost for each state.
+This is, in other words, that this heuristic defined as hC will not, for any state, provide a value
+bigger than that of h* defined as the real cost for each state.
+
+2) For state '781406235', compare and discuss the number of nodes generated, expanded and maximum 
+stored, the solution cost and the running time of this heuristic function with Misplaced and Manhattan
+heuristic functions.
+
+Our heuristic yields... 
+
+    -   Nodes generated: 495934                
+    -   Nodes expanded: 181264
+    -   Nodes stored: 181428
+
+in comparison to...
+
+Misplaced:
+
+    -   Nodes generated: 25694
+    -   Nodes expanded: 9324
+    -   Nodes stored: 14871
+
+Manhattan:
+
+    -   Nodes generated: 706
+    -   Nodes expanded: 266
+    -   Nodes stored: 428
+
+From this data we can extract that:
+    -   Our heuristic is the least informed among all, in this order:
+        Most informed-> Manhattan > Misplaced > New heuristic
+
+        We know this because it generates the most nodes by far.
+
+    -   Similarly, our New heurisitic will have the biggest spatial complexity,
+        requiring the larges amount of nodes to be stored
+
+    -   Every heurisitic is admissible, it's just that some are more informed
+        than others and thus require less time to reach the optimal solution.
+        (the new heurisitic takes a considerably higher amount of time).
+
+    -   The solution cost remains the same for all heuristics. This proves that
+        all of them are admissible (same, optimal solution).

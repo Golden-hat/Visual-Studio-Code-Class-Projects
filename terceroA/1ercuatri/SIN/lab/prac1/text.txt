@@ -30,12 +30,16 @@ A* Sequence		3940		1341		2304		32			36				0.03
 
 -	Is the heuristic function Sequences admissible? Why?
 
-It is admissible, because it does not provide an overestimation.
+It is admissible, because it does not provide an overestimation of the real cost of the
+algorithm, that is hS(n), being hS the sequence heuristic, will provide a result lesser
+for every node than that of h*(n), where h* is the function of the real cost for every n.
 
 -	Compare the search strategies using the heuristic function Manhattan with Sequences
 explaining which of the two provides better solutions in terms of number of movements and
 nodes involved to reach the goal state.
 
 Sequence is better in the first example, but worse in the second. However though,
-it seems like sequence is better than misplaced in any case.
+it seems like sequence is better than misplaced in any case. All in all, as sequences is 
+a LESS informed heuristic than the Manhattan distance, it will provide an optimal solution with a lesser 
+generation of nodes than that of sequences.
 

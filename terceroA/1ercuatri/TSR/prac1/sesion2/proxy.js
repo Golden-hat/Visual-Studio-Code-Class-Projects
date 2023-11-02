@@ -11,11 +11,14 @@ const REMOTE_PORT=80
 
 const server = net.createServer(function (socket) {
  	const serviceSocket = new net.Socket();
+	// Conecta proxy con IP y puerto remotos.
  	serviceSocket.connect(parseInt(REMOTE_PORT), REMOTE_IP, function () {
  		socket.on('data', function (msg) {
+			// Escribe mensaje a puerto remoto.
  			console.log (msg + "")
  			serviceSocket.write(msg);
  		});
+			// Devuelve respuesta de remoto a cliente.
  		serviceSocket.on('data', function (data) {
  			socket.write(data);
  		});

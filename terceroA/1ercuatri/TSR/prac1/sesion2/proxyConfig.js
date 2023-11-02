@@ -19,11 +19,7 @@ string = argumentsPassed()
 text = string.split(" ")
 
 const server = net.createServer(function (socket) {	
-
-
  	const serviceSocket = new net.Socket();
-	console.log(text[0])
-	console.log(text[1])
  	serviceSocket.connect(parseInt(REMOTE_PORT), text[1], function () {
  		socket.on('data', function (msg) {
  			console.log (msg + "")

@@ -5,4 +5,4 @@ WORKDIR worker
 COPY ./workerReq.js myworker.js
 # We assume that each worker is linked to the broker
 # container.
-CMD node myworker 172.17.0.2 9999
+CMD node myworker $BROKER_HOST $BROKER_PORT

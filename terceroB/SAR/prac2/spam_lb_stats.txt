@@ -1,5 +1,6 @@
 Lines: 11
 Number of words (including stopwords): 77
+Number of words (without stopwords): 77
 Vocabulary size: 22
 Number of symbols : 324
 Number of different symbols: 23
@@ -87,48 +88,6 @@ Symbols (by frequency):
 	l: 2
 	w: 2
 	y: 2
-Prefixes (by frequency): 
-	sp-: 27
-	spa-: 27
-	spam-: 27
-	an-: 12
-	and-: 12
-	eg-: 9
-	egg-: 9
-	ba-: 7
-	bac-: 6
-	baco-: 6
-	sa-: 5
-	sau-: 5
-	saus-: 4
-	wi-: 2
-	wit-: 2
-	with-: 2
-	au-: 1
-	aux-: 1
-	bak-: 1
-	bake-: 1
-Suffixes (by frequency): 
-	-am: 27
-	-pam: 27
-	-spam: 27
-	-and: 12
-	-nd: 12
-	-egg: 9
-	-gg: 9
-	-on: 7
-	-acon: 6
-	-con: 6
-	-age: 4
-	-ge: 4
-	-sage: 4
-	-ed: 3
-	-ith: 2
-	-th: 2
-	-with: 2
-	-aked: 1
-	-andy: 1
-	-ans: 1
 Word pairs (alphabetical order): 
 	$ egg: 5
 	$ lobster: 1
@@ -172,44 +131,86 @@ Word pairs (by frequency):
 	and a: 1
 	aux crevettes: 1
 Symbols pairs (alphabetical order): 
-	a c: 6
-	a g: 4
-	a k: 1
-	a m: 27
-	a n: 14
-	a r: 1
-	a t: 1
-	a u: 6
-	a y: 1
-	b a: 7
-	b e: 1
-	b r: 1
-	b s: 1
-	c e: 1
-	c o: 6
-	c r: 1
-	d o: 1
-	d y: 1
-	e a: 1
-	e d: 3
+	ac: 6
+	ag: 4
+	ak: 1
+	am: 27
+	an: 14
+	ar: 1
+	at: 1
+	au: 6
+	ay: 1
+	ba: 7
+	be: 1
+	br: 1
+	bs: 1
+	ce: 1
+	co: 6
+	cr: 1
+	do: 1
+	dy: 1
+	ea: 1
+	ed: 3
 Symbol pairs (by frequency): 
-	p a: 28
-	a m: 27
-	s p: 27
-	a n: 14
-	n d: 13
-	e g: 9
-	g g: 9
-	s a: 9
-	b a: 7
-	o n: 7
-	a c: 6
-	a u: 6
-	c o: 6
-	a g: 4
-	g e: 4
-	u s: 4
-	e d: 3
-	t e: 3
-	t h: 3
-	e r: 2
+	pa: 28
+	am: 27
+	sp: 27
+	an: 14
+	nd: 13
+	eg: 9
+	gg: 9
+	sa: 9
+	ba: 7
+	on: 7
+	ac: 6
+	au: 6
+	co: 6
+	ag: 4
+	ge: 4
+	us: 4
+	ed: 3
+	te: 3
+	th: 3
+	er: 2
+Prefixes (by frequency): 
+	sp-: 27
+	spa-: 27
+	an-: 12
+	eg-: 9
+	ba-: 7
+	bac-: 6
+	baco-: 6
+	sa-: 5
+	sau-: 5
+	saus-: 4
+	wi-: 2
+	wit-: 2
+	au-: 1
+	bak-: 1
+	bake-: 1
+	be-: 1
+	bea-: 1
+	bean-: 1
+	br-: 1
+	bra-: 1
+Suffixes (by frequency): 
+	-am: 27
+	-pam: 27
+	-nd: 12
+	-gg: 9
+	-acon: 6
+	-con: 6
+	-on: 6
+	-age: 4
+	-ge: 4
+	-sage: 4
+	-ed: 3
+	-ith: 2
+	-th: 2
+	-aked: 1
+	-andy: 1
+	-ans: 1
+	-ate: 1
+	-auce: 1
+	-ay: 1
+	-ce: 1

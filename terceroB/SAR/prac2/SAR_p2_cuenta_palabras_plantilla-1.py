@@ -15,6 +15,10 @@ import os
 import re
 from typing import Optional
 
+"""
+Este método coge un diccionario y devuelve su contenido
+en una lista de tuplas ordenadas por orden creciente de valor
+"""
 def sort_dic_by_values(d:dict) -> list:
     return sorted(d.items(), key=lambda a: (-a[1], a[0]))
 
@@ -25,12 +29,6 @@ class WordCounter:
            Constructor de la clase WordCounter
         """
         self.clean_re = re.compile('\W+')
-
-    def sort_dict_by_value(input_dict):
-        sorted_items = sorted(input_dict.items(), key=lambda x: x[1])
-        sorted_dict = {key: value for key, value in sorted_items}
-        return sorted_dict
-
 
     def write_stats(self, filename:str, stats:dict, use_stopwords:bool, full:bool):
         """
@@ -90,11 +88,12 @@ class WordCounter:
         NumOrderPreffix = sort_dic_by_values(inOrderPreffix)
 
         with open(filename, 'w', encoding='utf-8', newline='\n') as fh:
-            if "f" in filename:
+            if full:
                 fh.write("Lines: "+str(stats['nlines'])+"\n")
-                fh.write("Number of words (including stopwords): "+str(stats['nwords'])+"\n")
+                fh.write("Number of words (including stopwords): "+str(stats['nwords']+ stats['nstopwords'])+"\n")
+                if use_stopwords: fh.write("Number of words (without stopwords): "+str(stats['nwords'])+"\n")
                 fh.write("Vocabulary size: "+str(len(stats['word']))+"\n")
-                fh.write("Number of symbols : "+str(stats['nsymbols'])+"\n")
+                fh.write("Number of symbols: "+str(stats['nsymbols'])+"\n")
                 fh.write("Number of different symbols: "+str(len(stats['symbol']))+"\n")
                 fh.write("Words (alphabetical order): \n")
                 for i in inOrderWords:
@@ -109,14 +108,7 @@ class WordCounter:
                 for i in NumOrderSymbol:
                     fh.write("\t"+str(i[0])+": "+str(i[1])+"\n")
 
-                fh.write("Prefixes (by frequency): \n")
-                for i in NumOrderPreffix:
-                    fh.write("\t"+str(i[0])+"-: "+str(i[1])+"\n")
-                fh.write("Suffixes (by frequency): \n")
-                for i in NumOrderSuffix:
-                    fh.write("\t-"+str(i[0])+": "+str(i[1])+"\n")
-
-                if "b" in filename:
+                if stats['bigrams']:
                     fh.write("Word pairs (alphabetical order): \n")
                     for i in inOrderBigramW:
                         fh.write("\t"+i+": "+str(inOrderBigramW.get(i))+"\n")
@@ -130,11 +122,19 @@ class WordCounter:
                     for i in NumOrderBigramS:
                         fh.write("\t"+str(i[0])+": "+str(i[1])+"\n")
 
-            else:
+                fh.write("Prefixes (by frequency): \n")
+                for i in NumOrderPreffix:
+                    fh.write("\t"+str(i[0])+"-: "+str(i[1])+"\n")
+                fh.write("Suffixes (by frequency): \n")
+                for i in NumOrderSuffix:
+                    fh.write("\t-"+str(i[0])+": "+str(i[1])+"\n")
+
+            if not full:
                 fh.write("Lines: "+str(stats['nlines'])+"\n")
-                fh.write("Number of words (including stopwords): "+str(stats['nwords'])+"\n")
+                fh.write("Number of words (including stopwords): "+str(stats['nwords']+ stats['nstopwords'])+"\n")
+                if use_stopwords: fh.write("Number of words (without stopwords): "+str(stats['nwords'])+"\n")
                 fh.write("Vocabulary size: "+str(len(stats['word']))+"\n")
-                fh.write("Number of symbols : "+str(stats['nsymbols'])+"\n")
+                fh.write("Number of symbols: "+str(stats['nsymbols'])+"\n")
                 fh.write("Number of different symbols: "+str(len(stats['symbol']))+"\n")
                 fh.write("Words (alphabetical order): \n")
                 counter = 0
@@ -161,21 +161,7 @@ class WordCounter:
                         fh.write("\t"+str(i[0])+": "+str(i[1])+"\n")
                     counter += 1
 
-                counter = 0
-                fh.write("Prefixes (by frequency): \n")
-                for i in NumOrderPreffix:
-                    if counter < 20:
-                        fh.write("\t"+str(i[0])+"-: "+str(i[1])+"\n")
-                    counter += 1
-
-                counter = 0
-                fh.write("Suffixes (by frequency): \n")
-                for i in NumOrderSuffix:
-                    if counter < 20:
-                        fh.write("\t-"+str(i[0])+": "+str(i[1])+"\n")
-                    counter += 1    
-
-                if "b" in filename:
+                if stats['bigrams']:
                     counter = 0
                     fh.write("Word pairs (alphabetical order): \n")
                     for i in inOrderBigramW:
@@ -200,6 +186,20 @@ class WordCounter:
                         if counter < 20:
                             fh.write("\t"+str(i[0])+": "+str(i[1])+"\n")
                         counter += 1
+                
+                counter = 0
+                fh.write("Prefixes (by frequency): \n")
+                for i in NumOrderPreffix:
+                    if counter < 20:
+                        fh.write("\t"+str(i[0])+"-: "+str(i[1])+"\n")
+                    counter += 1
+
+                counter = 0
+                fh.write("Suffixes (by frequency): \n")
+                for i in NumOrderSuffix:
+                    if counter < 20:
+                        fh.write("\t-"+str(i[0])+": "+str(i[1])+"\n")
+                    counter += 1    
             pass
 
 
@@ -223,12 +223,14 @@ class WordCounter:
         'nwords': 0,
         'nlines': 0,
         'nsymbols': 0,
+        'nstopwords':0,
         'word': {},
         'symbol': {},
         'preffix': {},
         'suffix': {},
         'bigramW': {},
-        'bigramS': {}
+        'bigramS': {},
+        'bigrams': bigrams
         }
 
         file = open(fullfilename)
@@ -260,35 +262,37 @@ class WordCounter:
                             sts['symbol'][j] = 0
                         sts['symbol'][j] += 1
                         sts['nsymbols'] += 1
+                if i in stopwords:
+                    sts['nstopwords'] += 1
 
-                    """
-                    Generamos los bigramas y los prefijos-sufijos de los pares de letras
-                    """
-                    if bigrams:
-                        iter = 0
-                        while iter < len(i)-1:
-                            #Prefijos
-                            if iter < 3:
-                                preffix = i[0:iter+2]
-                                if preffix not in sts['preffix']:
-                                    sts['preffix'][preffix] = 0
-                                sts['preffix'][preffix] += 1
-                            #Sufijos
-                            if iter >= len(i) - 4:
-                                suffix = i[iter:len(i)]
-                                if suffix not in sts['suffix']:
-                                    sts['suffix'][suffix] = 0
-                                sts['suffix'][suffix] += 1
+                """
+                Generamos los bigramas y los prefijos-sufijos de los pares de letras
+                """
+                iter = 0
+                if i not in stopwords:
+                    while iter < len(i)-1:
+                        #Prefijos
+                        if iter < 3 and iter + 1 != len(i) -1:
+                            preffix = i[0:iter+2]
+                            if preffix not in sts['preffix']:
+                                sts['preffix'][preffix] = 0
+                            sts['preffix'][preffix] += 1
+                        #Sufijos
+                        if iter >= len(i) - 4 and iter != 0:
+                            suffix = i[iter:len(i)]
+                            if suffix not in sts['suffix']:
+                                sts['suffix'][suffix] = 0
+                            sts['suffix'][suffix] += 1
 
-                            if i[iter]+" "+i[iter+1] not in sts['bigramS']:
-                                sts['bigramS'][i[iter]+" "+i[iter+1]] = 0
-                            sts['bigramS'][i[iter]+" "+i[iter+1]] += 1
-                            iter += 1
+                        if i[iter]+""+i[iter+1] not in sts['bigramS']:
+                            sts['bigramS'][i[iter]+""+i[iter+1]] = 0
+                        sts['bigramS'][i[iter]+""+i[iter+1]] += 1
+                        iter += 1
 
             """
             Generamos los bigramas
             """
-            if bigrams:
+            if len(list) != 0:
                 list.insert(0, "$")
                 list.append("$")
                 
@@ -299,7 +303,6 @@ class WordCounter:
                             sts['bigramW'][list[iter]+" "+list[iter+1]] = 0
                         sts['bigramW'][list[iter]+" "+list[iter+1]] += 1
                     iter += 1    
-
 
         extension = ""
         """

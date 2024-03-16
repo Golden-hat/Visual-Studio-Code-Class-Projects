@@ -1,0 +1,376 @@
+Lines: 11
+Number of words (including stopwords): 60
+Vocabulary size: 18
+Number of symbols : 276
+Number of different symbols: 22
+Words (alphabetical order): 
+	aux: 1
+	bacon: 6
+	baked: 1
+	beans: 1
+	brandy: 1
+	crevettes: 1
+	egg: 9
+	fried: 1
+	garnished: 1
+	lobster: 1
+	mornay: 1
+	pate: 1
+	sauce: 1
+	sausage: 4
+	spam: 27
+	thermidor: 1
+	top: 1
+	truffle: 1
+Words (by frequency): 
+	spam: 27
+	egg: 9
+	bacon: 6
+	sausage: 4
+	aux: 1
+	baked: 1
+	beans: 1
+	brandy: 1
+	crevettes: 1
+	fried: 1
+	garnished: 1
+	lobster: 1
+	mornay: 1
+	pate: 1
+	sauce: 1
+	thermidor: 1
+	top: 1
+	truffle: 1
+Symbols (alphabetical order): 
+	a: 49
+	b: 10
+	c: 8
+	d: 5
+	e: 25
+	f: 3
+	g: 23
+	h: 2
+	i: 3
+	k: 1
+	l: 2
+	m: 29
+	n: 10
+	o: 10
+	p: 29
+	r: 9
+	s: 40
+	t: 7
+	u: 7
+	v: 1
+	x: 1
+	y: 2
+Symbols (by frequency): 
+	a: 49
+	s: 40
+	m: 29
+	p: 29
+	e: 25
+	g: 23
+	b: 10
+	n: 10
+	o: 10
+	r: 9
+	c: 8
+	t: 7
+	u: 7
+	d: 5
+	f: 3
+	i: 3
+	h: 2
+	l: 2
+	y: 2
+	k: 1
+	v: 1
+	x: 1
+Word pairs (alphabetical order): 
+	$ egg: 5
+	$ lobster: 1
+	$ spam: 5
+	aux crevettes: 1
+	bacon $: 2
+	bacon sausage: 2
+	baked beans: 1
+	beans spam: 1
+	egg bacon: 2
+	egg sausage: 2
+	egg spam: 1
+	fried egg: 1
+	lobster thermidor: 1
+	mornay sauce: 1
+	pate brandy: 1
+	sauce garnished: 1
+	spam $: 9
+	spam bacon: 2
+	spam baked: 1
+	spam egg: 3
+	spam spam: 11
+	thermidor aux: 1
+	truffle pate: 1
+Word pairs (by frequency): 
+	spam spam: 11
+	spam $: 9
+	$ egg: 5
+	$ spam: 5
+	spam egg: 3
+	bacon $: 2
+	bacon sausage: 2
+	egg bacon: 2
+	egg sausage: 2
+	spam bacon: 2
+	$ lobster: 1
+	aux crevettes: 1
+	baked beans: 1
+	beans spam: 1
+	egg spam: 1
+	fried egg: 1
+	lobster thermidor: 1
+	mornay sauce: 1
+	pate brandy: 1
+	sauce garnished: 1
+	spam baked: 1
+	thermidor aux: 1
+	truffle pate: 1
+Symbols pairs (alphabetical order): 
+	a c: 6
+	a g: 4
+	a k: 1
+	a m: 27
+	a n: 2
+	a r: 1
+	a t: 1
+	a u: 6
+	a y: 1
+	b a: 7
+	b e: 1
+	b r: 1
+	b s: 1
+	c e: 1
+	c o: 6
+	c r: 1
+	d o: 1
+	d y: 1
+	e a: 1
+	e d: 3
+	e g: 9
+	e r: 2
+	e s: 1
+	e t: 1
+	e v: 1
+	f f: 1
+	f l: 1
+	f r: 1
+	g a: 1
+	g e: 4
+	g g: 9
+	h e: 2
+	i d: 1
+	i e: 1
+	i s: 1
+	k e: 1
+	l e: 1
+	l o: 1
+	m i: 1
+	m o: 1
+	n a: 1
+	n d: 1
+	n i: 1
+	n s: 1
+	o b: 1
+	o n: 6
+	o p: 1
+	o r: 2
+	p a: 28
+	r a: 1
+	r e: 1
+	r i: 1
+	r m: 1
+	r n: 2
+	r u: 1
+	s a: 9
+	s h: 1
+	s p: 27
+	s t: 1
+	t e: 3
+	t h: 1
+	t o: 1
+	t r: 1
+	t t: 1
+	u c: 1
+	u f: 1
+	u s: 4
+	u x: 1
+	v e: 1
+Symbol pairs (by frequency): 
+	p a: 28
+	a m: 27
+	s p: 27
+	e g: 9
+	g g: 9
+	s a: 9
+	b a: 7
+	a c: 6
+	a u: 6
+	c o: 6
+	o n: 6
+	a g: 4
+	g e: 4
+	u s: 4
+	e d: 3
+	t e: 3
+	a n: 2
+	e r: 2
+	h e: 2
+	o r: 2
+	r n: 2
+	a k: 1
+	a r: 1
+	a t: 1
+	a y: 1
+	b e: 1
+	b r: 1
+	b s: 1
+	c e: 1
+	c r: 1
+	d o: 1
+	d y: 1
+	e a: 1
+	e s: 1
+	e t: 1
+	e v: 1
+	f f: 1
+	f l: 1
+	f r: 1
+	g a: 1
+	i d: 1
+	i e: 1
+	i s: 1
+	k e: 1
+	l e: 1
+	l o: 1
+	m i: 1
+	m o: 1
+	n a: 1
+	n d: 1
+	n i: 1
+	n s: 1
+	o b: 1
+	o p: 1
+	r a: 1
+	r e: 1
+	r i: 1
+	r m: 1
+	r u: 1
+	s h: 1
+	s t: 1
+	t h: 1
+	t o: 1
+	t r: 1
+	t t: 1
+	u c: 1
+	u f: 1
+	u x: 1
+	v e: 1
+Prefixes (by frequency): 
+	sp-: 27
+	spa-: 27
+	spam-: 27
+	eg-: 9
+	egg-: 9
+	ba-: 7
+	bac-: 6
+	baco-: 6
+	sa-: 5
+	sau-: 5
+	saus-: 4
+	au-: 1
+	aux-: 1
+	bak-: 1
+	bake-: 1
+	be-: 1
+	bea-: 1
+	bean-: 1
+	br-: 1
+	bra-: 1
+	bran-: 1
+	cr-: 1
+	cre-: 1
+	crev-: 1
+	fr-: 1
+	fri-: 1
+	frie-: 1
+	ga-: 1
+	gar-: 1
+	garn-: 1
+	lo-: 1
+	lob-: 1
+	lobs-: 1
+	mo-: 1
+	mor-: 1
+	morn-: 1
+	pa-: 1
+	pat-: 1
+	pate-: 1
+	sauc-: 1
+	th-: 1
+	the-: 1
+	ther-: 1
+	to-: 1
+	top-: 1
+	tr-: 1
+	tru-: 1
+	truf-: 1
+Suffixes (by frequency): 
+	-am: 27
+	-pam: 27
+	-spam: 27
+	-egg: 9
+	-gg: 9
+	-acon: 6
+	-con: 6
+	-on: 6
+	-age: 4
+	-ge: 4
+	-sage: 4
+	-ed: 3
+	-aked: 1
+	-andy: 1
+	-ans: 1
+	-ate: 1
+	-auce: 1
+	-aux: 1
+	-ay: 1
+	-ce: 1
+	-dor: 1
+	-dy: 1
+	-eans: 1
+	-er: 1
+	-es: 1
+	-ffle: 1
+	-fle: 1
+	-hed: 1
+	-idor: 1
+	-ied: 1
+	-ked: 1
+	-le: 1
+	-nay: 1
+	-ndy: 1
+	-ns: 1
+	-op: 1
+	-or: 1
+	-pate: 1
+	-ried: 1
+	-rnay: 1
+	-shed: 1
+	-ster: 1
+	-te: 1
+	-ter: 1
+	-tes: 1
+	-top: 1
+	-ttes: 1
+	-uce: 1
+	-ux: 1

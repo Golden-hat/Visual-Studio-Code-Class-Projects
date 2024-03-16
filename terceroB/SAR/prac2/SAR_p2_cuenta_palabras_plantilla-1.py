@@ -89,8 +89,6 @@ class WordCounter:
         NumOrderSuffix = sort_dic_by_values(inOrderSuffix)
         NumOrderPreffix = sort_dic_by_values(inOrderPreffix)
 
-        print(stats['bigramW'])
-
         with open(filename, 'w', encoding='utf-8', newline='\n') as fh:
             if "f" in filename:
                 fh.write("Lines: "+str(stats['nlines'])+"\n")
@@ -111,6 +109,13 @@ class WordCounter:
                 for i in NumOrderSymbol:
                     fh.write("\t"+str(i[0])+": "+str(i[1])+"\n")
 
+                fh.write("Prefixes (by frequency): \n")
+                for i in NumOrderPreffix:
+                    fh.write("\t"+str(i[0])+"-: "+str(i[1])+"\n")
+                fh.write("Suffixes (by frequency): \n")
+                for i in NumOrderSuffix:
+                    fh.write("\t-"+str(i[0])+": "+str(i[1])+"\n")
+
                 if "b" in filename:
                     fh.write("Word pairs (alphabetical order): \n")
                     for i in inOrderBigramW:
@@ -124,13 +129,6 @@ class WordCounter:
                     fh.write("Symbol pairs (by frequency): \n")
                     for i in NumOrderBigramS:
                         fh.write("\t"+str(i[0])+": "+str(i[1])+"\n")
-
-                fh.write("Prefixes (by frequency): \n")
-                for i in NumOrderPreffix:
-                    fh.write("\t"+str(i[0])+"-: "+str(i[1])+"\n")
-                fh.write("Suffixes (by frequency): \n")
-                for i in NumOrderSuffix:
-                    fh.write("\t-"+str(i[0])+": "+str(i[1])+"\n")
 
             else:
                 fh.write("Lines: "+str(stats['nlines'])+"\n")
@@ -163,6 +161,20 @@ class WordCounter:
                         fh.write("\t"+str(i[0])+": "+str(i[1])+"\n")
                     counter += 1
 
+                counter = 0
+                fh.write("Prefixes (by frequency): \n")
+                for i in NumOrderPreffix:
+                    if counter < 20:
+                        fh.write("\t"+str(i[0])+"-: "+str(i[1])+"\n")
+                    counter += 1
+
+                counter = 0
+                fh.write("Suffixes (by frequency): \n")
+                for i in NumOrderSuffix:
+                    if counter < 20:
+                        fh.write("\t-"+str(i[0])+": "+str(i[1])+"\n")
+                    counter += 1    
+
                 if "b" in filename:
                     counter = 0
                     fh.write("Word pairs (alphabetical order): \n")
@@ -188,20 +200,6 @@ class WordCounter:
                         if counter < 20:
                             fh.write("\t"+str(i[0])+": "+str(i[1])+"\n")
                         counter += 1
-                        
-                counter = 0
-                fh.write("Prefixes (by frequency): \n")
-                for i in NumOrderPreffix:
-                    if counter < 20:
-                        fh.write("\t"+str(i[0])+"-: "+str(i[1])+"\n")
-                    counter += 1
-
-                counter = 0
-                fh.write("Suffixes (by frequency): \n")
-                for i in NumOrderSuffix:
-                    if counter < 20:
-                        fh.write("\t-"+str(i[0])+": "+str(i[1])+"\n")
-                    counter += 1    
             pass
 
 

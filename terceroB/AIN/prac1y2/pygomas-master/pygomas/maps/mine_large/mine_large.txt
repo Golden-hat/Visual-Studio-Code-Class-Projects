@@ -1,0 +1,7 @@
+[pGomas]
+pGomas_OBJECTIVE: 20 8
+pGomas_SPAWN_ALLIED: 2 2 8 14
+pGomas_SPAWN_AXIS: 21 2 28 14
+pGomas_COST_MAP: 32 32 mine_large_cost.txt
+[pGomas]
+

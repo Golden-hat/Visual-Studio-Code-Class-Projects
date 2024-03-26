@@ -1,0 +1,12 @@
+[pGomas]
+pGomas_OBJECTIVE: 10 8
+pGomas_SPAWN_ALLIED: 1 2 4 4
+pGomas_SPAWN_AXIS: 1 12 4 14
+pGomas_COST_MAP: 16 16 mine_medium_cost.txt
+[pGomas]
+
+[RENDER]
+RENDER_ART_MAP: 256 256 mine_medium_terrain.bmp
+RENDER_COST_MAP: 32 32 mine_medium_cost.bmp
+RENDER_HEIGHT_MAP: 32 32 mine_medium_heightmap.bmp
+[RENDER]

@@ -1,0 +1,12 @@
+[pGomas]
+pGomas_OBJECTIVE: 23 18
+pGomas_SPAWN_ALLIED: 1 1 5 5 1
+pGomas_SPAWN_AXIS: 16 26 20 30 1
+pGomas_COST_MAP: 32 32 map_01_cost.txt
+[pGomas]
+
+[RENDER]
+RENDER_ART_MAP: 256 256 map_01_terrain.bmp
+RENDER_COST_MAP: 32 32 map_01_cost.bmp
+RENDER_HEIGHT_MAP: 32 32 map_01_heightmap.bmp
+[RENDER]

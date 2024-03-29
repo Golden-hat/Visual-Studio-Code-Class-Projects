@@ -8,7 +8,7 @@ import re
 import sys
 from typing import List, Optional, TextIO
 
-## Nombres: 
+## Nombres:
 
 ########################################################################
 ########################################################################
@@ -24,6 +24,22 @@ def convert_to_lm_dict(d: dict):
         l = sorted(((y, x) for x, y in d[k].items()), reverse=True)
         d[k] = (sum(x for x, _ in l), l)
 
+def removeNonAlph(text):
+  """
+  Removes all non-alphanumeric characters from a string.
+
+  """
+
+  filter = ""
+
+  # Loop through each character in the text
+  for char in text:
+    # Check if the character is alphanumeric
+    if char.isalnum() && char != " ":
+      # If it is, add to the filter
+      filter += char
+
+  return filtered_text
 
 class Monkey():
 
@@ -37,6 +53,14 @@ class Monkey():
 
     def index_sentence(self, sentence:str):
         n = self.info['n']
+
+        sentence = sentence.lower()
+        sentence = removeNonAlph(text)
+
+        for dollar in (1, n-1):
+            # Añadimos n-1 símbolos finales al principio de la frase.
+            sentence = "$" + sentence
+
         #############
         # COMPLETAR #
         #############
@@ -47,11 +71,23 @@ class Monkey():
             self.info['lm'][i] = {}
         for filename in filenames:
             with open(filename, encoding='utf-8') as fh:
+
+                # Generamos la frase antes de llamar a una nueva línea,
+                # ya que el salto de línea no define una nueva frase.
+                phrase = ""
+
                 for line in fh:
-                    #############
-                    # COMPLETAR #
-                    #############
-                
+                    if line = "":
+                        self.index_sentence(phrase)
+                        phrase = ""
+                        break
+                    for letter in wordlist:
+                        if letter in [".", ";", "!", "?"]:
+                            self.index_sentence(phrase)
+                            phrase = ""
+                        else:
+                            phrase += letter
+
         for i in range(2, n+1):
             convert_to_lm_dict(self.info['lm'][i])
 

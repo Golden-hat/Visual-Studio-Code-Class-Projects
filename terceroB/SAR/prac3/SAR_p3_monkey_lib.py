@@ -35,11 +35,11 @@ def removeNonAlph(text):
   # Loop through each character in the text
   for char in text:
     # Check if the character is alphanumeric
-    if char.isalnum() && char != " ":
+    if char.isalnum() or char == " ":
       # If it is, add to the filter
       filter += char
 
-  return filtered_text
+  return filter
 
 class Monkey():
 
@@ -54,16 +54,44 @@ class Monkey():
     def index_sentence(self, sentence:str):
         n = self.info['n']
 
-        sentence = sentence.lower()
-        sentence = removeNonAlph(text)
+        for i in range (2, n+1):
+            sentence = sentence.lower()
+            sentence = removeNonAlph(sentence)
 
-        for dollar in (1, n-1):
-            # Añadimos n-1 símbolos finales al principio de la frase.
-            sentence = "$" + sentence
+            wordlist = sentence.split()
+            dollar = 0
+            while dollar < i-1:
+                # Añadimos n-1 símbolos finales al principio de la frase.
+                wordlist.insert(0, "$")
+                dollar += 1
+            wordlist.append("$")
 
-        #############
-        # COMPLETAR #
-        #############
+            for index, token in enumerate(wordlist):
+                engram = []
+                if index >= len(wordlist) - i + 1:
+                    break
+                gram = 0
+                # se van seleccionando los pares bigrama-palabra a lo largo de la frase
+                while gram < i:
+                    # conforma el bigrama
+                    if gram != i-1:
+                        engram.append(wordlist[gram+index])
+                    # conforma la palabra asociada al bigrama
+                    elif gram == i-1:
+                        # si no existe el diccionario asociado al bigrama, se crea
+                        if tuple(engram) not in self.info['lm'][i]:
+                            self.info['lm'][i][tuple(engram)] = {}
+                        # si existe...
+                        if tuple(engram) in self.info['lm'][i]:
+                            # ... y la palabra analizada ya se ha visto, se aumenta el recuento
+                            if wordlist[gram+index] in self.info['lm'][i][tuple(engram)]:
+                                self.info['lm'][i][tuple(engram)][wordlist[gram+index]] += 1
+                            # ... y la palabra analizada NO se ha visto todavía para el bigrama, se inicializa
+                            else:
+                                self.info['lm'][i][tuple(engram)][wordlist[gram+index]] = 0
+                                self.info['lm'][i][tuple(engram)][wordlist[gram+index]] += 1
+                    gram += 1
+                engram = []
 
     def compute_lm(self, filenames:List[str], lm_name:str, n:int):
         self.info = {'name': lm_name, 'filenames': filenames, 'n': n, 'lm': {}}
@@ -77,16 +105,18 @@ class Monkey():
                 phrase = ""
 
                 for line in fh:
-                    if line = "":
+                    if len(line) == 1:
                         self.index_sentence(phrase)
                         phrase = ""
                         break
-                    for letter in wordlist:
+                    for letter in line:
                         if letter in [".", ";", "!", "?"]:
                             self.index_sentence(phrase)
                             phrase = ""
                         else:
                             phrase += letter
+                # Al finalizar la lectura siempre lanzamos lo que quede.
+                self.index_sentence(phrase)
 
         for i in range(2, n+1):
             convert_to_lm_dict(self.info['lm'][i])
@@ -124,9 +154,82 @@ class Monkey():
 
 
     def generate_sentences(self, n:Optional[int], nsentences:int=10, prefix:Optional[str]=None):
-        #############
-        # COMPLETAR #
-        #############
+        
+        # Limpiamos primero el prefijo
+        if n is None:
+            n = self.info['n']
+        else:
+            n = n
+        
+        storedPrefix = ""
+        prefLength = 0
+        prefixCopy = ""
+
+        if prefix is not None:
+            prefix = prefix.lower()
+            prefix = removeNonAlph(prefix)
+
+            storedPrefix = prefix
+
+            wordlist = prefix.split()
+            prefLength = len(wordlist)
+
+            dollar = 0
+            while dollar < n-1 - len(wordlist):
+                # Añadimos n-1 - len(wordlist) símbolos finales al principio de la frase.
+                wordlist.insert(0, "$")
+                dollar += 1
+            
+            prefix = tuple(wordlist)
+            prefixCopy = tuple(wordlist)
+        else:
+            aux = []
+            dollar = 0
+            while dollar < n-1:
+                # Añadimos n-1 símbolos finales al principio de la frase.
+                aux.insert(0, "$")
+                dollar += 1
+            prefix = tuple(aux)
+            prefixCopy = tuple(prefix)
+
+        lines = 0
+        while lines < nsentences:
+            sentence = ""
+            nwords = 0
+            sentence += storedPrefix
+
+            finished = False
+            while nwords < 50 - prefLength and not finished:
+
+                ponderElem = []
+                ponderWeights = []
+                for i in self.info['lm'][n][prefix][1]:
+                    ponderElem.append(i[1])
+                    ponderWeights.append(i[0])
+                
+                chosen = random.choices(ponderElem, weights=ponderWeights, k=1)
+                if "$" in chosen:
+                    finished = True
+                    continue
+                if sentence == "":
+                    sentence += ""+str(chosen[0])
+                else:
+                    sentence += " "+str(chosen[0])
+
+                last = n-2
+                if n >= 2:
+                    currentList = list(prefix)[-last:]
+
+                    auxList = currentList + chosen
+                    prefix = tuple(auxList)
+                else:
+                    prefix = tuple(chosen)
+                
+                nwords += 1
+            print(sentence)
+            prefix = prefixCopy
+            print()
+            lines += 1
         pass
 
 

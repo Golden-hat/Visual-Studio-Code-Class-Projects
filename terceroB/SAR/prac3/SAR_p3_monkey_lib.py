@@ -105,16 +105,17 @@ class Monkey():
                 phrase = ""
 
                 for line in fh:
+                    line += " "
                     if len(line) == 1:
                         self.index_sentence(phrase)
                         phrase = ""
-                        break
-                    for letter in line:
-                        if letter in [".", ";", "!", "?"]:
-                            self.index_sentence(phrase)
-                            phrase = ""
-                        else:
-                            phrase += letter
+                    else:
+                        for letter in line:
+                            if letter in [".", ";", "!", "?"]:
+                                self.index_sentence(phrase)
+                                phrase = ""
+                            else:
+                                phrase += letter
                 # Al finalizar la lectura siempre lanzamos lo que quede.
                 self.index_sentence(phrase)
 
@@ -175,10 +176,11 @@ class Monkey():
             prefLength = len(wordlist)
 
             dollar = 0
-            while dollar < n-1 - len(wordlist):
-                # Añadimos n-1 - len(wordlist) símbolos finales al principio de la frase.
-                wordlist.insert(0, "$")
-                dollar += 1
+            if n != 2:
+                while dollar <= n - len(wordlist):
+                    # Añadimos n - len(wordlist) símbolos finales al principio de la frase.
+                    wordlist.insert(0, "$")
+                    dollar += 1
             
             prefix = tuple(wordlist)
             prefixCopy = tuple(wordlist)
@@ -203,6 +205,8 @@ class Monkey():
 
                 ponderElem = []
                 ponderWeights = []
+                prefix = prefix[(-n+1):len(prefix)]
+
                 for i in self.info['lm'][n][prefix][1]:
                     ponderElem.append(i[1])
                     ponderWeights.append(i[0])
@@ -217,7 +221,7 @@ class Monkey():
                     sentence += " "+str(chosen[0])
 
                 last = n-2
-                if n >= 2:
+                if n > 2:
                     currentList = list(prefix)[-last:]
 
                     auxList = currentList + chosen
@@ -226,12 +230,11 @@ class Monkey():
                     prefix = tuple(chosen)
                 
                 nwords += 1
-            print(sentence)
             prefix = prefixCopy
+            print(sentence)
             print()
             lines += 1
         pass
-
 
 if __name__ == "__main__":
     print("Este fichero es una librería, no se puede ejecutar directamente")

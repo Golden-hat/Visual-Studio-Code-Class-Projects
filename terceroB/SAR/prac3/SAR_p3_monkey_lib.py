@@ -200,36 +200,47 @@ class Monkey():
             nwords = 0
             sentence += storedPrefix
 
+            # Actualizamos la variable prefijo con el valor de los siguientes bigramas en cada iteración.
+            # Guardar el prefijo de partida nos sirve para añadirlo al principio de cada frase.
+
             finished = False
             while nwords < 50 - prefLength and not finished:
+                try:
+                    ponderElem = []
+                    ponderWeights = []
+                    prefix = prefix[(-n+1):len(prefix)]
 
-                ponderElem = []
-                ponderWeights = []
-                prefix = prefix[(-n+1):len(prefix)]
+                    for i in self.info['lm'][n][prefix][1]:
+                        ponderElem.append(i[1])
+                        ponderWeights.append(i[0])
+                    
+                    chosen = random.choices(ponderElem, weights=ponderWeights, k=1)
+                    if "$" in chosen:
+                        # Si la palabra elegido es un símbolo de terminación, concluimos la frase
+                        finished = True
+                        continue
+                    if sentence == "":
+                        sentence += ""+str(chosen[0])
+                    else:
+                        sentence += " "+str(chosen[0])
 
-                for i in self.info['lm'][n][prefix][1]:
-                    ponderElem.append(i[1])
-                    ponderWeights.append(i[0])
-                
-                chosen = random.choices(ponderElem, weights=ponderWeights, k=1)
-                if "$" in chosen:
-                    finished = True
-                    continue
-                if sentence == "":
-                    sentence += ""+str(chosen[0])
-                else:
-                    sentence += " "+str(chosen[0])
+                    last = n-2
+                    if n > 2:
+                        currentList = list(prefix)[-last:]
 
-                last = n-2
-                if n > 2:
-                    currentList = list(prefix)[-last:]
-
-                    auxList = currentList + chosen
-                    prefix = tuple(auxList)
-                else:
-                    prefix = tuple(chosen)
-                
-                nwords += 1
+                        auxList = currentList + chosen
+                        prefix = tuple(auxList)
+                    else:
+                        prefix = tuple(chosen)
+                    
+                    nwords += 1
+                # Si no encontramos un bigrama del que partir dado el prefijo de entrada, devolvemos un error.
+                except KeyError:
+                    sentence = storedPrefix 
+                    print("Generation can't be started with such prefix. Try another one.")
+                    print()
+                    print("'"+sentence+"'")
+                    return
             prefix = prefixCopy
             print(sentence)
             print()

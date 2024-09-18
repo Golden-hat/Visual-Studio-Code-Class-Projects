@@ -7507,28 +7507,19 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Aproximaci%C3%B3n-recursiva">Aproximación recursiva<a class="anchor-link" href="#Aproximaci%C3%B3n-recursiva">¶</a></h3><style>
-img {
-    border: none;
-}
-</style>
-<p>Se puede resolver este problema de manera correcta si lo resolvemos de forma recursiva mediante programación dinámica. Primero plantearemos la ecuación recursiva del problema.</p>
+<h3 id="Aproximaci%C3%B3n-recursiva">Aproximación recursiva<a class="anchor-link" href="#Aproximaci%C3%B3n-recursiva">¶</a></h3><p>Se puede resolver este problema de manera correcta si lo resolvemos de forma recursiva mediante programación dinámica. Primero plantearemos la ecuación recursiva del problema.</p>
 <p>Primero necesitamos determinar el <strong>espacio de soluciones del problema</strong></p>
 <p>Será toda secuencia de embarcaderos que cumpla lo siguiente:</p>
 <ul>
 <li>Empieza por 1 y acaba por el último embarcadero E</li>
 <li>Ninguno de los embarcaderos de la secuencia presenta saltos de más de 2 embarcaderos.</li>
 </ul>
-<center>
-<img alt="image" src="../resources/X.png" style="border: none"/>
-</center>
+<img alt="image" src="../resources/X.png"/>
 <p>A continuación necesitamos definir una función objetivo que, en este caso <strong>minimizar</strong> para obtener la solución deseada. Usaremos una función C que calcule el coste del camino entre 2 embarcaderos.</p>
-<center>
+<div>
 <img alt="image" src="../resources/congoarg.png"/>
-</center>
-<center>
+</div>
 <img alt="image" src="../resources/congomin.png"/>
-</center>
 <p>Vemos que buscamos tanto el camino de menor coste como el menor coste asociado a dicho camino.</p>
 <p><strong>ECUACIÓN RECURSIVA</strong></p>
 <p>Necesitamos ahora buscar una expresión recursiva que defina el problema a resolver. Utilizaremos una expresión general que obtiene el coste mínimo posible entre 2 embarcaderos y demostraremos cómo se puede "desglosar" en llamadas recursivas de talla menor para obtener una solución válida al problema.</p>
@@ -7540,26 +7531,18 @@ img {
 <p>Utilizando ahora la propiedad del mínimo donde el mínimo de una suma a+b es igual a el mínimo de a + b... volvemos a reformular para obtener...</p>
 <img alt="image" src="../resources/min2.png"/>
 <p>En la siguiente imagen podremos ver que tanto la parte izquierda de la igualdad como la parte interior de la derecha son muy similares. Solo se diferencian en que la parte izquierda es una expresión <strong>general</strong> para ir del embarcadero 1 al embarcadero E mientras que la parte derecha representa el coste hasta llegar al antepenúltimo o último embarcadero. Llegados a este punto podemos ver la recursión en la fórmula.</p>
-<center>
 <img alt="image" src="../resources/equal.png"/>
-</center>
 <p>Si abusamos de la notación para definir una función C(j) que calcula el coste desde el primer embarcadero hasta el embarcadero j...</p>
-<center>
 <img alt="image" src="../resources/abuse.png"/>
-</center>
 <p>Podremos obtener el coste para C(E) de la manera siguiente...</p>
-<center>
 <img alt="image" src="../resources/c(E).png"/>
-</center>
 <p>El razonamiento para c(E) aplica también para cualquier otro embarcadero. Si queremos calcular el coste del camino más barato entre el primer embarcadero y un embarcadero i cualquiera simplemente cambiamos esa E por una i.</p>
 <p>Con esta fórmula ya tenemos la base de nuestra recursión. Ahora sólo necesitamos considerar nuestros casos base:</p>
 <ul>
 <li>Si la recursión alcanza el embarcadero 1, hemos de devolver 0 ya que es un caso especial de embarcadero donde no hay ningún coste porque es desde el que se empieza.</li>
 <li>Si la recursión alcanza el embarcadero 2 se debe añadir el coste que se obitene de viajar del embarcadero 1 al 2, ya que es el único caso posible.</li>
 </ul>
-<center>
 <img alt="image" src="../resources/recusrion.png"/>
-</center>
 <p>Veamos ahora la implementación de este método:</p>
 </div>
 </div>

@@ -7514,36 +7514,43 @@ a.anchor-link {
 <li>Empieza por 1 y acaba por el último embarcadero E</li>
 <li>Ninguno de los embarcaderos de la secuencia presenta saltos de más de 2 embarcaderos.</li>
 </ul>
-<img alt="image" src="../resources/X.png"/>
-<p>A continuación necesitamos definir una función objetivo que, en este caso <strong>minimizar</strong> para obtener la solución deseada. Usaremos una función C que calcule el coste del camino entre 2 embarcaderos.</p>
-<div>
-<img alt="image" src="../resources/congoarg.png"/>
-</div>
-<img alt="image" src="../resources/congomin.png"/>
-<p>Vemos que buscamos tanto el camino de menor coste como el menor coste asociado a dicho camino.</p>
+$$
+X = \{(e_1, e_2, \dots, e_n) \in [1..E]^+ \mid e_1 = 1; \quad e_n = E; \quad 1 \leq e_i - e_{i-1} \leq 2, \quad 1 &lt; i \leq n\}.
+$$<p>A continuación necesitamos definir una función objetivo que, en este caso <strong>minimizar</strong> para obtener la solución deseada. Usaremos una función C que calcule el coste del camino entre 2 embarcaderos.</p>
+$$
+(\hat{e}_1, \hat{e}_2, \dots, \hat{e}_n) = \arg \min_{(e_1, e_2, \dots, e_n) \in X} c((e_1, e_2, \dots, e_n)).
+$$$$
+\min_{(e_1, e_2, \dots, e_n) \in X} c((e_1, e_2, \dots, e_n)).
+$$<p>Vemos que buscamos tanto el camino de menor coste como el menor coste asociado a dicho camino.</p>
 <p><strong>ECUACIÓN RECURSIVA</strong></p>
 <p>Necesitamos ahora buscar una expresión recursiva que defina el problema a resolver. Utilizaremos una expresión general que obtiene el coste mínimo posible entre 2 embarcaderos y demostraremos cómo se puede "desglosar" en llamadas recursivas de talla menor para obtener una solución válida al problema.</p>
-<img alt="image" src="../resources/defrec.png"/>
-<p>Partiendo de esta expresión, y mediante la propiedad de los sumatorios en la que puedes extraer el último elemento y sumárselo fuera del mismo, extenderemos la expresión a lo siguiente:</p>
-<img alt="image" src="../resources/defrec2.png"/>
-<p>Como sabemos que el penúltimo embarcadero solo puede ser E - 1 o E - 2, podemos describir esta expresión de la manera siguiente:</p>
-<img alt="image" src="../resources/e1e2.png"/>
-<p>Utilizando ahora la propiedad del mínimo donde el mínimo de una suma a+b es igual a el mínimo de a + b... volvemos a reformular para obtener...</p>
-<img alt="image" src="../resources/min2.png"/>
-<p>En la siguiente imagen podremos ver que tanto la parte izquierda de la igualdad como la parte interior de la derecha son muy similares. Solo se diferencian en que la parte izquierda es una expresión <strong>general</strong> para ir del embarcadero 1 al embarcadero E mientras que la parte derecha representa el coste hasta llegar al antepenúltimo o último embarcadero. Llegados a este punto podemos ver la recursión en la fórmula.</p>
-<img alt="image" src="../resources/equal.png"/>
+$$
+\min_{\substack{e_1, e_2, ..., e_n \in X \\ 1 \leq i \leq n}} \sum_{i=1}^{n} c(e_{i-1}, e_i) = \min_{\substack{(e_1, e_2, ..., e_n), \\ 1 \leq i \leq n \\ e_1 = 1, e_n = E \\ 1 \leq e_i - e_{i-1} \leq 2}} \sum_{i=1}^{n} c(e_{i-1}, e_i)
+$$<p>Partiendo de esta expresión, y mediante la propiedad de los sumatorios en la que puedes extraer el último elemento y sumárselo fuera del mismo, extenderemos la expresión a lo siguiente:</p>
+$$
+\min_{\substack{e_1, e_2, ..., e_n \in X \\ 1 \leq i \leq n}} \sum_{i=1}^{n} c(e_{i-1}, e_i) = \min_{\substack{(e_1, e_2, ..., e_n-1), \\ 1 \le i \leq n-1 \\ e_1 = 1, 1 \leq E - e_{n-1} \leq 2 ; \\ 1 \leq e_i - e_{i-1} \leq 2}} ((\sum_{i=1}^{n-1} c(e_{i-1}, e_i) )+ c(e_{i-1}, E))
+$$<p>Como sabemos que el penúltimo embarcadero solo puede ser E - 1 o E - 2, podemos describir esta expresión de la manera siguiente:</p>
+$$
+\min_{\substack{j \in [E-1, E-2]}} (\min_{\substack{(e_1, e_2, ..., e_n-1) | e_1 = 1; e_{n-1} = j; \\ 1 \leq e_i - e_{i-1} \leq 2 ; 1 \le i \leq n-1}} ((\sum_{i=1}^{n-1} c(e_{i-1}, e_i) )+ c(j, E)))
+$$<p>Utilizando ahora la propiedad del mínimo donde el mínimo de una suma a+b es igual a el mínimo de a + b... volvemos a reformular para obtener...</p>
+$$
+\min_{\substack{j \in [E-1, E-2]}} ((\min_{\substack{(e_1, e_2, ..., e_n-1) | e_1 = 1; e_{n-1} = j; \\ 1 \leq e_i - e_{i-1} \leq 2 ; 1 \le i \leq n-1}} \sum_{i=1}^{n-1} c(e_{i-1}, e_i) )+ c(j, E))
+$$<p>En la siguiente imagen podremos ver que tanto la parte izquierda de la igualdad como la parte interior de la derecha son muy similares. Solo se diferencian en que la parte izquierda es una expresión <strong>general</strong> para ir del embarcadero 1 al embarcadero E mientras que la parte derecha representa el coste hasta llegar al antepenúltimo o último embarcadero. Llegados a este punto podemos ver la recursión en la fórmula.</p>
 <p>Si abusamos de la notación para definir una función C(j) que calcula el coste desde el primer embarcadero hasta el embarcadero j...</p>
-<img alt="image" src="../resources/abuse.png"/>
-<p>Podremos obtener el coste para C(E) de la manera siguiente...</p>
-<img alt="image" src="../resources/c(E).png"/>
-<p>El razonamiento para c(E) aplica también para cualquier otro embarcadero. Si queremos calcular el coste del camino más barato entre el primer embarcadero y un embarcadero i cualquiera simplemente cambiamos esa E por una i.</p>
+$$
+C(j) = (\min_{\substack{(e_1, e_2, ..., e_n) | e_1 = 1; e_{n} = j; \\ 1 \leq e_i - e_{i-1} \leq 2 ;  \; 1 \le i \leq n}} \sum_{i=1}^{n} c(e_{i-1}, e_i) ) 
+$$<p>Podremos obtener el coste para C(E) de la manera siguiente...</p>
+$$
+C(E) = \min \left\{ C(E-2) + c(E-2, E), \; C(E-1) + c(E-1, E) \right\}
+$$<p>El razonamiento para c(E) aplica también para cualquier otro embarcadero. Si queremos calcular el coste del camino más barato entre el primer embarcadero y un embarcadero i cualquiera simplemente cambiamos esa E por una i.</p>
 <p>Con esta fórmula ya tenemos la base de nuestra recursión. Ahora sólo necesitamos considerar nuestros casos base:</p>
 <ul>
 <li>Si la recursión alcanza el embarcadero 1, hemos de devolver 0 ya que es un caso especial de embarcadero donde no hay ningún coste porque es desde el que se empieza.</li>
 <li>Si la recursión alcanza el embarcadero 2 se debe añadir el coste que se obitene de viajar del embarcadero 1 al 2, ya que es el único caso posible.</li>
 </ul>
-<img alt="image" src="../resources/recusrion.png"/>
-<p>Veamos ahora la implementación de este método:</p>
+$$
+C(i)= \begin{cases}0,\\c(1,2),\\m/n(C(i-2)+c(i-2,i),C(i-1)+c(i-1,i),\end{cases}
+$$<p>Veamos ahora la implementación de este método:</p>
 </div>
 </div>
 </div>
@@ -7708,6 +7715,144 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>14
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="2.-El-problema-de-la-mochila"><em>2. El problema de la mochila</em><a class="anchor-link" href="#2.-El-problema-de-la-mochila">¶</a></h2><p>El problema de la mochila busca <strong>maximizar el valor obtenido de meter una serie de objetos en una mochila con capacidad limitada</strong>. Cada objeto tiene un valor, cuya suma se busca optimizar, pero también tiene un volumen, por lo que no se pueden meter todos los objetos que se quieran en la mochila.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Aproximaci%C3%B3n-Recursiva">Aproximación Recursiva<a class="anchor-link" href="#Aproximaci%C3%B3n-Recursiva">¶</a></h3><p>Hemos de buscar la solución utilizando la programación dinámica. Nos damos cuenta que el problema se puede expresar en subproblemas idénticos de talla menor que pueden ser resueltos de manera recursiva.</p>
+<p>Primero averiguemos el set de soluciones factibles del problema.</p>
+<p>Será solución todo aquel conjunto de objetos que cumpla las siguientes condiciones:</p>
+<ul>
+<li>No debe exceder la capacidad total de la mochila</li>
+</ul>
+<p>Dado un set de 7 objetos, se dice que un objeto entra en la mochila si el array booleano que representa dicho set tiene un 1 en la posición que representa. Es decir, si hay 7 objetos, tendremos un array tal que [0,0,0,0,0,0,0]. En este caso, ningún objeto entra. si el array fuera [1,0,0,0,0,0,1], el primer y el último objeto entrarían.</p>
+$$
+X = [{(x_1, x_2, ..., x_n) \in [1..N]^* \mid x_i \neq x_j, 1 \leq i \neq j \leq n; \sum_{1 \leq i \leq n} w_{x_i} \leq W }.]
+$$<p>De manera que buscaremos optimizar el argumento (en este caso sería el subset de objetos que metemos en la mochila) para el cual:</p>
+<ul>
+<li>El peso no excede el de la mochila.</li>
+</ul>
+$$ X = [{(x_1, x_2, ..., x_N) \in {0,1}^N \mid \sum_{1 \leq i \leq N} x_i w_i \leq W }.] $$<ul>
+<li>Maximiza el valor.</li>
+</ul>
+$$ [f((x_{1},x_{2},...,x_{N}))=\sum_{1\le i\le N}x_{i}v_{i},] $$<p>De manera que la función objetivo que se busca maximizar es la siguiente:</p>
+$$ (\hat{x}_1, \hat{x}_2, ..., \hat{x}N) = \arg \max{(x_1, x_2, ..., x_N) \in X} f((x_1, x_2, ..., x_N)). $$<p><strong>ECUACIÓN RECURSIVA</strong></p>
+<p>Para abordar el problema usaremos una estrategia <strong>top-to-down</strong> approach, en la que plantearemos la función recursiva desde el caso con el mayor beneficio posible a obtener. De tal manera...</p>
+$$
+\max_{(x_{1},x_{2},...,x_{N})\in {0,1}^{N}\;\sum_{1\le i\le N-1}x_{i}w_{i}\le W}\sum_{1\le i\le N}x_{i}v_{i}=\max_{(x_{1},x_{2},...,x_{N})\in {0,1}^{N}\; \sum_{1\le i\le N-1}x_{i}w_{i}\le W}\left(\left(\sum_{1\le i\le N-1}x_{i}v_{i}\right)+x_{N}v_{N}\right).
+$$<p>La fórmula es un sumatorio que busca el máximo valor para la suma de los valores de cada objeto seleccionado (con un 1 en la componente que le representa en el array booleano. Nótese que la definición del set válido de soluciones se define siempre en los argumentos de cada función <em>max</em>).</p>
+<p>Se ha avanzado en la explicación y se ha aplicado la propiedad de los sumatorios que permite separar el último término del mismo y sumárselo al final restando 1 del límite de iteración.</p>
+<p>Cuando decidimos si meter o no un objeto debemos tener en cuenta lo siguiente:</p>
+<ul>
+<li>Hay espacio?<ul>
+<li>Sí:<ul>
+<li>Podemos meterlo y restarle capacidad a la mochila pero sumarle valor.</li>
+<li>Podemos no meterlo y quedarnos con valor y capacidad inalteradas con respecto al estado anterior.</li>
+</ul>
+</li>
+<li>No:<ul>
+<li>No lo metemos, no hay opción.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Esta es la base de la recursión</strong>. A priori no sabemos si el objeto que metamos ahora mismo será parte de la solución más óptima. Es por eso que debemos contemplar siempre los dos casos mencionados en caso de poder meterlo (en caso de no poder, no hay opción. Esto también es un caso particular de la fórmula de la recursión para este problema).</p>
+<p>Para cada paso de la recursión buscaremos siempre el valor máximo entre el valor actual de nuestra mochila y el que tendría si le sumáramos el objeto siendo "visitado" pero le restáramos capacidad (posiblemente dejando por ende algunos objetos más valiosos atrás, aunque el algoritmo recursivo asegura siempre la mejor solución).</p>
+<p>Apliquemos lo mencionado al elemento N-ésimo de los disponibles (esto nos conviene ya que vamos a ir del N-ésimo hasta el primero, por nuestra aproximación top-down). Un uno significa que incluimos el objeto N-ésimo en la mochila, pero solo es posible si su peso es menor al de la capacidad total. Un cero indica que el objeto no se carga, cosa que puede hacerse siempre independientemente de la capacidad total de la mochila. Así pues...</p>
+$$
+\max_{x_{N}\in \{0,1\}: x_{N}w_{N}\le W} \left( \max_{(x_{1},x_{2},...,x_{N-1})\in \{0,1\}^{N-1}: \sum_{1\le i\le N-1}x_{i}w_{i}\le W-x_{N}w_{N}} \left( \left( \sum_{1\le i\le N-1}x_{i}v_{i} \right) + x_{N}v_{N} \right) \right).
+$$<p>Nótese que la elección de meter o no el objeto sí que está representada, ya que un valor de $ X_{N} $ igual a 0 elimina tanto el peso como el valor de la ecuación.</p>
+<p>Ya puede verse que en los paréntesis interiores del problema se encuentra una instancia reducida del mismo que vuelve a calcular el valor del array de objetos hasta la posición i. Abusando de la notación podemos definir una función $ V(j, W) $ que encapsule este sumatorio y esta minimización para calcular el valor de los objetos hasta la posición j limitados por un peso W, de manera que...</p>
+$$
+V(N,W)=\max_{x_{N}\in {0,1}:x_{N}w_{N}\le W}\left(V(N-1,W-x_{N}w_{N})+x_{N}v_{N}\right)
+$$<p>Con esta fórmula podemos establecer limpiamente nuestros casos de recursión de la siguiente manera:</p>
+$$
+V(i,c) = \begin{cases}
+0, &amp; \text{si } i=0 \text{ o } c=0; \\
+\max(V(i-1,c), V(i-1,c-w_i)+v_i), &amp; \text{si } i&gt;0, c&gt;0, 0&lt;w_i\le c; \\
+V(i-1,c), &amp; \text{si } i&gt;0, c&gt;0, 0&lt;w_i&gt;c.
+\end{cases}
+$$<p>Veamos ahora la implementación de este método:</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">recursive_knapsack_profit</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+  <span class="k">def</span> <span class="nf">V</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">0</span> <span class="ow">or</span> <span class="n">c</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">c</span><span class="o">-</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">V</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="p">),</span> <span class="n">V</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">-</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span> <span class="k">return</span> <span class="n">V</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">V</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Y un ejemplo de uso...</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">W</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">w</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Beneficio máximo al seleccionar objetos de valores </span><span class="si">%s</span><span class="s2"> y pesos </span><span class="si">%s</span><span class="s2"> para"</span> <span class="o">%</span> <span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"cargar en una mochila con capacidad </span><span class="si">%d</span><span class="s2">: </span><span class="si">%d</span><span class="s2">."</span> <span class="o">%</span> <span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">recursive_knapsack_profit</span><span class="p">(</span><span class="n">W</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">w</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Beneficio máximo al seleccionar objetos de valores [90, 75, 60, 20, 10] y pesos [4, 3, 3, 2, 2] para
+cargar en una mochila con capacidad 6: 135.
 </pre>
 </div>
 </div>

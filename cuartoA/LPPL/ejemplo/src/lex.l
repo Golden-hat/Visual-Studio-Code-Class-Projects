@@ -25,7 +25,7 @@
 delimitador     [ \t\n]+
 digito          [0-9]
 letra           [a-zA-Z]
-id              {letra}({letra}|{letra})*
+id              {letra}({digito}|{letra}|_)*
 entero          {digit}+
 
 %%
@@ -39,6 +39,8 @@ entero          {digit}+
 ")"             { retornar (DIV_) ; }
 {entero}        { retornar (CTE_) ; }
 .				{ yyerror("Caracter desconocido") ;}
+
+{id} { retornar (ID_) }
 
 %%
 int verbosidad = FALSE; 

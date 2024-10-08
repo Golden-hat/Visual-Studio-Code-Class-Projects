@@ -20,29 +20,56 @@
 /*----------------------------------------------------------------------
   Para mantener el numero de linea actual en la variable global yylineno
 ----------------------------------------------------------------------*/
-%option yylineno
+%
+
+option yylineno
 
 delimitador     [ \t\n]+
 digito          [0-9]
 letra           [a-zA-Z]
 id              {letra}({digito}|{letra}|_)*
-entero          {digit}+
+entero          {digito}+
+real            {digito}*.{digito}+
+cte             {entero}|{real}
+comentario      //({digito}|{letra}| )*}\n
 
 %%
 
-{delimitador}   {if (verbosidad) ECHO ; }
-"+"		 		{ retornar (MAS_) ; }
+"+"		 	      	{ retornar (MAS_) ; }
 "-"             { retornar (MENOS_) ; }
 "*"             { retornar (POR_) ; }
 "/"             { retornar (DIV_) ; }
 "("             { retornar (OPAR_) ; }
-")"             { retornar (DIV_) ; }
-{entero}        { retornar (CTE_) ; }
-.				{ yyerror("Caracter desconocido") ;}
-
-{id} { retornar (ID_) }
+")"             { retornar (CPAR_) ; }
+"=="            { retornar (EQ_); } 
+"="             { retornar (ASIG_) ; }
+"{"             { retornar (OLLA_) ; }
+"}"             { retornar (CLLA_) ; }
+"["             { retornar (OCOR_) ; }
+"]"             { retornar (CCOR_) ; }
+"&&"            { retornar (AND_) ; }
+"||"            { retornar (OR_) ; }
+"!="            { retornar (NEQ_) ; }
+"<"             { retornar (LE_) ; }
+">"             { retornar (GE_) ; }
+"<="            { retornar (LEQ_) ; }
+">="            { retornar (GEQ_) ; }
+"!"             { retornar (NOT_) ; }
+"true"          { retornar (TRUE_) ; }
+"false"         { retornar (FALSE_) ; }
+"read"          { retornar (READ_) ; }
+"print"         { retornar (PRINT_) ; }
+"if"            { retornar (IF_) ; }
+"else"          { retornar (ELSE_) ; }
+"for"           { retornar (FOR_) ; }
+"return"        { retornar (RET_) ; }
+{delimitador}   {if (verbosidad) ECHO ; }
+{cte}           { retornar (CTE_) ; }
+{id}            { retornar (ID_) ;  }
+.				        { yyerror("Caracter desconocido") ;}
 
 %%
+
 int verbosidad = FALSE; 
 
 /*****************************************************************************/

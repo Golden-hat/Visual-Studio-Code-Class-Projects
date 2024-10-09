@@ -72,13 +72,10 @@ comentario      //({digito}|{letra}| )*}\n
 
 int verbosidad = FALSE; 
 
-/*****************************************************************************/
 void yyerror(const char *msg){
-/*  Tratamiento de errores.                                                  */
   fprintf(stderr, "\nError en la linea %d: %s\n", yylineno, msg);
 }
 
-/*****************************************************************************/
 int main(int argc, char **argv) {
 	int i, n=1 ;
 
@@ -92,5 +89,3 @@ int main(int argc, char **argv) {
 
 	return (0);
 } 
-
-/*****************************************************************************/

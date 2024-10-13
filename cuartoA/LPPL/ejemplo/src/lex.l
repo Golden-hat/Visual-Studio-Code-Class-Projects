@@ -20,9 +20,7 @@
 /*----------------------------------------------------------------------
   Para mantener el numero de linea actual en la variable global yylineno
 ----------------------------------------------------------------------*/
-%
-
-option yylineno
+%option yylineno
 
 delimitador     [ \t\n]+
 digito          [0-9]
@@ -63,6 +61,9 @@ comentario      //({digito}|{letra}| )*}\n
 "else"          { retornar (ELSE_) ; }
 "for"           { retornar (FOR_) ; }
 "return"        { retornar (RET_) ; }
+"int"           { retornar (INT_) ; }
+"bool"          { retornar (BOOL_) ; }
+";"             { retornar (SCOL_) ; }
 {delimitador}   {if (verbosidad) ECHO ; }
 {cte}           { retornar (CTE_) ; }
 {id}            { retornar (ID_) ;  }

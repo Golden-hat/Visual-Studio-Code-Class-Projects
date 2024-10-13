@@ -1,1 +1,4 @@
-ab
+(for int i == 1; i <= cte; i++){
+  whatever = 0;
+  return(whatever)
+}

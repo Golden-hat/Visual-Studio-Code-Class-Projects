@@ -1,11 +1,11 @@
 ###############################################################################
-OBJS = alex.c
+OBJS = lex.c
 #
 cmc:	$(OBJS)  
 	gcc -Wall -I./include $(OBJS) -lfl -o cmc
-alex.c:	src/alex.l 
-	flex -oalex.c src/alex.l 
+lex.c:	src/lex.l 
+	flex -olex.c src/lex.l 
 
 clean:
-	rm -f ./alex.c ./asin.c ./asin.h ./*.o  ./include/asin.h ./*~
+	rm -f ./lex.c ./asin.c ./asin.h ./*.o  ./include/asin.h ./*~
 ###############################################################################

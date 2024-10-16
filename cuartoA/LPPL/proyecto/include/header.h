@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 /*****************************************************************************/
 /*****************************************************************************/
 #ifndef _HEADER_H
@@ -8,6 +10,7 @@
 #define FALSE 0
 
 extern int yylex();
+extern int yyparse();
 
 extern FILE *yyin;
 extern int   yylineno;

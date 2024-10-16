@@ -1,25 +1,23 @@
-/*****************************************************************************/
-/**  Ejemplo de FLEX: S E M - 1             2018-2019 <jbenedi@dsic.upv.es> **/
-/**  V. 20                                                                  **/
-/*****************************************************************************/
 %{
-#include <stdio.h>
-#include <string.h>
 #include "header.h"
+#include "asin.h"
 
-#define  retornar(x) {if (verbosidad) ECHO;}
-
+#define  retornar(x) {if (verbosidad) ECHO ; return (x) ; }
 %}
+
 /*----------------------------------------------------------------------
   Dado que las funciones "input()" y "unput(c)" son costosas y no las
   utilizaremos, evitaremos que se generen automaticamente sus rutinas
   correspondientes desactivandolas mediante las siguientes opciones:
 ----------------------------------------------------------------------*/
+
 %option noinput
 %option nounput
+
 /*----------------------------------------------------------------------
   Para mantener el numero de linea actual en la variable global yylineno
 ----------------------------------------------------------------------*/
+
 %option yylineno
 
 delimitador     [ \t\n]+
@@ -27,9 +25,9 @@ digito          [0-9]
 letra           [a-zA-Z]
 id              {letra}({digito}|{letra}|_)*
 entero          {digito}+
-real            {digito}*.{digito}+
+real            {digito}*"."{digito}+
 cte             {entero}|{real}
-comentario      //({digito}|{letra}| )*}\n
+comentario      \/\/.*
 
 %%
 
@@ -37,14 +35,14 @@ comentario      //({digito}|{letra}| )*}\n
 "-"             { retornar (MENOS_) ; }
 "*"             { retornar (POR_) ; }
 "/"             { retornar (DIV_) ; }
-"("             { retornar (OPAR_) ; }
-")"             { retornar (CPAR_) ; }
+"("             { retornar (PARA_) ; }
+")"             { retornar (PARC_) ; }
 "=="            { retornar (EQ_); } 
 "="             { retornar (ASIG_) ; }
-"{"             { retornar (OLLA_) ; }
-"}"             { retornar (CLLA_) ; }
-"["             { retornar (OCOR_) ; }
-"]"             { retornar (CCOR_) ; }
+"{"             { retornar (LLAA_) ; }
+"}"             { retornar (LLAC_) ; }
+"["             { retornar (CORA_) ; }
+"]"             { retornar (CORC_) ; }
 "&&"            { retornar (AND_) ; }
 "||"            { retornar (OR_) ; }
 "!="            { retornar (NEQ_) ; }
@@ -64,29 +62,11 @@ comentario      //({digito}|{letra}| )*}\n
 "int"           { retornar (INT_) ; }
 "bool"          { retornar (BOOL_) ; }
 ";"             { retornar (SCOL_) ; }
+","             { retornar (COL_) ; }
 {delimitador}   {if (verbosidad) ECHO ; }
+{comentario}    {if (verbosidad) ECHO ; }
 {cte}           { retornar (CTE_) ; }
 {id}            { retornar (ID_) ;  }
 .				        { yyerror("Caracter desconocido") ;}
 
 %%
-
-int verbosidad = FALSE; 
-
-void yyerror(const char *msg){
-  fprintf(stderr, "\nError en la linea %d: %s\n", yylineno, msg);
-}
-
-int main(int argc, char **argv) {
-	int i, n=1 ;
-
-	for (i=1; i<argc; ++i)
-      if (strcmp(argv[i], "-v")==0) { verbosidad = TRUE; n++; }
-	if (argc == n+1)
-      if ((yyin = fopen (argv[n], "r")) == NULL)
-      	fprintf (stderr, "El fichero '%s' no es valido\n", argv[n]) ;     
-      else yylex ();
-	else fprintf (stderr, "Uso: cmc [-v] fichero\n");
-
-	return (0);
-} 

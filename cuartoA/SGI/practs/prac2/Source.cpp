@@ -6,6 +6,7 @@
 
 using namespace cb;
 static GLuint engranaje;
+static GLuint teeth;
 
 //Funcion de muestreo de una circunferencia
 vector<Vec3> puntosCircunferencia(float radio, int numPuntos, float desfase, float Z)
@@ -18,27 +19,45 @@ vector<Vec3> puntosCircunferencia(float radio, int numPuntos, float desfase, flo
 
 void gear2D(int nPuntos, float desfase, float pico, float valle, float eje, float Z)
 {
-	vector<Vec3> pExterior = puntosCircunferencia(valle, nPuntos, desfase - PI / nPuntos, Z);
-	vector<Vec3> pInterior = puntosCircunferencia(eje, nPuntos, desfase, Z);
-	vector<Vec3> pFar = puntosCircunferencia(pico, nPuntos, desfase, Z);
+	vector<Vec3> pValle = puntosCircunferencia(valle, nPuntos, desfase - PI / nPuntos, Z);
+	vector<Vec3> pEje = puntosCircunferencia(eje, nPuntos, desfase, Z);
+	vector<Vec3> pPico = puntosCircunferencia(pico, nPuntos, desfase, Z);
 
 	engranaje = glGenLists(1);
 	glNewList(engranaje, GL_COMPILE);
-	glBegin(GL_QUAD_STRIP);
 	for (int i = 0; i < nPuntos; i++) {
 		glBegin(GL_TRIANGLE_STRIP);
-		glVertex3fv(pInterior[i % nPuntos]);
-		glVertex3fv(pExterior[i % nPuntos]);
-		glVertex3fv(pExterior[(i + 1) % nPuntos]);
-		glVertex3fv(pFar[i % nPuntos]);
+		glVertex3fv(pEje[i % nPuntos]);
+		glVertex3fv(pValle[i % nPuntos]);
+		glVertex3fv(pValle[(i + 1) % nPuntos]);
+		glVertex3fv(pPico[i % nPuntos]);
 		glEnd();
 	}
 	glEndList();
 }
 
-void gear3D(int nPuntos, float desfase, float pico, float valle, float eje) 
+void teethGen(int nPuntos, float desfase, float pico, float valle, float eje, float Z, float diff) 
 {
-	
+	vector<Vec3> pEje = puntosCircunferencia(eje, nPuntos, desfase, Z);
+	vector<Vec3> pValle = puntosCircunferencia(valle, nPuntos, desfase - PI / nPuntos, Z);
+	vector<Vec3> pPico = puntosCircunferencia(pico, nPuntos, desfase, Z);
+
+	vector<Vec3> pEje2 = puntosCircunferencia(eje, nPuntos, desfase, Z + diff);
+	vector<Vec3> pValle2 = puntosCircunferencia(valle, nPuntos, desfase - PI / nPuntos, Z + diff);
+	vector<Vec3> pPico2 = puntosCircunferencia(pico, nPuntos, desfase, Z + diff);
+
+	teeth = glGenLists(1);
+	glNewList(teeth, GL_COMPILE);
+	for (int i = 0; i < nPuntos; i++) {
+		/* Dientes */
+		quad(pValle[i+1 % nPuntos], pValle2[i+1 % nPuntos], pPico2[(i) % nPuntos], pPico[(i) % nPuntos]);
+		quad(pValle[i+1 % nPuntos] , pValle2[i+1 % nPuntos], pPico2[(i+1) % nPuntos], pPico[(i+1) % nPuntos]);
+
+		/* Eje */
+		quad(pEje[i+1 % nPuntos], pEje2[i+1 % nPuntos], pEje2[(i) % nPuntos], pEje[(i) % nPuntos]);
+		glEnd();
+	}
+	glEndList();
 }
 
 GLuint copyAndTranslate(GLuint originalList, GLfloat translateX, GLfloat translateY, GLfloat translateZ)
@@ -49,7 +68,7 @@ GLuint copyAndTranslate(GLuint originalList, GLfloat translateX, GLfloat transla
 	glNewList(newList, GL_COMPILE);
 
 	// Apply the translation
-	glTranslatef(translateX, translateY, translateZ);
+	glTranslatef(translateX, translateY, translateZ);	
 
 	// Call the original display list
 	glCallList(originalList);
@@ -62,30 +81,46 @@ GLuint copyAndTranslate(GLuint originalList, GLfloat translateX, GLfloat transla
 
 void init()
 {
-	gear2D(10, PI / 2, 0.9, 0.4, 0.2, 0);
+	gear2D(10, PI / 2, 0.9, 0.7, 0.2, 0);
+	teethGen(10, PI / 2, 0.9, 0.7, 0.2, 0, 0.1);
 }
 
 // Funcion de atencion al evento de dibujo
 void display()
 {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT)
+	glClear(GL_COLOR_BUFFER_BIT);
+	glDisable(GL_CULL_FACE);
 
 	glRotatef(10, 0, 1, 0);
 
 	glPushMatrix();
+	
+		glPushMatrix();
 
-		/* Dibujo cuerpo engranaje */
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-		glColor3fv(VERDE);
+			/* Dientes e interior */
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+			glTranslatef(0.0f, 0.0f, -0.05f);
+			glColor3fv(BLANCO);
+			glLineWidth(1);
+			glCallList(teeth);
+
+		glPopMatrix();
+
+		/* Cara anterior */
+		glPolygonMode(GL_FRONT, GL_FILL);
+		glPolygonMode(GL_BACK, GL_LINE);
+		glTranslatef(0.0f, 0.0f, 0.05f);
+		glColor3fv(ROJO);
 		glCallList(engranaje);
 
 		GLuint copy = copyAndTranslate(engranaje, 0.0f, 0.0f, 0.1f);
 		glPushMatrix();
 
-			/* Dibujo outline engranaje*/
-			glPolygonMode(GL_FRONT, GL_LINE);
-			glColor3fv(BLANCO);
+			/* Cara posterior */
+			glPolygonMode(GL_FRONT, GL_FILL);
+			glPolygonMode(GL_BACK, GL_LINE);
+			glColor3fv(VERDE);
 			glLineWidth(1);
 			glRotatef(180, 0, 1, 0);
 			glCallList(copy);

@@ -1,4 +1,3 @@
-
 int x; int y;
 
 int suma(int x, int y)

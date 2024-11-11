@@ -25,7 +25,7 @@ digito          [0-9]
 letra           [a-zA-Z]
 id              {letra}({digito}|{letra}|_)*
 entero          {digito}+
-real            {digito}*"."{digito}+
+real            {digito}*"."{digito}*
 cte             {entero}|{real}
 comentario      \/\/.*
 

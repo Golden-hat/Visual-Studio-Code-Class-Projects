@@ -1,33 +1,56 @@
 %{
-#include "header.h"
+       #include "header.h"
+	#include "libtds.h" 
+       #include <stdio.h>
+	#include <string.h>
 %}
+
+%union {
+       int cent;
+       char *ident;
+       List list;
+       Expr texp;
+}
 
 %token MAS_ MENOS_ POR_ DIV_ PARA_ PARC_ EQ_ ASIG_
 %token LLAA_ LLAC_ CORA_ CORC_ AND_ OR_ NEQ_ LE_ GE_ LEQ_ GEQ_ NOT_ TRUE_ FALSE_
 %token READ_ PRINT_ IF_ ELSE_ FOR_ RET_ 
-%token INT_ BOOL_ SCOL_ CTE_ ID_ COL_
+%token INT_ BOOL_ SCOL_  COL_
+
+%token <cent> CTE_
+%token <ident> ID_
+%type <list> listParamForm listParamAct paramForm
+%type <cent>  
+       programa decla declaVar tipoSimp declaFunc
+       bloque declaVarLocal inst instExpre listDecla
+       instEntSal instSelec instIter paramAct 
+       opLogic opIgual opRel opAd opMul opUna
+
+%type <texp> expreOP expre expreLogic expreIgual expreRel expreAd expreMul expreUna expreSufi const
 
 %%
 
-programa : listDecla 
+programa 
+       : 
+       { dvar=0; niv = 0; cargaContexto(niv); } 
+       listDecla 
+       { if(verTDS) mostrarTDS(); }
        ;
 
-listDecla : decla
-       | listDecla decla
+listDecla 
+       : decla              { $$ = $1; }
+       | listDecla decla    { $$ = $1 + $2; }
        ;
 
-decla : declaVar
-       | declaFunc
+decla 
+       : declaVar           { $$ = 0; }
+       | declaFunc          { $$ = $1; }
        ;
 
-declaVar : tipoSimp ID_ SCOL_
+declaVar 
+       : tipoSimp ID_ SCOL_
        | tipoSimp ID_ ASIG_ const SCOL_
        | tipoSimp ID_ CORA_ CTE_ CORC_ SCOL_
-       ;
-
-const : CTE_
-       | TRUE_
-       | FALSE_
        ;
 
 tipoSimp : INT_
@@ -90,51 +113,84 @@ expreLogic : expreIgual
        | expreLogic opLogic expreIgual
        ;
 
-expreIgual : expreRel
+expreIgual 
+       : expreRel
        | expreIgual opIgual expreRel
        ;
 
-expreRel : expreAd 
+expreRel 
+       : expreAd 
        | expreRel opRel expreAd
        ;
 
-expreAd : expreMul
+expreAd 
+       : expreMul
        | expreAd opAd expreMul
        ;
 
-expreMul : expreUna
+expreMul 
+       : expreUna
        | expreMul opMul expreUna
        ;
 
-expreUna : expreSufi
+expreUna 
+       : expreSufi
        | opUna expreUna
        ;
 
-expreSufi : const
+expreSufi 
+       : const
        | PARA_ expre PARC_
        | ID_
        | ID_ CORA_ expre CORC_
        | ID_ PARA_ paramAct PARC_
        ;
 
-paramAct : listParamAct
+paramAct 
+       : listParamAct
        |
        ;
 
-listParamAct : expre
+listParamAct 
+       : expre
        | expre COL_ listParamAct
        ;
 
-opLogic : AND_ | OR_ ;
+const 
+       : CTE_         { $$.t = T_ENTERO; }
+       | TRUE_        { $$.t = T_LOGICO; }
+       | FALSE_       { $$.t = T_LOGICO; }
+       ;
 
-opIgual : EQ_ | NEQ_ ;
+opLogic
+       : AND_    { $$ = OP_AND; }
+       | OR_     { $$ = OP_OR; }
+       ;
 
-opRel : GE_ | LE_ | GEQ_ | LEQ_ ;
+opIgual
+       : EQ_     { $$ = OP_IGUAL; }
+       | NEQ_    { $$ = OP_NOTIGUAL; }
+       ;
 
-opAd : MAS_ | MENOS_ ; 
+opRel
+       : GE_     { $$ = OP_MAYOR; }
+       | LE_     { $$ = OP_MENOR; }
+       | GEQ_    { $$ = OP_MAYORIG; }
+       | LEQ_    { $$ = OP_MENORIG; }
+       ;
 
-opMul : POR_ | DIV_ ;
+opAd
+       : MAS_    { $$ = OP_SUMA; }
+       | MENOS_  { $$ = OP_RESTA; }
+       ;
 
-opUna : MAS_ | MENOS_ | NOT_ ;
+opMul
+       : POR_    { $$ = OP_MULT; }
+       | DIV_    { $$ = OP_DIV; }
+       ;
 
-%%
+opUna
+       : MAS_    { $$ = OP_SUMA; }
+       | MENOS_  { $$ = OP_RESTA; }
+       | NOT_    { $$ = OP_NOT; }
+       ;

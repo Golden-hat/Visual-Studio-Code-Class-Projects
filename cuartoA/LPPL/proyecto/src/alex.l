@@ -1,8 +1,8 @@
 %{
 #include "header.h"
 #include "asin.h"
-
 #define  retornar(x) {if (verbosidad) ECHO ; return (x) ; }
+
 %}
 
 /*----------------------------------------------------------------------

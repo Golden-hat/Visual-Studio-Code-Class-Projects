@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\cuartoA",
-    "\\cuartoA\\LPPL"
+    "\\cuartoA\\SGI",
+    "\\cuartoA\\SGI\\practs",
+    "\\cuartoA\\SGI\\practs\\primer_entregable"
   ],
-  "SelectedNode": "\\cuartoA\\LPPL",
+  "SelectedNode": "\\cuartoA\\SGI\\practs\\primer_entregable\\Source.cpp",
   "PreviewInSolutionExplorer": false
 }

@@ -10,7 +10,7 @@ static GLuint axis;
 static float rotationAngle = 0.0f;
 static float rotationAngleCabin = 0.0f;
 
-const float rotationSpeed = 360.0f / 6.0f; int fps = 60;       
+const float rotationSpeed = 360.0f / 20.0f; int fps = 60;       
 
 vector<Vec3> puntosCircunferencia(float radio, int numPuntos, float desfase, float Z)
 {
@@ -203,10 +203,8 @@ void draw_cube(float size) {
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
-void draw_carousel(float x, float y, float z, float desfase, float angle) {
+void draw_carousel(float x, float y, float z, float desfase) {
 	float size = 0.10f;
-	
-	glRotatef(angle, 0, 0, 1);
 
 	glPushMatrix();
 	glTranslatef(x, y - size / 2, z);
@@ -409,7 +407,7 @@ void draw_wheel(float starting_radio, int numPuntos, float desfase)
 		}
 		glEnd();
 
-		// CAROUSEL
+		 // CAROUSEL
 		//for (int i = 0; i < numPuntos; i++) 
 		//{
 		//	draw_carousel(array[array.size() - 1][i].x, array[array.size() - 1][i].y, (array[array.size() - 1][i].z - desfase + array[array.size() - 1][i].z) * 0.5, 0.5);
@@ -437,27 +435,17 @@ void display()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 	glTranslatef(0.0f, -0.05f, -3.0f);
+
+
 	glCallList(axis);
 
 	glRotatef(rotationAngle, 0.0f, 0.0f, 1.0f);
-	glPushMatrix();
-
-	for (int i = 0; i < 18; i++) {
-		float angle = 2.0f * PI * i / 18 + rotationAngle * PI / 180.0f; // Angle for each cart
-		float x = axis_o * cos(angle);
-		float y = axis_o * sin(angle);
-		float z = 0.0f; // Assuming the carts are in the z=0 plane
-
-		std::cout << "angle" << angle;
-
-		// Calculate the angle to keep the cart facing downward
-		float cartAngle = atan2(y, x) * 180.0f / PI + 90.0f;
-
-		// Draw each cart dynamically
-		draw_carousel(x, y, z, 0.1, angle);
+	for (int i = 0; i < 18; i++)
+	{	
+		glPushMatrix();
+		draw_carousel(outer[i].x, outer[i].y, outer[i].z, 0.5);
+		glPopMatrix();
 	}
-
-	glPopMatrix();
 
 	glCallList(wheel);
 	glutSwapBuffers();

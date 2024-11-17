@@ -7,10 +7,21 @@ constexpr auto PROYECTO = "PROYECTO";
 using namespace cb;
 static GLuint wheel;
 static GLuint axis;
-static float rotationAngle = 0.0f;
-static float rotationAngleCabin = 0.0f;
+static GLuint cabins;
 
-const float rotationSpeed = 360.0f / 20.0f; int fps = 60;       
+float lastX = 0, lastY = 0;
+bool isDragging = false;
+
+static float rotationAngle = 0.0f;
+const float rotationSpeed = 360.0f / 15.0f; int fps = 60;
+
+float cameraPosX = 0.0f, cameraPosY = 0.0f, cameraPosZ = 3.0f;  // Camera position
+float cameraYaw = -90.0f;  // Horizontal rotation (yaw)
+float cameraPitch = 0.0f;  // Vertical rotation (pitch)
+float cameraSpeed = 0.1f;  // Speed of movement
+float mouseSensitivity = 0.2f;  // Mouse sensitivity
+
+bool keys[256];
 
 vector<Vec3> puntosCircunferencia(float radio, int numPuntos, float desfase, float Z)
 {
@@ -19,6 +30,8 @@ vector<Vec3> puntosCircunferencia(float radio, int numPuntos, float desfase, flo
 		puntos.push_back(Vec3(radio * cos(angulo), radio * sin(angulo), Z));
 	return puntos;
 }
+
+vector<Vec3> cabin_points = puntosCircunferencia(0.05*15, 18, 0, 0.0);
 
 void draw_axis(float desfase, int numPuntos, float starting_radio) 
 {
@@ -100,7 +113,7 @@ void draw_axis(float desfase, int numPuntos, float starting_radio)
 	glEnd();
 
 	// SUPPORT
-	glLineWidth(10.0f);
+	glLineWidth(20.0f);
 	glBegin(GL_LINES);
 		glVertex3f(0.0f, 0.0f, desfase * 1);  // Starting point of the line
 		glVertex3f(-starting_radio * 10, -starting_radio*18, desfase); // Ending point of the line
@@ -203,7 +216,7 @@ void draw_cube(float size) {
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
-void draw_carousel(float x, float y, float z, float desfase) {
+void draw_cabin(float x, float y, float z, float desfase) {
 	float size = 0.10f;
 
 	glPushMatrix();
@@ -274,6 +287,16 @@ void draw_carousel(float x, float y, float z, float desfase) {
 		glEnd();
 	}
 	glPopMatrix();
+}
+
+void draw_cabins(vector<Vec3> points)
+{
+	for (int i = 0; i < points.size()-1; i++) 
+	{
+		glPushMatrix();
+		draw_cabin(points[i].x, points[i].y, -0.05, 0.5);
+		glPopMatrix();
+	}
 }
 
 void draw_wheel(float starting_radio, int numPuntos, float desfase)
@@ -407,13 +430,68 @@ void draw_wheel(float starting_radio, int numPuntos, float desfase)
 		}
 		glEnd();
 
-		 // CAROUSEL
-		//for (int i = 0; i < numPuntos; i++) 
-		//{
-		//	draw_carousel(array[array.size() - 1][i].x, array[array.size() - 1][i].y, (array[array.size() - 1][i].z - desfase + array[array.size() - 1][i].z) * 0.5, 0.5);
-		//}
-
 	glEndList();
+}
+
+void updateCamera()
+{
+	// Calculate new camera direction based on yaw and pitch
+	float frontX = cos(cameraYaw * PI / 180.0f);
+	float frontY = sin(cameraPitch * PI / 180.0f);
+	float frontZ = sin(cameraYaw * PI / 180.0f);
+
+	// Normalize the direction vector
+	float cameraFrontX = frontX;
+	float cameraFrontY = frontY;
+	float cameraFrontZ = frontZ;
+
+	// Update the camera position based on WASD keys
+	if (keys['w']) {  // Move forward
+		cameraPosX += cameraFrontX * cameraSpeed*0.5;
+		cameraPosZ += cameraFrontZ * cameraSpeed*0.5;
+	}
+	if (keys['s']) {  // Move backward
+		cameraPosX -= cameraFrontX * cameraSpeed * 0.5;
+		cameraPosZ -= cameraFrontZ * cameraSpeed * 0.5;
+	}
+	if (keys['d']) {  // Move left
+		cameraPosX -= cameraFrontZ * cameraSpeed * 0.5;
+		cameraPosZ += cameraFrontX * cameraSpeed * 0.5;
+	}
+	if (keys['a']) {  // Move right
+		cameraPosX += cameraFrontZ * cameraSpeed * 0.5;
+		cameraPosZ -= cameraFrontX * cameraSpeed * 0.5;
+	}
+
+	if (keys[32]) {
+		cameraPosY += cameraSpeed * 0.3;
+	}
+
+	if (keys['c']) { 	
+		cameraPosY -= cameraSpeed * 0.3;
+	}
+
+	// Update the camera position using gluLookAt
+	gluLookAt(cameraPosX, cameraPosY, cameraPosZ,
+		cameraPosX + cameraFrontX, cameraPosY + cameraFrontY, cameraPosZ + cameraFrontZ,
+		0.0f, 1.0f, 0.0f);  // Camera looks in the front direction
+}
+
+// Function to capture mouse motion for camera rotation
+void mouseMotion(int x, int y)
+{
+	int deltaX = x - lastX;
+	int deltaY = y - lastY;
+
+	cameraYaw += deltaX * mouseSensitivity;  // Horizontal rotation
+	cameraPitch -= deltaY * mouseSensitivity;  // Vertical rotation
+
+	// Clamp the pitch to prevent flipping the camera upside down
+	if (cameraPitch > 89.0f) cameraPitch = 89.0f;
+	if (cameraPitch < -89.0f) cameraPitch = -89.0f;
+
+	lastX = x;
+	lastY = y;
 }
 
 void reshape(GLint w, GLint h)
@@ -428,42 +506,39 @@ void reshape(GLint w, GLint h)
 
 void display()
 {
-	float axis_o = 0.05 * 15;
-
-	vector<Vec3> outer = puntosCircunferencia(axis_o, 18, 0, 0.0);
-
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
-	glTranslatef(0.0f, -0.05f, -3.0f);
 
+	updateCamera();  // Update the camera position
+
+	draw_cabins(cabin_points);
 
 	glCallList(axis);
 
 	glRotatef(rotationAngle, 0.0f, 0.0f, 1.0f);
+
 	for (int i = 0; i < 18; i++)
-	{	
-		glPushMatrix();
-		draw_carousel(outer[i].x, outer[i].y, outer[i].z, 0.5);
-		glPopMatrix();
+	{
+		float angle = (rotationAngle + (360.0 / 18.0 * i)) * PI / 180.0;
+		cabin_points[i].x = cos(angle) * 0.05 * 15;
+		cabin_points[i].y = sin(angle) * 0.05 * 15;
 	}
 
 	glCallList(wheel);
+
 	glutSwapBuffers();
 }
 
 void update(int value)
 {
-	// Calculate the rotation increment based on FPS
 	rotationAngle += rotationSpeed / fps;
 	if (rotationAngle >= 360.0f) {
-		rotationAngle -= 360.0f; // Keep angle within [0, 360)
+		rotationAngle -= 360.0f;
 	}
 
-	// Redisplay and reset the timer
 	glutPostRedisplay();
 	glutTimerFunc(1000 / fps, update, 0);
 }
-
 
 void init()
 {
@@ -473,17 +548,37 @@ void init()
 	draw_axis(0.1, 18, 0.05);
 }
 
+void keyboard(unsigned char key, int x, int y)
+{
+	keys[key] = true;  }
+
+void keyboardUp(unsigned char key, int x, int y)
+{
+	keys[key] = false;  }
+
+void mouseButton(int button, int state, int x, int y)
+{
+	if (state == GLUT_DOWN)
+	{
+		lastX = x;
+		lastY = y;
+	}
+}
+
 int main(int argc, char** argv)
 {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(600, 600);
 	glutInitWindowPosition(50, 50);
-	glutCreateWindow(PROYECTO);
+	glutCreateWindow("FPS Camera");
 	init();
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
-	glutTimerFunc(0, update, 0); // Start the animation timer
+	glutKeyboardFunc(keyboard); 	
+	glutKeyboardUpFunc(keyboardUp); 
+	glutMotionFunc(mouseMotion); 
+	glutMouseFunc(mouseButton); 
+	glutTimerFunc(0, update, 0);
 	glutMainLoop();
 }
-

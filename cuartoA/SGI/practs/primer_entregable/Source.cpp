@@ -13,13 +13,15 @@ float lastX = 0, lastY = 0;
 bool isDragging = false;
 
 static float rotationAngle = 0.0f;
-const float rotationSpeed = 360.0f / 15.0f; int fps = 60;
+const float rotationSpeed = 360.0f / 30.0f; int fps = 60;
 
-float cameraPosX = 0.0f, cameraPosY = 0.0f, cameraPosZ = 3.0f;  // Camera position
-float cameraYaw = -90.0f;  // Horizontal rotation (yaw)
-float cameraPitch = 0.0f;  // Vertical rotation (pitch)
-float cameraSpeed = 0.1f;  // Speed of movement
-float mouseSensitivity = 0.2f;  // Mouse sensitivity
+float cameraPosX = 0.0f, cameraPosY = 0.0f, cameraPosZ = 3.0f;
+float cameraYaw = -90.0f;  
+float cameraPitch = 0.0f;  
+float cameraSpeed = 0.1f;  
+float mouseSensitivity = 0.2f; 
+
+bool canUpdate = false;
 
 bool keys[256];
 
@@ -265,8 +267,7 @@ void draw_cabin(float x, float y, float z, float desfase) {
 	
 	// ROOF-CONNECTION AND ROOF
 	for (int i = 0; i < numPuntos; i++) {
-		// Draw lines connecting corresponding vertices on the front and back
-		glBegin(GL_LINES); // Use GL_LINES for a single line between two vertices
+		glBegin(GL_LINES); 
 		glVertex3f(circle[i].x, circle[i].y, circle[i].z + size / 2); // Back vertex
 		glVertex3f(circle[i].x, circle[i].y + 0.05, circle[i].z + size / 2); // Front vertex
 		glEnd();
@@ -276,12 +277,11 @@ void draw_cabin(float x, float y, float z, float desfase) {
 		glVertex3f(circle[i].x, circle[i].y + 0.05, circle[i].z - size / 2); // Front vertex
 		glEnd();
 
-		glBegin(GL_TRIANGLE_STRIP); // Begin drawing the triangle strip
+		glBegin(GL_TRIANGLE_STRIP); 
 		for (int i = 0; i < numPuntos; i++) {
-			if (circle[i].y + 0.05 > (circle[0].y + circle[numPuntos/2].y)*0.5 + 0.03) { // Check if the y height meets the threshold
-				// Add vertices for the front and back of the cube
-				glVertex3f(circle[i].x, circle[i].y + 0.05, circle[i].z - size / 2); // Back vertex
-				glVertex3f(circle[i].x, circle[i].y + 0.05, circle[i].z + size / 2); // Front vertex
+			if (circle[i].y + 0.05 > (circle[0].y + circle[numPuntos/2].y)*0.5 + 0.03) {			
+				glVertex3f(circle[i].x, circle[i].y + 0.05, circle[i].z - size / 2); 
+				glVertex3f(circle[i].x, circle[i].y + 0.05, circle[i].z + size / 2); 
 			}
 		}
 		glEnd();
@@ -462,16 +462,13 @@ void updateCamera()
 		cameraPosX += cameraFrontZ * cameraSpeed * 0.5;
 		cameraPosZ -= cameraFrontX * cameraSpeed * 0.5;
 	}
-
 	if (keys[32]) {
 		cameraPosY += cameraSpeed * 0.3;
 	}
-
 	if (keys['c']) { 	
 		cameraPosY -= cameraSpeed * 0.3;
 	}
 
-	// Update the camera position using gluLookAt
 	gluLookAt(cameraPosX, cameraPosY, cameraPosZ,
 		cameraPosX + cameraFrontX, cameraPosY + cameraFrontY, cameraPosZ + cameraFrontZ,
 		0.0f, 1.0f, 0.0f);  // Camera looks in the front direction
@@ -483,10 +480,9 @@ void mouseMotion(int x, int y)
 	int deltaX = x - lastX;
 	int deltaY = y - lastY;
 
-	cameraYaw += deltaX * mouseSensitivity;  // Horizontal rotation
-	cameraPitch -= deltaY * mouseSensitivity;  // Vertical rotation
+	cameraYaw += deltaX * mouseSensitivity; 
+	cameraPitch -= deltaY * mouseSensitivity; 
 
-	// Clamp the pitch to prevent flipping the camera upside down
 	if (cameraPitch > 89.0f) cameraPitch = 89.0f;
 	if (cameraPitch < -89.0f) cameraPitch = -89.0f;
 
@@ -509,7 +505,7 @@ void display()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
-	updateCamera();  // Update the camera position
+	updateCamera();  
 
 	draw_cabins(cabin_points);
 
@@ -531,13 +527,22 @@ void display()
 
 void update(int value)
 {
-	rotationAngle += rotationSpeed / fps;
-	if (rotationAngle >= 360.0f) {
-		rotationAngle -= 360.0f;
+	if (canUpdate) {
+		rotationAngle += rotationSpeed / fps;
+		if (rotationAngle >= 360.0f) {
+			rotationAngle -= 360.0f;
+		}
 	}
 
 	glutPostRedisplay();
+
 	glutTimerFunc(1000 / fps, update, 0);
+}
+
+void startUpdating(int value)
+{
+	// After 5 seconds, allow updates
+	canUpdate = true;
 }
 
 void init()
@@ -580,5 +585,6 @@ int main(int argc, char** argv)
 	glutMotionFunc(mouseMotion); 
 	glutMouseFunc(mouseButton); 
 	glutTimerFunc(0, update, 0);
+	glutTimerFunc(5000, startUpdating, 0);
 	glutMainLoop();
 }

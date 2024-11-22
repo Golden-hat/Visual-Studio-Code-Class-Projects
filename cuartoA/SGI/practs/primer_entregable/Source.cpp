@@ -16,10 +16,10 @@ static float rotationAngle = 0.0f;
 const float rotationSpeed = 360.0f / 30.0f; int fps = 60;
 
 float cameraPosX = 0.0f, cameraPosY = 0.0f, cameraPosZ = 3.0f;
-float cameraYaw = -90.0f;  
-float cameraPitch = 0.0f;  
-float cameraSpeed = 0.1f;  
-float mouseSensitivity = 0.2f; 
+float cameraYaw = -90.0f;
+float cameraPitch = 0.0f;
+float cameraSpeed = 0.1f;
+float mouseSensitivity = 0.2f;
 
 bool canUpdate = false;
 
@@ -33,9 +33,9 @@ vector<Vec3> puntosCircunferencia(float radio, int numPuntos, float desfase, flo
 	return puntos;
 }
 
-vector<Vec3> cabin_points = puntosCircunferencia(0.05*15, 18, 0, 0.0);
+vector<Vec3> cabin_points = puntosCircunferencia(0.05 * 15, 18, 0, 0.0);
 
-void draw_axis(float desfase, int numPuntos, float starting_radio) 
+void draw_axis(float desfase, int numPuntos, float starting_radio)
 {
 	// AXIS
 	float axis_r = starting_radio;
@@ -51,21 +51,21 @@ void draw_axis(float desfase, int numPuntos, float starting_radio)
 
 	glBegin(GL_TRIANGLE_STRIP);
 	for (int i = 0; i <= numPuntos; i++) {
-		int idx = i % numPuntos;		
-		glVertex3f(axis[idx].x, axis[idx].y, axis[idx].z - desfase*2.8);
-		glVertex3f(axis[idx].x, axis[idx].y, axis[idx].z + desfase*1.5);
+		int idx = i % numPuntos;
+		glVertex3f(axis[idx].x, axis[idx].y, axis[idx].z - desfase * 2.8);
+		glVertex3f(axis[idx].x, axis[idx].y, axis[idx].z + desfase * 1.5);
 	}
 	glEnd();
 
 	// OUTER SCREWS
 	glColor3f(0.0f, 1.0f, 1.0f);
 
-	axis = puntosCircunferencia(axis_r+0.02, numPuntos, 0, 0);
+	axis = puntosCircunferencia(axis_r + 0.02, numPuntos, 0, 0);
 
 	glBegin(GL_TRIANGLE_STRIP);
 	for (int i = 0; i <= numPuntos; i++) {
 		int idx = i % numPuntos;
-		glVertex3f(axis[idx].x, axis[idx].y, axis[idx].z + desfase*0.75);
+		glVertex3f(axis[idx].x, axis[idx].y, axis[idx].z + desfase * 0.75);
 		glVertex3f(axis[idx].x, axis[idx].y, axis[idx].z + desfase * 1.25);
 	}
 	glEnd();
@@ -117,24 +117,24 @@ void draw_axis(float desfase, int numPuntos, float starting_radio)
 	// SUPPORT
 	glLineWidth(20.0f);
 	glBegin(GL_LINES);
-		glVertex3f(0.0f, 0.0f, desfase * 1);  // Starting point of the line
-		glVertex3f(-starting_radio * 10, -starting_radio*18, desfase); // Ending point of the line
+	glVertex3f(0.0f, 0.0f, desfase * 1);  // Starting point of the line
+	glVertex3f(-starting_radio * 10, -starting_radio * 18, desfase); // Ending point of the line
 	glEnd();
 
 	glBegin(GL_LINES);
-		glVertex3f(0.0f, 0.0f, desfase * 1);  // Starting point of the line
-		glVertex3f(+starting_radio * 10, -starting_radio*18, desfase); // Ending point of the line
+	glVertex3f(0.0f, 0.0f, desfase * 1);  // Starting point of the line
+	glVertex3f(+starting_radio * 10, -starting_radio * 18, desfase); // Ending point of the line
 	glEnd();
 
-	glLineWidth(10.0f); 
+	glLineWidth(10.0f);
 	glBegin(GL_LINES);
-		glVertex3f(0.0f, 0.0f, -desfase * 2.2);  // Starting point of the line
-		glVertex3f(-starting_radio * 10, -starting_radio * 18, -desfase * 2.2); // Ending point of the line
+	glVertex3f(0.0f, 0.0f, -desfase * 2.2);  // Starting point of the line
+	glVertex3f(-starting_radio * 10, -starting_radio * 18, -desfase * 2.2); // Ending point of the line
 	glEnd();
 
 	glBegin(GL_LINES);
-		glVertex3f(0.0f, 0.0f, -desfase * 2.2);  // Starting point of the line
-		glVertex3f(+starting_radio * 10, -starting_radio * 18, -desfase * 2.2); // Ending point of the line
+	glVertex3f(0.0f, 0.0f, -desfase * 2.2);  // Starting point of the line
+	glVertex3f(+starting_radio * 10, -starting_radio * 18, -desfase * 2.2); // Ending point of the line
 	glEnd();
 
 	glEndList();
@@ -235,13 +235,13 @@ void draw_cabin(float x, float y, float z, float desfase) {
 
 	glBegin(GL_LINE_LOOP);
 	for (int i = 0; i < numPuntos; i++) {
-		glVertex3f(circle[i].x, circle[i].y, circle[i].z - size/2 );
+		glVertex3f(circle[i].x, circle[i].y, circle[i].z - size / 2);
 	}
 	glEnd();
 
 	glBegin(GL_LINE_LOOP);
 	for (int i = 0; i < numPuntos; i++) {
-		glVertex3f(circle[i].x, circle[i].y, circle[i].z + size/2 );
+		glVertex3f(circle[i].x, circle[i].y, circle[i].z + size / 2);
 	}
 	glEnd();
 	glPopMatrix();
@@ -264,10 +264,10 @@ void draw_cabin(float x, float y, float z, float desfase) {
 		glVertex3f(circle[i].x, circle[i].y, circle[i].z + size / 2 + 0.001);
 	}
 	glEnd();
-	
+
 	// ROOF-CONNECTION AND ROOF
 	for (int i = 0; i < numPuntos; i++) {
-		glBegin(GL_LINES); 
+		glBegin(GL_LINES);
 		glVertex3f(circle[i].x, circle[i].y, circle[i].z + size / 2); // Back vertex
 		glVertex3f(circle[i].x, circle[i].y + 0.05, circle[i].z + size / 2); // Front vertex
 		glEnd();
@@ -277,11 +277,11 @@ void draw_cabin(float x, float y, float z, float desfase) {
 		glVertex3f(circle[i].x, circle[i].y + 0.05, circle[i].z - size / 2); // Front vertex
 		glEnd();
 
-		glBegin(GL_TRIANGLE_STRIP); 
+		glBegin(GL_TRIANGLE_STRIP);
 		for (int i = 0; i < numPuntos; i++) {
-			if (circle[i].y + 0.05 > (circle[0].y + circle[numPuntos/2].y)*0.5 + 0.03) {			
-				glVertex3f(circle[i].x, circle[i].y + 0.05, circle[i].z - size / 2); 
-				glVertex3f(circle[i].x, circle[i].y + 0.05, circle[i].z + size / 2); 
+			if (circle[i].y + 0.05 > (circle[0].y + circle[numPuntos / 2].y) * 0.5 + 0.03) {
+				glVertex3f(circle[i].x, circle[i].y + 0.05, circle[i].z - size / 2);
+				glVertex3f(circle[i].x, circle[i].y + 0.05, circle[i].z + size / 2);
 			}
 		}
 		glEnd();
@@ -291,7 +291,7 @@ void draw_cabin(float x, float y, float z, float desfase) {
 
 void draw_cabins(vector<Vec3> points)
 {
-	for (int i = 0; i < points.size()-1; i++) 
+	for (int i = 0; i < points.size() - 1; i++)
 	{
 		glPushMatrix();
 		draw_cabin(points[i].x, points[i].y, -0.05, 0.5);
@@ -324,9 +324,9 @@ void draw_wheel(float starting_radio, int numPuntos, float desfase)
 		// WHEELS
 		glColor3f(1.0f, 1.0f, 1.0f);
 
-		if (element == array[array.size()-1]) 
+		if (element == array[array.size() - 1])
 			glLineWidth(4.0f);
-		else 
+		else
 			glLineWidth(1.0f);
 
 		glBegin(GL_LINE_LOOP);
@@ -341,7 +341,7 @@ void draw_wheel(float starting_radio, int numPuntos, float desfase)
 			glVertex3f(element[i].x, element[i].y, element[i].z - desfase);
 		}
 		glEnd();
-		
+
 		if (element == array[array.size() - 1]) continue;
 
 		// FRAME
@@ -352,83 +352,83 @@ void draw_wheel(float starting_radio, int numPuntos, float desfase)
 		}
 		glEnd();
 	}
-	
-		// FRAME
-		glColor3f(.5f, .6f, 0.2f);
 
-		glBegin(GL_LINES);  		
-		glLineWidth(2.0f);
-		for (int i = 0; i < numPuntos; i++) {
-			glVertex3f(axis[i].x, axis[i].y, axis[i].z + 0.05);
-			glVertex3f(outer[i].x, outer[i].y, outer[i].z );
+	// FRAME
+	glColor3f(.5f, .6f, 0.2f);
+
+	glBegin(GL_LINES);
+	glLineWidth(2.0f);
+	for (int i = 0; i < numPuntos; i++) {
+		glVertex3f(axis[i].x, axis[i].y, axis[i].z + 0.05);
+		glVertex3f(outer[i].x, outer[i].y, outer[i].z);
+	}
+	glEnd();
+
+	glBegin(GL_LINES);
+	glLineWidth(2.0f);
+	for (int i = 0; i < numPuntos; i++) {
+		glVertex3f(axis[i].x, axis[i].y, axis[i].z - desfase - 0.08);
+		glVertex3f(outer[i].x, outer[i].y, outer[i].z - desfase);
+	}
+	glEnd();
+
+	glColor3f(1.0f, 1.0f, 1.0f);
+
+	glLineWidth(1.0f);
+
+	// CROSS-FRAME
+	glBegin(GL_LINES);
+	for (int i = 0; i < numPuntos; i++) {
+		for (int j = 0; j < array.size() - 1; j++) {
+			glVertex3f(array[j][i].x, array[j][i].y, array[j][i].z - desfase);
+			glVertex3f(array[j][i + 1].x, array[j][i + 1].y, array[j][i + 1].z);
 		}
-		glEnd();
+	}
+	glEnd();
 
-		glBegin(GL_LINES);  		
-		glLineWidth(2.0f);
-		for (int i = 0; i < numPuntos; i++) {
-			glVertex3f(axis[i].x, axis[i].y, axis[i].z - desfase - 0.08);
-			glVertex3f(outer[i].x, outer[i].y, outer[i].z - desfase);
+	glBegin(GL_LINES);
+	for (int i = 0; i < numPuntos; i++) {
+		for (int j = 0; j < array.size() - 1; j++) {
+			glVertex3f(array[j][i + 1].x, array[j][i + 1].y, array[j][i + 1].z - desfase);
+			glVertex3f(array[j][i].x, array[j][i].y, array[j][i].z);
 		}
-		glEnd();	
+	}
+	glEnd();
 
-		glColor3f(1.0f, 1.0f, 1.0f);
-
-		glLineWidth(1.0f);
-
-		// CROSS-FRAME
-		glBegin(GL_LINES);
-		for (int i = 0; i < numPuntos; i++) {
-			for (int j = 0; j < array.size() - 1; j++) {
-				glVertex3f(array[j][i].x, array[j][i].y, array[j][i].z - desfase);
-				glVertex3f(array[j][i+1].x, array[j][i+1].y, array[j][i+1].z);
-			}
+	glBegin(GL_LINES);
+	for (int i = 0; i < numPuntos; i++) {
+		for (int j = 0; j < array.size() - 2; j++) {
+			glVertex3f(array[j + 1][i].x, array[j + 1][i].y, array[j + 1][i].z - desfase);
+			glVertex3f(array[j][i].x, array[j][i].y, array[j][i].z);
 		}
-		glEnd();
+	}
+	glEnd();
 
-		glBegin(GL_LINES);
-		for (int i = 0; i < numPuntos; i++) {
-			for (int j = 0; j < array.size() - 1; j++) {
-				glVertex3f(array[j][i+1].x, array[j][i+1].y, array[j][i+1].z - desfase);
-				glVertex3f(array[j][i].x, array[j][i].y, array[j][i].z);
-			}
+	glBegin(GL_LINES);
+	for (int i = 0; i < numPuntos; i++) {
+		for (int j = 0; j < array.size() - 2; j++) {
+			glVertex3f(array[j][i].x, array[j][i].y, array[j][i].z - desfase);
+			glVertex3f(array[j + 1][i].x, array[j + 1][i].y, array[j + 1][i].z);
 		}
-		glEnd();
+	}
+	glEnd();
 
-		glBegin(GL_LINES);
-		for (int i = 0; i < numPuntos; i++) {
-			for (int j = 0; j < array.size() - 2; j++) {
-				glVertex3f(array[j+1][i].x, array[j+1][i].y, array[j+1][i].z - desfase);
-				glVertex3f(array[j][i].x, array[j][i].y, array[j][i].z);
-			}
-		}
-		glEnd();
+	glLineWidth(3.0f);
 
-		glBegin(GL_LINES);
-		for (int i = 0; i < numPuntos; i++) {
-			for (int j = 0; j < array.size() - 2; j++) {
-				glVertex3f(array[j][i].x, array[j][i].y, array[j][i].z - desfase);
-				glVertex3f(array[j+1][i].x, array[j+1][i].y, array[j+1][i].z);
-			}
-		}
-		glEnd();
+	// DECORATION
+	glBegin(GL_LINES);
+	for (int i = 0; i < 26; i++) {
+		glVertex3f(decoration_axis[i].x, decoration_axis[i].y, decoration_axis[i].z);
+		glVertex3f(decoration_outer[i].x, decoration_outer[i].y, decoration_outer[i].z);
+	}
+	glEnd();
 
-		glLineWidth(3.0f);
-
-		// DECORATION
-		glBegin(GL_LINES);
-		for (int i = 0; i < 26; i++) {
-			glVertex3f(decoration_axis[i].x, decoration_axis[i].y, decoration_axis[i].z);
-			glVertex3f(decoration_outer[i].x, decoration_outer[i].y, decoration_outer[i].z);
-		}
-		glEnd();
-
-		glBegin(GL_LINES);
-		for (int i = 0; i < numPuntos * 2; i++) {
-			glVertex3f(decoration_axis[i].x, decoration_axis[i].y, decoration_axis[i].z - desfase);
-			glVertex3f(decoration_outer[i].x, decoration_outer[i].y, decoration_outer[i].z - desfase);
-		}
-		glEnd();
+	glBegin(GL_LINES);
+	for (int i = 0; i < numPuntos * 2; i++) {
+		glVertex3f(decoration_axis[i].x, decoration_axis[i].y, decoration_axis[i].z - desfase);
+		glVertex3f(decoration_outer[i].x, decoration_outer[i].y, decoration_outer[i].z - desfase);
+	}
+	glEnd();
 
 	glEndList();
 }
@@ -447,8 +447,8 @@ void updateCamera()
 
 	// Update the camera position based on WASD keys
 	if (keys['w']) {  // Move forward
-		cameraPosX += cameraFrontX * cameraSpeed*0.5;
-		cameraPosZ += cameraFrontZ * cameraSpeed*0.5;
+		cameraPosX += cameraFrontX * cameraSpeed * 0.5;
+		cameraPosZ += cameraFrontZ * cameraSpeed * 0.5;
 	}
 	if (keys['s']) {  // Move backward
 		cameraPosX -= cameraFrontX * cameraSpeed * 0.5;
@@ -465,7 +465,7 @@ void updateCamera()
 	if (keys[32]) {
 		cameraPosY += cameraSpeed * 0.3;
 	}
-	if (keys['c']) { 	
+	if (keys['c']) {
 		cameraPosY -= cameraSpeed * 0.3;
 	}
 
@@ -480,8 +480,8 @@ void mouseMotion(int x, int y)
 	int deltaX = x - lastX;
 	int deltaY = y - lastY;
 
-	cameraYaw += deltaX * mouseSensitivity; 
-	cameraPitch -= deltaY * mouseSensitivity; 
+	cameraYaw += deltaX * mouseSensitivity;
+	cameraPitch -= deltaY * mouseSensitivity;
 
 	if (cameraPitch > 89.0f) cameraPitch = 89.0f;
 	if (cameraPitch < -89.0f) cameraPitch = -89.0f;
@@ -505,7 +505,7 @@ void display()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
-	updateCamera();  
+	updateCamera();
 
 	draw_cabins(cabin_points);
 
@@ -555,11 +555,13 @@ void init()
 
 void keyboard(unsigned char key, int x, int y)
 {
-	keys[key] = true;  }
+	keys[key] = true;
+}
 
 void keyboardUp(unsigned char key, int x, int y)
 {
-	keys[key] = false;  }
+	keys[key] = false;
+}
 
 void mouseButton(int button, int state, int x, int y)
 {
@@ -580,10 +582,10 @@ int main(int argc, char** argv)
 	init();
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
-	glutKeyboardFunc(keyboard); 	
-	glutKeyboardUpFunc(keyboardUp); 
-	glutMotionFunc(mouseMotion); 
-	glutMouseFunc(mouseButton); 
+	glutKeyboardFunc(keyboard);
+	glutKeyboardUpFunc(keyboardUp);
+	glutMotionFunc(mouseMotion);
+	glutMouseFunc(mouseButton);
 	glutTimerFunc(0, update, 0);
 	glutTimerFunc(5000, startUpdating, 0);
 	glutMainLoop();

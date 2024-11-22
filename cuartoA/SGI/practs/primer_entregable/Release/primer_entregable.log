@@ -1,7 +1,7 @@
 ﻿  Source.cpp
 C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(55,52): warning C4244: 'argumento': conversión de 'double' a 'GLfloat'; posible pérdida de datos
 C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(56,52): warning C4244: 'argumento': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(63,36): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(63,37): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
 C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(68,52): warning C4244: 'argumento': conversión de 'double' a 'GLfloat'; posible pérdida de datos
 C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(69,52): warning C4244: 'argumento': conversión de 'double' a 'GLfloat'; posible pérdida de datos
 C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(77,52): warning C4244: 'argumento': conversión de 'double' a 'GLfloat'; posible pérdida de datos
@@ -11,10 +11,10 @@ C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA
 C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(95,52): warning C4244: 'argumento': conversión de 'double' a 'GLfloat'; posible pérdida de datos
 C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(110,35): warning C4244: 'argumento': conversión de 'double' a 'GLfloat'; posible pérdida de datos
 C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(113,52): warning C4244: 'argumento': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(131,35): warning C4244: 'argumento': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(132,67): warning C4244: 'argumento': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(136,35): warning C4244: 'argumento': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(137,67): warning C4244: 'argumento': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(131,34): warning C4244: 'argumento': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(132,66): warning C4244: 'argumento': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(136,34): warning C4244: 'argumento': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(137,66): warning C4244: 'argumento': conversión de 'double' a 'GLfloat'; posible pérdida de datos
 C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(234,32): warning C4305: 'argumento': truncamiento de 'double' a 'float'
 C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(254,32): warning C4305: 'argumento': truncamiento de 'double' a 'float'
 C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(258,63): warning C4244: 'argumento': conversión de 'double' a 'GLfloat'; posible pérdida de datos
@@ -25,14 +25,14 @@ C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA
 C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(284,41): warning C4244: 'argumento': conversión de 'double' a 'GLfloat'; posible pérdida de datos
 C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(294,20): warning C4018: '<': no coinciden signed/unsigned
 C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(297,41): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(362,47): warning C4244: 'argumento': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(370,57): warning C4244: 'argumento': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(382,22): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(391,22): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(400,22): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(409,22): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(450,43): warning C4244: '+=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(451,43): warning C4244: '+=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(362,46): warning C4244: 'argumento': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(370,56): warning C4244: 'argumento': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(382,21): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(391,21): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(400,21): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(409,21): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(450,44): warning C4244: '+=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(451,44): warning C4244: '+=': conversión de 'double' a 'float'; posible pérdida de datos
 C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(454,44): warning C4244: '-=': conversión de 'double' a 'float'; posible pérdida de datos
 C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(455,44): warning C4244: '-=': conversión de 'double' a 'float'; posible pérdida de datos
 C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(458,44): warning C4244: '-=': conversión de 'double' a 'float'; posible pérdida de datos
@@ -52,8 +52,8 @@ C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA
 C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(552,13): warning C4305: 'argumento': truncamiento de 'double' a 'float'
 C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(553,21): warning C4305: 'argumento': truncamiento de 'double' a 'float'
 C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(553,12): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(568,11): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(569,11): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(570,11): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\yassi\source\repos\Golden-hat\Visual-Studio-Code-Class-Projects\cuartoA\SGI\practs\primer_entregable\Source.cpp(571,11): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
   Generando código
   2 of 179 functions ( 1.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation

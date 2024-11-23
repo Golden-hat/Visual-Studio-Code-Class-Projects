@@ -9,20 +9,22 @@ using namespace cb;
 #include <cmath>
 #include <iostream>
 
-constexpr float INITIAL_SPEED = 0.0001f;
-constexpr float MAX_SPEED = 0.001f;
-constexpr float MIN_SPEED = 0.0001f;
-constexpr float SPEED_INCREMENT = 0.00005f;
-constexpr float MOUSE_SENSITIVITY = 0.20f; 
-constexpr int GRID_SIZE = 1000;  
-constexpr float CAMERA_Z = 3.0f;  
+constexpr float INITIAL_SPEED = 0.05f;
+constexpr float MAX_SPEED = 0.5f;
+constexpr float MIN_SPEED = 0.05f;
+constexpr float SPEED_INCREMENT = 0.025f;
+constexpr float MOUSE_SENSITIVITY = 0.325f;
+constexpr int GRID_SIZE = 10000;
+constexpr float CAMERA_Z = 3.0f;
 
 GLuint grid;
 float speed = INITIAL_SPEED;
-float yaw = 0.0f;   
-float pitch = 0.0f;   
+float yaw = 0.0f;
+float pitch = 0.0f;
 float posX = 0.0f, posY = 0.0f, posZ = CAMERA_Z;
-int lastMouseX = 0, lastMouseY = 0; 
+int lastMouseX = 0, lastMouseY = 0;
+
+float fps = 165;
 
 void generate_grid()
 {
@@ -48,7 +50,7 @@ void generate_grid()
     glEndList();
 }
 
-void animate(int n) 
+void update_camera()
 {
     float frontX = cos(yaw * PI / 180.0f);
     float frontZ = sin(pitch * PI / 180.0f);
@@ -56,21 +58,28 @@ void animate(int n)
 
     gluLookAt(posX, posY, posZ, posX + frontX, posY + frontY, posZ + frontZ, 0.0, 0.0, 1.0);
 
-	posX += speed * frontX;
-	posY += speed * frontY;
-	posZ += speed * frontZ;
-
     glutPostRedisplay();
-    glutTimerFunc(16, animate, 0); 
 }
 
+void animate(int n)
+{
+    float frontX = cos(yaw * PI / 180.0f);
+    float frontZ = sin(pitch * PI / 180.0f);
+    float frontY = -sin(yaw * PI / 180.0f);
+
+    posX += speed * frontX;
+    posY += speed * frontY;
+    posZ += speed * frontZ;
+
+    glutTimerFunc(1000/fps, animate, 0); 
+}
 
 void reshape(GLint w, GLint h)
 {
     glViewport(0, 0, w, h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(45.0, (double)w / (double)h, 0.1, 100.0);
+    gluPerspective(60.0, (double)w / (double)h, 0.1, 1000.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
@@ -79,42 +88,45 @@ void display()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
-
-    animate(0);
-
+    update_camera();
     glCallList(grid);
-
     glutSwapBuffers();
 }
 
 void passive_motion(int x, int y)
 {
-    int deltaX = x - lastMouseX;
-    int deltaY = y - lastMouseY;
+    int centerX = glutGet(GLUT_WINDOW_WIDTH) / 2;
+    int centerY = glutGet(GLUT_WINDOW_HEIGHT) / 2;
 
-    // Adjust yaw and pitch based on mouse movement
-    yaw += deltaX * MOUSE_SENSITIVITY;
-    pitch -= deltaY * MOUSE_SENSITIVITY;  // Invert vertical movement
+    if (x < lastMouseX) 
+        yaw -= MOUSE_SENSITIVITY;
+    else if (x > lastMouseX) 
+        yaw += MOUSE_SENSITIVITY;
 
-    // Clamp the pitch to prevent extreme rotations (gimbal lock)
+    if (y < lastMouseY) 
+        pitch += MOUSE_SENSITIVITY;
+    else if (y > lastMouseY) 
+        pitch -= MOUSE_SENSITIVITY;
+
     if (pitch > 89.0f) pitch = 89.0f;
     if (pitch < -89.0f) pitch = -89.0f;
 
-    // Store the current mouse position for the next frame
-    lastMouseX = x;
-    lastMouseY = y;
+    glutWarpPointer(centerX, centerY);
+
+    lastMouseX = centerX;
+    lastMouseY = centerY;
 }
 
 void keyboard(unsigned char key, int x, int y)
 {
     switch (key)
     {
-    case 'a': // Accelerate
+    case 'a': 
         speed += SPEED_INCREMENT;
         if (speed > MAX_SPEED)
             speed = MAX_SPEED;
         break;
-    case 'z': // Decelerate
+    case 'z': 
         speed -= SPEED_INCREMENT;
         if (speed < MIN_SPEED)
             speed = MIN_SPEED;
@@ -137,10 +149,12 @@ int main(int argc, char** argv)
     glutPassiveMotionFunc(passive_motion);
     glutKeyboardFunc(keyboard);
 
+    glutSetCursor(GLUT_CURSOR_NONE);
 
     lastMouseX = glutGet(GLUT_WINDOW_WIDTH) / 2;
     lastMouseY = glutGet(GLUT_WINDOW_HEIGHT) / 2;
 
+    glutTimerFunc(1000/fps, animate, 0); 
     glutMainLoop();
 
     return 0;

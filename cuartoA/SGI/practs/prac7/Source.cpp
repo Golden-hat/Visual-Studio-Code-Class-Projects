@@ -13,7 +13,7 @@ constexpr float INITIAL_SPEED = 0.05f;
 constexpr float MAX_SPEED = 0.5f;
 constexpr float MIN_SPEED = 0.05f;
 constexpr float SPEED_INCREMENT = 0.025f;
-constexpr float MOUSE_SENSITIVITY = 0.325f;
+constexpr float MOUSE_SENSITIVITY = 0.05f;
 constexpr int GRID_SIZE = 10000;
 constexpr float CAMERA_Z = 3.0f;
 
@@ -98,15 +98,18 @@ void passive_motion(int x, int y)
     int centerX = glutGet(GLUT_WINDOW_WIDTH) / 2;
     int centerY = glutGet(GLUT_WINDOW_HEIGHT) / 2;
 
-    if (x < lastMouseX) 
-        yaw -= MOUSE_SENSITIVITY;
-    else if (x > lastMouseX) 
-        yaw += MOUSE_SENSITIVITY;
+    int deltaX = x - lastMouseX;
+    int deltaY = y - lastMouseY;
 
-    if (y < lastMouseY) 
-        pitch += MOUSE_SENSITIVITY;
-    else if (y > lastMouseY) 
-        pitch -= MOUSE_SENSITIVITY;
+    if (x < lastMouseX)
+        yaw -= MOUSE_SENSITIVITY * abs(deltaX);
+    else if (x > lastMouseX)
+        yaw += MOUSE_SENSITIVITY * abs(deltaX);
+
+    if (y < lastMouseY)
+        pitch += MOUSE_SENSITIVITY * abs(deltaY);
+    else if (y > lastMouseY)
+        pitch -= MOUSE_SENSITIVITY * abs(deltaY);
 
     if (pitch > 89.0f) pitch = 89.0f;
     if (pitch < -89.0f) pitch = -89.0f;

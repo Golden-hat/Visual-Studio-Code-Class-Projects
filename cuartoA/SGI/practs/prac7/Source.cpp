@@ -5,10 +5,6 @@
 
 using namespace cb;
 
-#include <GL/glut.h>
-#include <cmath>
-#include <iostream>
-
 constexpr float INITIAL_SPEED = 0.05f;
 constexpr float MAX_SPEED = 0.5f;
 constexpr float MIN_SPEED = 0.05f;

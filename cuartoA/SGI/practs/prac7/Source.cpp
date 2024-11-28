@@ -107,8 +107,8 @@ void passive_motion(int x, int y)
     else if (y > lastMouseY)
         pitch -= MOUSE_SENSITIVITY * abs(deltaY);
 
-    if (pitch > 89.0f) pitch = 89.0f;
-    if (pitch < -89.0f) pitch = -89.0f;
+    if (pitch > 100.0f) pitch = 100.0f;
+    if (pitch < -100.0f) pitch = -100.0f;
 
     glutWarpPointer(centerX, centerY);
 

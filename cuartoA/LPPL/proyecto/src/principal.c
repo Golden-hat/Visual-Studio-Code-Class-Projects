@@ -8,7 +8,6 @@
 
 int verbosidad = FALSE; /* Si se desea una traza o no     */
 int numErrores = 0;     /* Contador del numero de errores */
-int numErrores = 0;     /* Contador del numero de errores */
 
 /*****************************************************************************/
 void yyerror(const char *msg)

@@ -19,11 +19,9 @@ float cameraPosX = 0.0f, cameraPosY = 0.0f, cameraPosZ = 3.0f;
 float cameraYaw = -90.0f;
 float cameraPitch = 0.0f;
 float cameraSpeed = 0.1f;
-float cameraRadius = 3.0;
 float mouseSensitivity = 0.2f;
 
 bool canUpdate = false;
-bool inputDetected = false;
 
 bool keys[256];
 
@@ -442,44 +440,28 @@ void updateCamera()
 	float frontY = sin(cameraPitch * PI / 180.0f);
 	float frontZ = sin(cameraYaw * PI / 180.0f);
 
-	if (keys['d']) {  // Move left
-		cameraPosX -= frontZ * cameraSpeed * 0.5;
-		cameraPosZ += frontX * cameraSpeed * 0.5;
-	}
-	if (keys['a']) {  // Move right
-		cameraPosX += frontZ * cameraSpeed * 0.5;
-		cameraPosZ -= frontX * cameraSpeed * 0.5;
-	}
-
-	if (!inputDetected)
-	{
-		// Update the camera position based on WASD keys
-		if (keys['w']) {  // Move forward
-			if (cameraRadius > 1.5) cameraRadius -= 0.1;
-		}
-		if (keys['s']) {  // Move backward
-			cameraRadius += 0.1;
-		}
-
-		cameraYaw += 0.5f;
-		if (cameraYaw > 269.0f) cameraYaw = -90.0f;
-
-		frontX = - cos(cameraYaw * PI / 180.0f);
-
-		cameraPosX = 0 + cos(cameraYaw * PI / 180.0f) * cameraRadius;
-		cameraPosZ = 0 - sin(cameraYaw * PI / 180.0f) * cameraRadius;
-	}
+	// Normalize the direction vector
+	float cameraFrontX = frontX;
+	float cameraFrontY = frontY;
+	float cameraFrontZ = frontZ;
 
 	// Update the camera position based on WASD keys
 	if (keys['w']) {  // Move forward
-		cameraPosX += frontX * cameraSpeed * 0.5;
-		cameraPosZ += frontZ * cameraSpeed * 0.5;
+		cameraPosX += cameraFrontX * cameraSpeed * 0.5;
+		cameraPosZ += cameraFrontZ * cameraSpeed * 0.5;
 	}
 	if (keys['s']) {  // Move backward
-		cameraPosX -= frontX * cameraSpeed * 0.5;
-		cameraPosZ -= frontZ * cameraSpeed * 0.5;
+		cameraPosX -= cameraFrontX * cameraSpeed * 0.5;
+		cameraPosZ -= cameraFrontZ * cameraSpeed * 0.5;
 	}
-
+	if (keys['d']) {  // Move left
+		cameraPosX -= cameraFrontZ * cameraSpeed * 0.5;
+		cameraPosZ += cameraFrontX * cameraSpeed * 0.5;
+	}
+	if (keys['a']) {  // Move right
+		cameraPosX += cameraFrontZ * cameraSpeed * 0.5;
+		cameraPosZ -= cameraFrontX * cameraSpeed * 0.5;
+	}
 	if (keys[32]) {
 		cameraPosY += cameraSpeed * 0.3;
 	}
@@ -487,17 +469,8 @@ void updateCamera()
 		cameraPosY -= cameraSpeed * 0.3;
 	}
 
-	if (keys['v']) {
-		inputDetected = !inputDetected;
-		cameraPosX = 0.0f, cameraPosY = 0.0f, cameraPosZ = 3.0f;
-		cameraYaw = -90.0f;
-		cameraPitch = 0.0f;
-		cameraRadius = 3.0f;
-		Sleep(150);
-	}
-
 	gluLookAt(cameraPosX, cameraPosY, cameraPosZ,
-		cameraPosX + frontX, cameraPosY + frontY, cameraPosZ + frontZ,
+		cameraPosX + cameraFrontX, cameraPosY + cameraFrontY, cameraPosZ + cameraFrontZ,
 		0.0f, 1.0f, 0.0f);  // Camera looks in the front direction
 }
 
@@ -522,8 +495,7 @@ void reshape(GLint w, GLint h)
 	glViewport(0, 0, w, h);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluPerspective(45.
-		0, (double)w / (double)h, 1.0, 100.0);
+	gluPerspective(45.0, (double)w / (double)h, 1.0, 100.0);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 }

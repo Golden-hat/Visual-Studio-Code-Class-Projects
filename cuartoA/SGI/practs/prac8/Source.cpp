@@ -20,7 +20,7 @@ float pitch = 0.0f;
 float posX = 0.0f, posY = 0.0f, posZ = CAMERA_Z;
 int lastMouseX = 0, lastMouseY = 0;
 
-float lightDistance = 40.0f;
+float lightDistance = 20.0f;
 
 float fps = 165;
 
@@ -124,18 +124,18 @@ void reshape(GLint w, GLint h)
 void lighting() {
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
-    GLfloat light_ambient[] = { 0.2, 0.2, 0.2, 5.0 };
-    GLfloat light_diffuse[] = { 0.4, 0.4, 0.4, .4 };
-    GLfloat light_specular[] = { .5, .5, 1.0, .5 };
-    GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 };
+    GLfloat light_ambient[] = { 0.2, 0.2, 0.2, 0.2 };
+    GLfloat light_diffuse[] = { 0.2, 0.2, 0.2, .2 };
+    GLfloat light_specular[] = { .5, .5, .5, .5 };
+    GLfloat light_position[] = { 1.0, 1.0, .5, 0.0 };
 
     glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
     glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
 
-    GLfloat mat_ambient[] = { 0.2, 0.2, 0.2, 1.0 };
-    GLfloat mat_diffuse[] = { 0.8, 0.2, 0.2, 1.0 };
+    GLfloat mat_ambient[] = { 0.2, 0.2, 0.2, 2.0 };
+    GLfloat mat_diffuse[] = { 0.8, 0.2, 0.2, 2.0 };
     GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
     GLfloat mat_shininess[] = { 50.0 };
 
@@ -154,14 +154,14 @@ void lighting() {
     glLightfv(GL_LIGHT1, GL_AMBIENT, ambient_spot);
     glLightfv(GL_LIGHT1, GL_DIFFUSE, diffuse_spot);
     glLightfv(GL_LIGHT1, GL_SPECULAR, specular_spot);
-    glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 10.0f);
-    glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, 50.0f);
+    glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 20.0f);
+    glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, 100.0f);
 
     glLightfv(GL_LIGHT2, GL_AMBIENT, ambient_spot);
     glLightfv(GL_LIGHT2, GL_DIFFUSE, diffuse_spot);
     glLightfv(GL_LIGHT2, GL_SPECULAR, specular_spot);
-    glLightf(GL_LIGHT2, GL_SPOT_CUTOFF, 10.0f);
-    glLightf(GL_LIGHT2, GL_SPOT_EXPONENT, 50.0f);
+    glLightf(GL_LIGHT2, GL_SPOT_CUTOFF, 20.0f);
+    glLightf(GL_LIGHT2, GL_SPOT_EXPONENT, 100.0f);
     glEnable(GL_COLOR_MATERIAL);
 }
 

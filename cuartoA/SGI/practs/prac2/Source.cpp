@@ -33,14 +33,6 @@ void gear2D(int nPuntos, float desfase, float pico, float valle, float eje, floa
 		glVertex3fv(pPico[i % nPuntos]);
 		glEnd();
 	}
-
-	for (int i = 0; i < nPuntos; i++) {
-		glBegin(GL_TRIANGLE_STRIP);
-		glVertex3fv(pEje[i % nPuntos]);
-		glVertex3fv(pEje[i + 1 % nPuntos]);
-		glVertex3fv(pValle[i + 1 % nPuntos]);
-		glEnd();
-	}
 	glEndList();
 }
 
@@ -57,20 +49,12 @@ void teethGen(int nPuntos, float desfase, float pico, float valle, float eje, fl
 	teeth = glGenLists(1);
 	glNewList(teeth, GL_COMPILE);
 	for (int i = 0; i < nPuntos; i++) {
+		/* Dientes */
 		quad(pValle[i+1 % nPuntos], pValle2[i+1 % nPuntos], pPico2[(i) % nPuntos], pPico[(i) % nPuntos]);
 		quad(pValle[i+1 % nPuntos] , pValle2[i+1 % nPuntos], pPico2[(i+1) % nPuntos], pPico[(i+1) % nPuntos]);
 
+		/* Eje */
 		quad(pEje[i+1 % nPuntos], pEje2[i+1 % nPuntos], pEje2[(i) % nPuntos], pEje[(i) % nPuntos]);
-		glEnd();
-	}
-	glEndList();
-
-	glNewList(teeth, GL_COMPILE);
-	for (int i = 0; i < nPuntos; i++) {
-		quad(pValle[i + 1 % nPuntos], pValle2[i + 1 % nPuntos], pPico2[(i) % nPuntos], pPico[(i) % nPuntos]);
-		quad(pValle[i + 1 % nPuntos], pValle2[i + 1 % nPuntos], pPico2[(i + 1) % nPuntos], pPico[(i + 1) % nPuntos]);
-
-		quad(pEje[i + 1 % nPuntos], pEje2[i + 1 % nPuntos], pEje2[(i) % nPuntos], pEje[(i) % nPuntos]);
 		glEnd();
 	}
 	glEndList();
@@ -95,23 +79,18 @@ GLuint copyAndTranslate(GLuint originalList, GLfloat translateX, GLfloat transla
 	return newList;
 }
 
-void gear3d() {
-	gear2D(10, PI / 2, 0.9, 0.7, 0.2, 0);
-	teethGen(10, PI / 2, 0.9, 0.7, 0.2, 0, 0.1);
-}
-
 void init()
 {
-	gear2D(24, PI / 2, 0.9, 0.7, 0.2, 0);
-	teethGen(24, PI / 2, 0.9, 0.7, 0.2, 0, 0.1);
+	gear2D(10, PI / 2, 0.9, 0.7, 0.2, 0);
+	teethGen(10, PI / 2, 0.9, 0.7, 0.2, 0, 0.1);
 }
 
 // Funcion de atencion al evento de dibujo
 void display()
 {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glLoadIdentity();
+	glClear(GL_COLOR_BUFFER_BIT);
+	glDisable(GL_CULL_FACE);
 
 	glRotatef(10, 0, 1, 0);
 
@@ -120,6 +99,7 @@ void display()
 		glPushMatrix();
 
 			/* Dientes e interior */
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 			glTranslatef(0.0f, 0.0f, -0.05f);
 			glColor3fv(BLANCO);
 			glLineWidth(1);
@@ -128,6 +108,8 @@ void display()
 		glPopMatrix();
 
 		/* Cara anterior */
+		glPolygonMode(GL_FRONT, GL_FILL);
+		glPolygonMode(GL_BACK, GL_LINE);
 		glTranslatef(0.0f, 0.0f, 0.05f);
 		glColor3fv(ROJO);
 		glCallList(engranaje);
@@ -136,6 +118,8 @@ void display()
 		glPushMatrix();
 
 			/* Cara posterior */
+			glPolygonMode(GL_FRONT, GL_FILL);
+			glPolygonMode(GL_BACK, GL_LINE);
 			glColor3fv(VERDE);
 			glLineWidth(1);
 			glRotatef(180, 0, 1, 0);

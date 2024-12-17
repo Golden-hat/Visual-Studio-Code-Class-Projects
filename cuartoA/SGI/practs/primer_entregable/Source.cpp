@@ -8,8 +8,6 @@ using namespace cb;
 static GLuint wheel;
 static GLuint axis;
 static GLuint cabins;
-static GLuint transmission_gear;
-static GLuint motor_gear;
 
 float lastX = 0, lastY = 0;
 bool isDragging = false;
@@ -35,74 +33,6 @@ vector<Vec3> puntosCircunferencia(float radio, int numPuntos, float desfase, flo
 	for (float angulo = desfase; angulo < 2 * PI + desfase; angulo += 2 * PI / numPuntos)
 		puntos.push_back(Vec3(radio * cos(angulo), radio * sin(angulo), Z));
 	return puntos;
-}
-
-void gear3D(int nPuntos, float desfase, float pico, float valle, float eje, float Z, GLuint item) {
-
-	vector<Vec3> pValle = puntosCircunferencia(valle, nPuntos, desfase - PI / nPuntos, Z);
-	vector<Vec3> pEje = puntosCircunferencia(eje, nPuntos, desfase, Z);
-	vector<Vec3> pPico = puntosCircunferencia(pico, nPuntos, desfase, Z);
-
-	vector<Vec3> pEje2 = puntosCircunferencia(eje, nPuntos, desfase, Z + 0.025f);
-	vector<Vec3> pValle2 = puntosCircunferencia(valle, nPuntos, desfase - PI / nPuntos, Z + 0.025f);
-	vector<Vec3> pPico2 = puntosCircunferencia(pico, nPuntos, desfase, Z + 0.025f);
-
-	item = glGenLists(1);
-	glNewList(item, GL_COMPILE);
-	glColor3f(0.8f, 0.8f, 0.8f);
-	for (int i = 0; i < nPuntos; i++) {
-		glBegin(GL_TRIANGLE_STRIP);
-		glVertex3fv(pEje[i % nPuntos]);
-		glVertex3fv(pValle[i % nPuntos]);
-		glVertex3fv(pValle[(i + 1) % nPuntos]);
-		glVertex3fv(pPico[i % nPuntos]);
-		glEnd();
-	}
-
-	for (int i = 0; i < nPuntos; i++) {
-		glBegin(GL_TRIANGLE_STRIP);
-		glVertex3fv(pEje[i % nPuntos]);
-		glVertex3fv(pEje[i + 1 % nPuntos]);
-		glVertex3fv(pValle[i + 1 % nPuntos]);
-		glEnd();
-	}
-
-	for (int i = 0; i < nPuntos; i++) {
-		glColor3f(0.1f, 0.1f, 0.1f);
-		quad(pValle[i + 1 % nPuntos], pValle2[i + 1 % nPuntos], pPico2[(i) % nPuntos], pPico[(i) % nPuntos]);
-		quad(pValle[i + 1 % nPuntos], pValle2[i + 1 % nPuntos], pPico2[(i + 1) % nPuntos], pPico[(i + 1) % nPuntos]);
-
-		quad(pEje[i + 1 % nPuntos], pEje2[i + 1 % nPuntos], pEje2[(i) % nPuntos], pEje[(i) % nPuntos]);
-		glEnd();
-	}
-
-	for (int i = 0; i < nPuntos; i++) {
-		glColor3f(0.8f, 0.8f, 0.8f);
-		quad(pValle[i + 1 % nPuntos], pValle2[i + 1 % nPuntos], pPico2[(i) % nPuntos], pPico[(i) % nPuntos]);
-		quad(pValle[i + 1 % nPuntos], pValle2[i + 1 % nPuntos], pPico2[(i + 1) % nPuntos], pPico[(i + 1) % nPuntos]);
-
-		quad(pEje[i + 1 % nPuntos], pEje2[i + 1 % nPuntos], pEje2[(i) % nPuntos], pEje[(i) % nPuntos]);
-		glEnd();
-	}
-
-	glColor3f(0.8f, 0.8f, 0.8f);
-	for (int i = 0; i < nPuntos; i++) {
-		glBegin(GL_TRIANGLE_STRIP);
-		glVertex3fv(pEje2[i % nPuntos]);
-		glVertex3fv(pValle2[i % nPuntos]);
-		glVertex3fv(pValle2[(i + 1) % nPuntos]);
-		glVertex3fv(pPico2[i % nPuntos]);
-		glEnd();
-	}
-
-	for (int i = 0; i < nPuntos; i++) {
-		glBegin(GL_TRIANGLE_STRIP);
-		glVertex3fv(pEje2[i % nPuntos]);
-		glVertex3fv(pEje2[i + 1 % nPuntos]);
-		glVertex3fv(pValle2[i + 1 % nPuntos]);
-		glEnd();
-	}
-
 }
 
 vector<Vec3> cabin_points = puntosCircunferencia(0.05 * 15, 18, 0, 0.0);
@@ -371,25 +301,6 @@ void draw_cabins(vector<Vec3> points)
 	}
 }
 
-void draw_motor_wheel(int nPuntos, float desfase, float pico, float valle, float eje, float Z, float posX, float posY, float posZ) {
-	motor_gear = glGenLists(1);
-
-	// Generate and compile display list
-	glNewList(motor_gear, GL_COMPILE);
-
-	// Apply the position transformation
-	glPushMatrix();  // Save the current matrix
-	glTranslatef(posX, posY, posZ);  // Move the gear to the specified position
-
-	// Call gear3D function to draw the motor gear
-	gear3D(nPuntos, desfase, pico, valle, eje, Z, motor_gear);
-
-	glPopMatrix();  // Restore the matrix
-
-	glEndList();
-}
-
-
 void draw_wheel(float starting_radio, int numPuntos, float desfase)
 {
 	float axis_r = starting_radio;
@@ -521,8 +432,6 @@ void draw_wheel(float starting_radio, int numPuntos, float desfase)
 	}
 	glEnd();
 
-	gear3D(247, PI / 2, axis_o + 0.02, axis_o, axis_o, 0.005, transmission_gear);
-
 	glEndList();
 }
 
@@ -623,17 +532,11 @@ void display()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
-	glScalef(4.0f, 4.0f, 4.0f);
-
 	updateCamera();
 
 	draw_cabins(cabin_points);
 
 	glCallList(axis);
-
-	glCallList(transmission_gear);
-
-	glPushMatrix();
 
 	glRotatef(rotationAngle, 0.0f, 0.0f, 1.0f);
 
@@ -645,16 +548,6 @@ void display()
 	}
 
 	glCallList(wheel);
-
-	glPopMatrix();
-
-	glTranslatef(-0.5f, -0.67f, -0.005f);
-
-	glRotatef(-rotationAngle*8, 0.0f, 0.0f, 1.0f);  // Rotate around the z-axis (you can change this if needed)
-
-	glTranslatef(0.5f, 0.67f, 0.005f);
-
-	glCallList(motor_gear);
 
 	glutSwapBuffers();
 }
@@ -685,7 +578,6 @@ void init()
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	draw_wheel(0.05, 18, 0.1);
 	draw_axis(0.1, 18, 0.05);
-	draw_motor_wheel(23, PI/3, 0.08f, 0.065f, 0.02f, 0.01f, -0.5f, -0.67f, -0.005f);
 }
 
 void keyboard(unsigned char key, int x, int y)
